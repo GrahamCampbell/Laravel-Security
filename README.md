@@ -21,7 +21,7 @@ Copyright © [Graham Campbell](https://github.com/GrahamCampbell) 2013
 Laravel Security Is A Port Of The Security Class From Codeigniter 2.1 For [Laravel 4](http://laravel.com).  
 
 * Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell).  
-* Laravel Security is heavily based on the scurity class from [Codeigniter 2.1](http://ellislab.com/codeigniter).  
+* Laravel Security is heavily based on the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter).  
 * Laravel Security uses [Travis CI](https://travis-ci.org/GrahamCampbell/Laravel-Security) to run tests to check if it's working as it should.  
 * Laravel Security uses [Composer](https://getcomposer.org) to load and manage dependencies.  
 * Laravel Security provides a [change log](https://github.com/GrahamCampbell/Laravel-Security/blob/master/CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), and a [wiki](https://github.com/GrahamCampbell/Laravel-Security/wiki).  
@@ -39,7 +39,7 @@ Laravel Security Is A Port Of The Security Class From Codeigniter 2.1 For [Larav
 
 Please check the system requirements before installing Laravel Security.  
 
-To get the latest version of Security, simply require it in your `composer.json` file.
+To get the latest version of Laravel Security, simply require it in your `composer.json` file.
 
 `"graham-campbell/security": "dev-master"`
 
