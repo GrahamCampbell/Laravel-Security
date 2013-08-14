@@ -10,6 +10,9 @@ Laravel Security
 [![Still Maintained](http://stillmaintained.com/GrahamCampbell/Laravel-Security.png)](http://stillmaintained.com/GrahamCampbell/Laravel-Security)
 
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/GrahamCampbell/laravel-security/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
+
 Copyright © [Graham Campbell](https://github.com/GrahamCampbell) 2013  
 
 
@@ -18,7 +21,7 @@ Copyright © [Graham Campbell](https://github.com/GrahamCampbell) 2013
 
 ## What Is Laravel Security?
 
-Laravel Security Is A Port Of The Security Class From Codeigniter 2.1 For [Laravel 4](http://laravel.com).  
+Laravel Security Is A Port Of The Security Class From [Codeigniter 2.1](http://ellislab.com/codeigniter) For [Laravel 4](http://laravel.com).  
 
 * Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell).  
 * Laravel Security is heavily based on the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter).  
@@ -96,7 +99,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/GrahamCampbell/laravel-security/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
