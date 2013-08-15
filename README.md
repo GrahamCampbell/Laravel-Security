@@ -21,7 +21,7 @@ Copyright © [Graham Campbell](https://github.com/GrahamCampbell) 2013
 
 ## What Is Laravel Security?
 
-Laravel Security Is A Port Of The Security Class From [Codeigniter 2.1](http://ellislab.com/codeigniter) For [Laravel 4](http://laravel.com).  
+Laravel Security is a port of the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter) for [Laravel 4](http://laravel.com).  
 
 * Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell).  
 * Laravel Security is heavily based on the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter).  
