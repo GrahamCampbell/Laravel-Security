@@ -48,7 +48,7 @@ To get the latest version of Laravel Security, simply require it in your `compos
 
 You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
 
-Once Security is installed, you need to register the service provider. Open up `app/config/app.php` and add the following to the `providers` key.
+Once Laravel Security is installed, you need to register the service provider. Open up `app/config/app.php` and add the following to the `providers` key.
 
 `'GrahamCampbell\Security\SecurityServiceProvider'`
 
