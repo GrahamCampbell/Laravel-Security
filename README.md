@@ -2,15 +2,11 @@ Laravel Security
 ==============
 
 
-[![Latest Stable Version](https://poser.pugx.org/graham-campbell/security/v/stable.png)](https://packagist.org/packages/graham-campbell/security)
 [![Build Status](https://travis-ci.org/GrahamCampbell/Laravel-Security.png?branch=master)](https://travis-ci.org/GrahamCampbell/Laravel-Security)
-[![Latest Unstable Version](https://poser.pugx.org/graham-campbell/security/v/unstable.png)](https://packagist.org/packages/graham-campbell/security)
-[![Build Status](https://travis-ci.org/GrahamCampbell/Laravel-Security.png?branch=develop)](https://travis-ci.org/GrahamCampbell/Laravel-Security)
+[![Latest Version](https://poser.pugx.org/graham-campbell/security/v/stable.png)](https://packagist.org/packages/graham-campbell/security)
 [![Total Downloads](https://poser.pugx.org/graham-campbell/security/downloads.png)](https://packagist.org/packages/graham-campbell/security)
-[![Still Maintained](http://stillmaintained.com/GrahamCampbell/Laravel-Security.png)](http://stillmaintained.com/GrahamCampbell/Laravel-Security)
-
-
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/GrahamCampbell/laravel-security/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Still Maintained](http://stillmaintained.com/GrahamCampbell/Laravel-Security.png)](http://stillmaintained.com/GrahamCampbell/Laravel-Security)
 
 
 Copyright © [Graham Campbell](https://github.com/GrahamCampbell) 2013  
