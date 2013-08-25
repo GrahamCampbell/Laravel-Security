@@ -2,15 +2,12 @@ Laravel Security
 ==============
 
 
-[![Latest Stable Version](https://poser.pugx.org/graham-campbell/security/v/stable.png)](https://packagist.org/packages/graham-campbell/security)
-[![Build Status](https://travis-ci.org/GrahamCampbell/Laravel-Security.png?branch=master)](https://travis-ci.org/GrahamCampbell/Laravel-Security)
-[![Latest Unstable Version](https://poser.pugx.org/graham-campbell/security/v/unstable.png)](https://packagist.org/packages/graham-campbell/security)
-[![Build Status](https://travis-ci.org/GrahamCampbell/Laravel-Security.png?branch=develop)](https://travis-ci.org/GrahamCampbell/Laravel-Security)
-[![Total Downloads](https://poser.pugx.org/graham-campbell/security/downloads.png)](https://packagist.org/packages/graham-campbell/security)
-[![Still Maintained](http://stillmaintained.com/GrahamCampbell/Laravel-Security.png)](http://stillmaintained.com/GrahamCampbell/Laravel-Security)
-
-
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/GrahamCampbell/laravel-security/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Build Status](https://travis-ci.org/GrahamCampbell/Laravel-Security.png?branch=master)](https://travis-ci.org/GrahamCampbell/Laravel-Security)
+[![Latest Version](https://poser.pugx.org/graham-campbell/security/v/stable.png)](https://packagist.org/packages/graham-campbell/security)
+[![Total Downloads](https://poser.pugx.org/graham-campbell/security/downloads.png)](https://packagist.org/packages/graham-campbell/security)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security/badges/quality-score.png?s=e927889c4b3b569c6c078a797d37d8a847ad9106)](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security)
+[![Still Maintained](http://stillmaintained.com/GrahamCampbell/Laravel-Security.png)](http://stillmaintained.com/GrahamCampbell/Laravel-Security)
 
 
 Copyright © [Graham Campbell](https://github.com/GrahamCampbell) 2013  
@@ -26,6 +23,7 @@ Laravel Security is a port of the security class from [Codeigniter 2.1](http://e
 * Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell).  
 * Laravel Security is heavily based on the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter).  
 * Laravel Security uses [Travis CI](https://travis-ci.org/GrahamCampbell/Laravel-Security) to run tests to check if it's working as it should.  
+* Laravel Security uses [Scrutinizer CI](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security) to run additional tests and checks.  
 * Laravel Security uses [Composer](https://getcomposer.org) to load and manage dependencies.  
 * Laravel Security provides a [change log](https://github.com/GrahamCampbell/Laravel-Security/blob/master/CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), and a [wiki](https://github.com/GrahamCampbell/Laravel-Security/wiki).  
 * Laravel Security is licensed under the MIT, available [here](https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md).  

@@ -37,6 +37,6 @@ class SecurityServiceProvider extends ServiceProvider {
      * @return array
      */
     public function provides() {
-        return array();
+        return array('security');
     }
 }
