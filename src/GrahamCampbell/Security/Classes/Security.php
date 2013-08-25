@@ -5,8 +5,8 @@ class Security {
     /**
      * XSS clean.
      *
-     * @param  string   $str
-     * @param  boolean  $is_image
+     * @param  string  $str
+     * @param  bool    $is_image
      * @return string
      */
     public function xss_clean($str, $is_image = FALSE) {
@@ -149,8 +149,8 @@ class Security {
     /**
      * Remove invisible characters.
      *
-     * @param  string   $str
-     * @param  boolean  $url_encoded
+     * @param  string  $str
+     * @param  bool    $url_encoded
      * @return string
      */
     public function remove_invisible_characters($str, $url_encoded = TRUE) {
@@ -235,8 +235,8 @@ class Security {
     /**
      * Remove evil attributes.
      *
-     * @param  string   $str
-     * @param  boolean  $is_image
+     * @param  string  $str
+     * @param  bool    $is_image
      * @return string
      */
     public function remove_evil_attributes($str, $is_image) {
