@@ -2,10 +2,11 @@ CHANGE LOG
 ==========
 
 
-## V0.1.1 Alpha (Upcoming)
+## V0.1.1 Alpha (25/08/2013)
 #### Major Release
 
 * Updated the providers
+* Syntax fixes
 * Minor tweaks
 
 
