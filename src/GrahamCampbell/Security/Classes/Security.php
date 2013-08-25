@@ -91,7 +91,7 @@ class Security {
                         preg_replace(
                             '#href=.*?(alert\(|alert&\#40;|javascript\:|livescript\:|mocha\:|charset\=|window\.|document\.|\.cookie|<script|<xss|data\s*:)#si',
                             '',
-                            $this->filter_attributes(str_replace(array('<', '>'), '', $match[1])),
+                            $this->filter_attributes(str_replace(array('<', '>'), '', $match[1]))
                         ),
                         $match[0],
                     );
