@@ -2,7 +2,13 @@
 
 class Security {
 
-    // xss clean
+    /**
+     * XSS clean.
+     *
+     * @param  string   $str
+     * @param  boolean  $is_image
+     * @return string
+     */
     public function xss_clean($str, $is_image = FALSE) {
         if (is_array($str)) {
             while (list($key) = each($str)) {
@@ -140,7 +146,13 @@ class Security {
         return $str;
     }
 
-    // remove invisible characters
+    /**
+     * Remove invisible characters.
+     *
+     * @param  string   $str
+     * @param  boolean  $url_encoded
+     * @return string
+     */
     public function remove_invisible_characters($str, $url_encoded = TRUE) {
         $non_displayables = array();
 
@@ -161,7 +173,12 @@ class Security {
 
     }
 
-    // validate url entities
+    /**
+     * Validate entities.
+     *
+     * @param  string   $str
+     * @return string
+     */
     public function validate_entities($str) {
         $xss_hash = md5(time() + mt_rand(0, 1999999999));
 
@@ -177,7 +194,12 @@ class Security {
 
     }
 
-    // do never allowed
+    /**
+     * Do never allowed.
+     *
+     * @param  string   $str
+     * @return string
+     */
     public function do_never_allowed($str) {
         $never_allowed_str = array(
             'document.cookie'   => '[removed]',
@@ -210,7 +232,13 @@ class Security {
 
     }
 
-    // remove evil html attributes
+    /**
+     * Remove evil attributes.
+     *
+     * @param  string   $str
+     * @param  boolean  $is_image
+     * @return string
+     */
     public function remove_evil_attributes($str, $is_image) {
         $evil_attributes = array('on\w*', 'style', 'xmlns', 'formaction');
 
@@ -246,7 +274,13 @@ class Security {
         return $str;
     }
 
-    // html entities decode
+    /**
+     * Entity decode.
+     *
+     * @param  string  $str
+     * @param  string  $charset
+     * @return string
+     */
     public function entity_decode($str, $charset='UTF-8') {
         if (stristr($str, '&') === FALSE) {
             return $str;
@@ -257,7 +291,12 @@ class Security {
         return preg_replace('~&#([0-9]{2,4})~e', 'chr(\\1)', $str);
     }
 
-    // filer attributes
+    /**
+     * Filter attributes.
+     *
+     * @param  string  $str
+     * @return string
+     */
     public function filter_attributes($str) {
         $out = '';
 
