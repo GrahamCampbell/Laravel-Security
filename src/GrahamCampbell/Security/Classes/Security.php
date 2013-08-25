@@ -2,7 +2,13 @@
 
 class Security {
 
-    // xss clean
+    /**
+     * XSS clean.
+     *
+     * @param  string  $str
+     * @param  bool    $is_image
+     * @return string
+     */
     public function xss_clean($str, $is_image = FALSE) {
         if (is_array($str)) {
             while (list($key) = each($str)) {
@@ -29,7 +35,7 @@ class Security {
         }, $str);
 
         // convert character entities to ascii (part 2)
-        $str = preg_replace_callback("/<\w+.*?(?=>|<|$)/si", function($match){
+        $str = preg_replace_callback("/<\w+.*?(?=>|<|$)/si", function($match) {
             return $this->entity_decode($match[0], 'UTF-8');
         }, $str);
 
@@ -69,7 +75,7 @@ class Security {
                 $temp .= substr($word, $i, 1)."\s*";
             }
 
-            $str = preg_replace_callback('#('.substr($temp, 0, -3).')(\W)#is', function($matches){
+            $str = preg_replace_callback('#('.substr($temp, 0, -3).')(\W)#is', function($matches) {
                 return preg_replace('/\s+/s', '', $matches[1]).$matches[2];
             }, $str);
         }
@@ -79,21 +85,21 @@ class Security {
             $original = $str;
 
             if (preg_match("/<a/i", $str)) {
-                $str = preg_replace_callback("#<a\s+([^>]*?)(>|$)#si", function($match){
+                $str = preg_replace_callback("#<a\s+([^>]*?)(>|$)#si", function($match) {
                     return str_replace(
                         $match[1],
                         preg_replace(
                             '#href=.*?(alert\(|alert&\#40;|javascript\:|livescript\:|mocha\:|charset\=|window\.|document\.|\.cookie|<script|<xss|data\s*:)#si',
                             '',
-                            $this->filter_attributes(str_replace(array('<', '>'), '', $match[1])),
+                            $this->filter_attributes(str_replace(array('<', '>'), '', $match[1]))
                         ),
-                        $match[0],
+                        $match[0]
                     );
                 }, $str);
             }
 
             if (preg_match("/<img/i", $str)) {
-                $str = preg_replace_callback("#<img\s+([^>]*?)(\s?/?>|$)#si", function($match){
+                $str = preg_replace_callback("#<img\s+([^>]*?)(\s?/?>|$)#si", function($match) {
                     return str_replace(
                         $match[1],
                         preg_replace(
@@ -101,7 +107,7 @@ class Security {
                             '',
                             $this->filter_attributes(str_replace(array('<', '>'), '', $match[1]))
                         ),
-                        $match[0],
+                        $match[0]
                     );
 
                 }, $str);
@@ -121,7 +127,7 @@ class Security {
 
         // sanitize naughty html elements
         $naughty = 'alert|applet|audio|basefont|base|behavior|bgsound|blink|body|embed|expression|form|frameset|frame|head|html|ilayer|iframe|input|isindex|layer|link|meta|object|plaintext|style|script|textarea|title|video|xml|xss';
-        $str = preg_replace_callback('#<(/*\s*)('.$naughty.')([^><]*)([><]*)#is', function($matches){
+        $str = preg_replace_callback('#<(/*\s*)('.$naughty.')([^><]*)([><]*)#is', function($matches) {
             $str = '&lt;'.$matches[1].$matches[2].$matches[3];
             return $str .= str_replace(array('>', '<'), array('&gt;', '&lt;'), $matches[4]);
         }, $str);
@@ -140,7 +146,13 @@ class Security {
         return $str;
     }
 
-    // remove invisible characters
+    /**
+     * Remove invisible characters.
+     *
+     * @param  string  $str
+     * @param  bool    $url_encoded
+     * @return string
+     */
     public function remove_invisible_characters($str, $url_encoded = TRUE) {
         $non_displayables = array();
 
@@ -161,7 +173,12 @@ class Security {
 
     }
 
-    // validate url entities
+    /**
+     * Validate entities.
+     *
+     * @param  string   $str
+     * @return string
+     */
     public function validate_entities($str) {
         $xss_hash = md5(time() + mt_rand(0, 1999999999));
 
@@ -177,7 +194,12 @@ class Security {
 
     }
 
-    // do never allowed
+    /**
+     * Do never allowed.
+     *
+     * @param  string   $str
+     * @return string
+     */
     public function do_never_allowed($str) {
         $never_allowed_str = array(
             'document.cookie'   => '[removed]',
@@ -210,7 +232,13 @@ class Security {
 
     }
 
-    // remove evil html attributes
+    /**
+     * Remove evil attributes.
+     *
+     * @param  string  $str
+     * @param  bool    $is_image
+     * @return string
+     */
     public function remove_evil_attributes($str, $is_image) {
         $evil_attributes = array('on\w*', 'style', 'xmlns', 'formaction');
 
@@ -246,7 +274,13 @@ class Security {
         return $str;
     }
 
-    // html entities decode
+    /**
+     * Entity decode.
+     *
+     * @param  string  $str
+     * @param  string  $charset
+     * @return string
+     */
     public function entity_decode($str, $charset='UTF-8') {
         if (stristr($str, '&') === FALSE) {
             return $str;
@@ -257,7 +291,12 @@ class Security {
         return preg_replace('~&#([0-9]{2,4})~e', 'chr(\\1)', $str);
     }
 
-    // filer attributes
+    /**
+     * Filter attributes.
+     *
+     * @param  string  $str
+     * @return string
+     */
     public function filter_attributes($str) {
         $out = '';
 
