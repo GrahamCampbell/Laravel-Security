@@ -35,7 +35,7 @@ class Security {
         }, $str);
 
         // convert character entities to ascii (part 2)
-        $str = preg_replace_callback("/<\w+.*?(?=>|<|$)/si", function($match){
+        $str = preg_replace_callback("/<\w+.*?(?=>|<|$)/si", function($match) {
             return $this->entity_decode($match[0], 'UTF-8');
         }, $str);
 
@@ -75,7 +75,7 @@ class Security {
                 $temp .= substr($word, $i, 1)."\s*";
             }
 
-            $str = preg_replace_callback('#('.substr($temp, 0, -3).')(\W)#is', function($matches){
+            $str = preg_replace_callback('#('.substr($temp, 0, -3).')(\W)#is', function($matches) {
                 return preg_replace('/\s+/s', '', $matches[1]).$matches[2];
             }, $str);
         }
@@ -85,7 +85,7 @@ class Security {
             $original = $str;
 
             if (preg_match("/<a/i", $str)) {
-                $str = preg_replace_callback("#<a\s+([^>]*?)(>|$)#si", function($match){
+                $str = preg_replace_callback("#<a\s+([^>]*?)(>|$)#si", function($match) {
                     return str_replace(
                         $match[1],
                         preg_replace(
@@ -93,13 +93,13 @@ class Security {
                             '',
                             $this->filter_attributes(str_replace(array('<', '>'), '', $match[1]))
                         ),
-                        $match[0],
+                        $match[0]
                     );
                 }, $str);
             }
 
             if (preg_match("/<img/i", $str)) {
-                $str = preg_replace_callback("#<img\s+([^>]*?)(\s?/?>|$)#si", function($match){
+                $str = preg_replace_callback("#<img\s+([^>]*?)(\s?/?>|$)#si", function($match) {
                     return str_replace(
                         $match[1],
                         preg_replace(
@@ -107,7 +107,7 @@ class Security {
                             '',
                             $this->filter_attributes(str_replace(array('<', '>'), '', $match[1]))
                         ),
-                        $match[0],
+                        $match[0]
                     );
 
                 }, $str);
@@ -127,7 +127,7 @@ class Security {
 
         // sanitize naughty html elements
         $naughty = 'alert|applet|audio|basefont|base|behavior|bgsound|blink|body|embed|expression|form|frameset|frame|head|html|ilayer|iframe|input|isindex|layer|link|meta|object|plaintext|style|script|textarea|title|video|xml|xss';
-        $str = preg_replace_callback('#<(/*\s*)('.$naughty.')([^><]*)([><]*)#is', function($matches){
+        $str = preg_replace_callback('#<(/*\s*)('.$naughty.')([^><]*)([><]*)#is', function($matches) {
             $str = '&lt;'.$matches[1].$matches[2].$matches[3];
             return $str .= str_replace(array('>', '<'), array('&gt;', '&lt;'), $matches[4]);
         }, $str);
