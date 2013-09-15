@@ -2,7 +2,7 @@ Laravel Security
 ==============
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/GrahamCampbell/laravel-security/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/GrahamCampbell/Laravel-Security/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![Build Status](https://travis-ci.org/GrahamCampbell/Laravel-Security.png?branch=master)](https://travis-ci.org/GrahamCampbell/Laravel-Security)
 [![Latest Version](https://poser.pugx.org/graham-campbell/security/v/stable.png)](https://packagist.org/packages/graham-campbell/security)
 [![Total Downloads](https://poser.pugx.org/graham-campbell/security/downloads.png)](https://packagist.org/packages/graham-campbell/security)
