@@ -8,6 +8,13 @@ CHANGE LOG
 * Added unit tests
 
 
+## V0.3.1 Alpha (Upcoming)
+#### Minor Release
+
+* Updated doc blocks
+* Minor refactor and cleanup
+
+
 ## V0.3 Alpha (10/12/2013)
 #### Major Release
 
