@@ -2,7 +2,7 @@
     "name": "graham-campbell/security",
     "description": "Security Is A Port Of The Security Class From Codeigniter 2.1 For Laravel 4",
     "keywords": ["laravel", "framework", "security", "codeigniter", "Security", "Laravel Security", "Laravel-Security", "Graham Campbell", "GrahamCampbell"],
-    "license": "MIT",
+    "license": "Apache License 2.0",
     "authors": [
         {
             "name": "Graham Campbell",
@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "illuminate/support": "4.0.*@stable"
+        "orchestra/testbench": "~2"
     },
     "require-dev": {
         "mockery/mockery": "0.8.*@stable",
