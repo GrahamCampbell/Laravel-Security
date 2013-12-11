@@ -2,17 +2,17 @@ CHANGE LOG
 ==========
 
 
-## V0.4 Alpha (Upcoming)
+## V0.5 Alpha (Upcoming)
 #### Major Release
 
 * Added unit tests
 
 
-## V0.3.1 Alpha (Upcoming)
-#### Minor Release
+## V0.4 Alpha (Upcoming)
+#### Major Release
 
 * Updated doc blocks
-* Minor refactor and cleanup
+* Refactor and cleanup
 
 
 ## V0.3 Alpha (10/12/2013)
