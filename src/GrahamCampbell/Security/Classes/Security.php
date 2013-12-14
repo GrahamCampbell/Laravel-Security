@@ -30,7 +30,8 @@ class Security
      * @param  bool    $image
      * @return string
      */
-    public function clean($string, $image = false) {
+    public function clean($string, $image = false)
+    {
         if (is_array($string)) {
             while (list($key) = each($string)) {
                 $string[$key] = $this->xss_clean($string[$key]);
