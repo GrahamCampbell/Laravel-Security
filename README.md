@@ -12,7 +12,7 @@ Laravel Security
 
 ## What Is Laravel Security?
 
-Laravel Security is a port of the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter) for [Laravel 4](http://laravel.com).  
+Laravel Security is a port of the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter) for [Laravel 4.1](http://laravel.com).  
 
 * Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell).  
 * Laravel Security is heavily based on the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter).  
@@ -25,8 +25,8 @@ Laravel Security is a port of the security class from [Codeigniter 2.1](http://e
 
 ## System Requirements
 
-* PHP 5.3.3+, 5.4+ or PHP 5.5+ is required.
-* You will need [Laravel 4](http://laravel.com) because this package is designed for it.  
+* PHP 5.4.7+ or PHP 5.5+ is required.
+* You will need [Laravel 4.1](http://laravel.com) because this package is designed for it.  
 * You will need [Composer](https://getcomposer.org) installed to load the dependencies of Laravel Security.  
 
 
