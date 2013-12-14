@@ -20,7 +20,8 @@
  * @link       https://github.com/GrahamCampbell/Laravel-Security
  */
 
-class Security {
+class Security
+{
 
     /**
      * XSS clean.
@@ -50,12 +51,12 @@ class Security {
         $string = strip_tags($string);
 
         // convert character entities to ascii
-        $string = preg_replace_callback("/[a-z]+=([\'\"]).*?\\1/si", function($match) {
+        $string = preg_replace_callback("/[a-z]+=([\'\"]).*?\\1/si", function ($match) {
             return str_replace(array('>', '<', '\\'), array('&gt;', '&lt;', '\\\\'), $match[0]);
         }, $string);
 
         // convert character entities to ascii (part 2)
-        $string = preg_replace_callback("/<\w+.*?(?=>|<|$)/si", function($match) {
+        $string = preg_replace_callback("/<\w+.*?(?=>|<|$)/si", function ($match) {
             return $this->entityDecode($match[0], 'UTF-8');
         }, $string);
 
@@ -77,7 +78,7 @@ class Security {
         if ($image === true) {
             $string = preg_replace('/<\?(php)/i', "&lt;?\\1", $string);
         } else {
-            $string = str_replace(array('<?', '?'.'>'),  array('&lt;?', '?&gt;'), $string);
+            $string = str_replace(array('<?', '?'.'>'), array('&lt;?', '?&gt;'), $string);
         }
 
         // compact any exploded words
@@ -103,7 +104,7 @@ class Security {
                 $temp .= substr($word, $i, 1)."\s*";
             }
 
-            $string = preg_replace_callback('#('.substr($temp, 0, -3).')(\W)#is', function($matches) {
+            $string = preg_replace_callback('#('.substr($temp, 0, -3).')(\W)#is', function ($matches) {
                 return preg_replace('/\s+/s', '', $matches[1]).$matches[2];
             }, $string);
         }
@@ -113,7 +114,7 @@ class Security {
             $original = $string;
 
             if (preg_match("/<a/i", $string)) {
-                $string = preg_replace_callback("#<a\s+([^>]*?)(>|$)#si", function($match) {
+                $string = preg_replace_callback("#<a\s+([^>]*?)(>|$)#si", function ($match) {
                     return str_replace(
                         $match[1],
                         preg_replace(
@@ -127,7 +128,7 @@ class Security {
             }
 
             if (preg_match("/<img/i", $string)) {
-                $string = preg_replace_callback("#<img\s+([^>]*?)(\s?/?>|$)#si", function($match) {
+                $string = preg_replace_callback("#<img\s+([^>]*?)(\s?/?>|$)#si", function ($match) {
                     return str_replace(
                         $match[1],
                         preg_replace(
@@ -140,12 +141,10 @@ class Security {
                 }, $string);
             }
 
-            if (preg_match("/script/i", $string) OR preg_match("/xss/i", $string)) {
+            if (preg_match("/script/i", $string) || preg_match("/xss/i", $string)) {
                 $string = preg_replace("#<(/*)(script|xss)(.*?)\>#si", '[removed]', $string);
             }
-        }
-
-        while($original != $string);
+        } while ($original != $string);
 
         unset($original);
 
@@ -154,7 +153,7 @@ class Security {
 
         // sanitize naughty html elements
         $naughty = 'alert|applet|audio|basefont|base|behavior|bgsound|blink|body|embed|expression|form|frameset|frame|head|html|ilayer|iframe|input|isindex|layer|link|meta|object|plaintext|style|script|textarea|title|video|xml|xss';
-        $string = preg_replace_callback('#<(/*\s*)('.$naughty.')([^><]*)([><]*)#is', function($matches) {
+        $string = preg_replace_callback('#<(/*\s*)('.$naughty.')([^><]*)([><]*)#is', function ($matches) {
             $string = '&lt;'.$matches[1].$matches[2].$matches[3];
             return $string .= str_replace(array('>', '<'), array('&gt;', '&lt;'), $matches[4]);
         }, $string);
@@ -180,7 +179,8 @@ class Security {
      * @param  bool    $encoded
      * @return string
      */
-    protected function removeInvisible($string, $encoded = true) {
+    protected function removeInvisible($string, $encoded = true)
+    {
         $non_displayables = array();
 
         if ($encoded) {
@@ -192,9 +192,7 @@ class Security {
 
         do {
             $string = preg_replace($non_displayables, '', $string, -1, $count);
-        }
-
-        while ($count);
+        } while ($count);
 
         return $string;
 
@@ -206,19 +204,16 @@ class Security {
      * @param  string  $string
      * @return string
      */
-    protected function validateEntities($string) {
+    protected function validateEntities($string)
+    {
         $xss_hash = md5(time() + mt_rand(0, 1999999999));
 
         $string = preg_replace('|\&([a-z\_0-9\-]+)\=([a-z\_0-9\-]+)|i', $xss_hash."\\1=\\2", $string);
-
         $string = preg_replace('#(&\#?[0-9a-z]{2,})([\x00-\x20])*;?#i', "\\1;\\2", $string);
-
-        $string = preg_replace('#(&\#x?)([0-9A-F]+);?#i',"\\1\\2;",$string);
-
+        $string = preg_replace('#(&\#x?)([0-9A-F]+);?#i', "\\1\\2;", $string);
         $string = str_replace($xss_hash, '&', $string);
 
         return $string;
-
     }
 
     /**
@@ -227,7 +222,8 @@ class Security {
      * @param  string  $string
      * @return string
      */
-    protected function neverAllowed($string) {
+    protected function neverAllowed($string)
+    {
         $never_allowed_str = array(
             'document.cookie'   => '[removed]',
             'document.write'    => '[removed]',
@@ -266,7 +262,8 @@ class Security {
      * @param  bool    $image
      * @return string
      */
-    protected function evilAttributes($string, $image) {
+    protected function evilAttributes($string, $image)
+    {
         $attributes = array('on\w*', 'style', 'xmlns', 'formaction');
 
         if ($image === true) {
@@ -285,7 +282,7 @@ class Security {
             }
 
             // find occurrences of illegal attribute strings with quotes (042 and 047 are octal quotes)
-            preg_match_all("/(".implode('|', $attributes).")\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is",  $string, $matches, PREG_SET_ORDER);
+            preg_match_all("/(".implode('|', $attributes).")\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is", $string, $matches, PREG_SET_ORDER);
 
             foreach ($matches as $attr) {
                 $attribs[] = preg_quote($attr[0], '/');
@@ -308,7 +305,8 @@ class Security {
      * @param  string  $charset
      * @return string
      */
-    protected function entityDecode($string, $charset='UTF-8') {
+    protected function entityDecode($string, $charset = 'UTF-8')
+    {
         if (stristr($string, '&') === false) {
             return $string;
         }
@@ -324,7 +322,8 @@ class Security {
      * @param  string  $string
      * @return string
      */
-    protected function filterAttributes($string) {
+    protected function filterAttributes($string)
+    {
         $out = '';
 
         if (preg_match_all('#\s*[a-z\-]+\s*=\s*(\042|\047)([^\\1]*?)\\1#is', $string, $matches)) {

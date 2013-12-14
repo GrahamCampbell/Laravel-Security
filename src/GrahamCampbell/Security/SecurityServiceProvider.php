@@ -22,7 +22,8 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class SecurityServiceProvider extends ServiceProvider {
+class SecurityServiceProvider extends ServiceProvider
+{
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -36,7 +37,8 @@ class SecurityServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function boot() {
+    public function boot()
+    {
         $this->package('graham-campbell/security');
     }
 
@@ -45,8 +47,9 @@ class SecurityServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function register() {
-        $this->app['security'] = $this->app->share(function($app) {
+    public function register()
+    {
+        $this->app['security'] = $this->app->share(function ($app) {
             return new Classes\Security;
         });
     }
@@ -56,7 +59,8 @@ class SecurityServiceProvider extends ServiceProvider {
      *
      * @return array
      */
-    public function provides() {
+    public function provides()
+    {
         return array('security');
     }
 }
