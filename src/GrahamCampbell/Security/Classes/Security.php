@@ -33,11 +33,38 @@ class Security
     {
         if (is_array($string)) {
             while (list($key) = each($string)) {
-                $string[$key] = $this->xss_clean($string[$key]);
+                $string[$key] = $this->clean($string[$key]);
             }
             return $string;
         }
 
+        $string = $this->checks($string);
+
+        $converted = $string;
+
+        $string = $this->neverAllowed($string);
+        $string = $this->tags($string, $image);
+        $string = $this->compact($string);
+        $string = $this->links($string);
+        $string = $this->evilAttributes($string, $image);
+        $string = $this->naughty($string);
+        $string = $this->neverAllowed($string);
+
+        if ($image === true) {
+            return ($string == $converted) ? true: false;
+        }
+
+        return $string;
+    }
+
+    /**
+     * Run initial checks.
+     *
+     * @param  string  $string
+     * @return string
+     */
+    protected function checks($string)
+    {
         // remove the invisible characters
         $string = $this->removeInvisible($string);
 
@@ -66,107 +93,6 @@ class Security
         // convert all tabs to spaces
         if (strpos($string, "\t") !== false) {
             $string = str_replace("\t", ' ', $string);
-        }
-
-        // capture the converted string for later comparison
-        $converted = $string;
-
-        // remove strings that are never allowed
-        $string = $this->neverAllowed($string);
-
-        // make php tags safe
-        if ($image === true) {
-            $string = preg_replace('/<\?(php)/i', "&lt;?\\1", $string);
-        } else {
-            $string = str_replace(array('<?', '?'.'>'), array('&lt;?', '?&gt;'), $string);
-        }
-
-        // compact any exploded words
-        $words = array(
-            'javascript',
-            'expression',
-            'vbscript',
-            'script',
-            'base64',
-            'applet',
-            'alert',
-            'document',
-            'write',
-            'cookie',
-            'window'
-        );
-
-        // compact any exploded words (part 2)
-        foreach ($words as $word) {
-            $temp = '';
-
-            for ($i = 0, $wordlen = strlen($word); $i < $wordlen; $i++) {
-                $temp .= substr($word, $i, 1)."\s*";
-            }
-
-            $string = preg_replace_callback('#('.substr($temp, 0, -3).')(\W)#is', function ($matches) {
-                return preg_replace('/\s+/s', '', $matches[1]).$matches[2];
-            }, $string);
-        }
-
-        // remove js in links or img tags
-        do {
-            $original = $string;
-
-            if (preg_match("/<a/i", $string)) {
-                $string = preg_replace_callback("#<a\s+([^>]*?)(>|$)#si", function ($match) {
-                    return str_replace(
-                        $match[1],
-                        preg_replace(
-                            '#href=.*?(alert\(|alert&\#40;|javascript\:|livescript\:|mocha\:|charset\=|window\.|document\.|\.cookie|<script|<xss|data\s*:)#si',
-                            '',
-                            $this->filterAttributes(str_replace(array('<', '>'), '', $match[1]))
-                        ),
-                        $match[0]
-                    );
-                }, $string);
-            }
-
-            if (preg_match("/<img/i", $string)) {
-                $string = preg_replace_callback("#<img\s+([^>]*?)(\s?/?>|$)#si", function ($match) {
-                    return str_replace(
-                        $match[1],
-                        preg_replace(
-                            '#src=.*?(alert\(|alert&\#40;|javascript\:|livescript\:|mocha\:|charset\=|window\.|document\.|\.cookie|<script|<xss|base64\s*,)#si',
-                            '',
-                            $this->filterAttributes(str_replace(array('<', '>'), '', $match[1]))
-                        ),
-                        $match[0]
-                    );
-                }, $string);
-            }
-
-            if (preg_match("/script/i", $string) || preg_match("/xss/i", $string)) {
-                $string = preg_replace("#<(/*)(script|xss)(.*?)\>#si", '[removed]', $string);
-            }
-        } while ($original != $string);
-
-        unset($original);
-
-        // remove evil attributes such as style, onclick and xmlns
-        $string = $this->evilAttributes($string, $image);
-
-        // sanitize naughty html elements
-        $naughty = 'alert|applet|audio|basefont|base|behavior|bgsound|blink|body|embed|expression|form|frameset|frame|head|html|ilayer|iframe|input|isindex|layer|link|meta|object|plaintext|style|script|textarea|title|video|xml|xss';
-        $string = preg_replace_callback('#<(/*\s*)('.$naughty.')([^><]*)([><]*)#is', function ($matches) {
-            $string = '&lt;'.$matches[1].$matches[2].$matches[3];
-            return $string .= str_replace(array('>', '<'), array('&gt;', '&lt;'), $matches[4]);
-        }, $string);
-
-        // sanitize naughty scripting elements
-        $string = preg_replace('#(alert|cmd|passthru|eval|exec|expression|system|fopen|fsockopen|file|file_get_contents|readfile|unlink)(\s*)\((.*?)\)#si', "\\1\\2&#40;\\3&#41;", $string);
-
-        // final clean up
-        $string = $this->neverAllowed($string);
-
-        // images are handled in a special way
-        if ($image === true) {
-            return ($string == $converted) ? true: false;
         }
 
         return $string;
@@ -217,6 +143,24 @@ class Security
     }
 
     /**
+     * Entity decode.
+     *
+     * @param  string  $string
+     * @param  string  $charset
+     * @return string
+     */
+    protected function entityDecode($string, $charset = 'UTF-8')
+    {
+        if (stristr($string, '&') === false) {
+            return $string;
+        }
+
+        $string = html_entity_decode($string, ENT_COMPAT, $charset);
+        $string = preg_replace('~&#x(0*[0-9a-f]{2,5})~ei', 'chr(hexdec("\\1"))', $string);
+        return preg_replace('~&#([0-9]{2,4})~e', 'chr(\\1)', $string);
+    }
+
+    /**
      * Do never allowed.
      *
      * @param  string  $string
@@ -252,7 +196,127 @@ class Security
         }
 
         return $string;
+    }
 
+    /**
+     * Make php tags safe.
+     *
+     * @param  string  $string
+     * @param  bool    $image
+     * @return string
+     */
+    protected function tags($string, $image)
+    {
+        if ($image === true) {
+            $string = preg_replace('/<\?(php)/i', "&lt;?\\1", $string);
+        } else {
+            $string = str_replace(array('<?', '?'.'>'), array('&lt;?', '?&gt;'), $string);
+        }
+
+        return $string;
+    }
+
+    /**
+     * Compact any exploded words.
+     *
+     * @param  string  $string
+     * @return string
+     */
+    protected function compact($string)
+    {
+        $words = array(
+            'javascript',
+            'expression',
+            'vbscript',
+            'script',
+            'base64',
+            'applet',
+            'alert',
+            'document',
+            'write',
+            'cookie',
+            'window'
+        );
+
+        foreach ($words as $word) {
+            $temp = '';
+
+            for ($i = 0, $wordlen = strlen($word); $i < $wordlen; $i++) {
+                $temp .= substr($word, $i, 1)."\s*";
+            }
+
+            $string = preg_replace_callback('#('.substr($temp, 0, -3).')(\W)#is', function ($matches) {
+                return preg_replace('/\s+/s', '', $matches[1]).$matches[2];
+            }, $string);
+        }
+
+        return $string;
+    }
+
+    /**
+     * Remove js in links or img tags.
+     *
+     * @param  string  $string
+     * @return string
+     */
+    protected function links($string)
+    {
+        do {
+            $original = $string;
+
+            if (preg_match("/<a/i", $string)) {
+                $string = preg_replace_callback("#<a\s+([^>]*?)(>|$)#si", function ($match) {
+                    return str_replace(
+                        $match[1],
+                        preg_replace(
+                            '#href=.*?(alert\(|alert&\#40;|javascript\:|livescript\:|mocha\:|charset\=|window\.|document\.|\.cookie|<script|<xss|data\s*:)#si',
+                            '',
+                            $this->filterAttributes(str_replace(array('<', '>'), '', $match[1]))
+                        ),
+                        $match[0]
+                    );
+                }, $string);
+            }
+
+            if (preg_match("/<img/i", $string)) {
+                $string = preg_replace_callback("#<img\s+([^>]*?)(\s?/?>|$)#si", function ($match) {
+                    return str_replace(
+                        $match[1],
+                        preg_replace(
+                            '#src=.*?(alert\(|alert&\#40;|javascript\:|livescript\:|mocha\:|charset\=|window\.|document\.|\.cookie|<script|<xss|base64\s*,)#si',
+                            '',
+                            $this->filterAttributes(str_replace(array('<', '>'), '', $match[1]))
+                        ),
+                        $match[0]
+                    );
+                }, $string);
+            }
+
+            if (preg_match("/script/i", $string) || preg_match("/xss/i", $string)) {
+                $string = preg_replace("#<(/*)(script|xss)(.*?)\>#si", '[removed]', $string);
+            }
+        } while ($original != $string);
+
+        return $string;
+    }
+
+    /**
+     * Filter attributes.
+     *
+     * @param  string  $string
+     * @return string
+     */
+    protected function filterAttributes($string)
+    {
+        $out = '';
+
+        if (preg_match_all('#\s*[a-z\-]+\s*=\s*(\042|\047)([^\\1]*?)\\1#is', $string, $matches)) {
+            foreach ($matches[0] as $match) {
+                $out .= preg_replace("#/\*.*?\*/#s", '', $match);
+            }
+        }
+
+        return $out;
     }
 
     /**
@@ -299,39 +363,23 @@ class Security
     }
 
     /**
-     * Entity decode.
-     *
-     * @param  string  $string
-     * @param  string  $charset
-     * @return string
-     */
-    protected function entityDecode($string, $charset = 'UTF-8')
-    {
-        if (stristr($string, '&') === false) {
-            return $string;
-        }
-
-        $string = html_entity_decode($string, ENT_COMPAT, $charset);
-        $string = preg_replace('~&#x(0*[0-9a-f]{2,5})~ei', 'chr(hexdec("\\1"))', $string);
-        return preg_replace('~&#([0-9]{2,4})~e', 'chr(\\1)', $string);
-    }
-
-    /**
-     * Filter attributes.
+     * Sanitize naughty elements.
      *
      * @param  string  $string
      * @return string
      */
-    protected function filterAttributes($string)
+    protected function naughty($string)
     {
-        $out = '';
+        // sanitize naughty html elements
+        $naughty = 'alert|applet|audio|basefont|base|behavior|bgsound|blink|body|embed|expression|form|frameset|frame|head|html|ilayer|iframe|input|isindex|layer|link|meta|object|plaintext|style|script|textarea|title|video|xml|xss';
+        $string = preg_replace_callback('#<(/*\s*)('.$naughty.')([^><]*)([><]*)#is', function ($matches) {
+            $string = '&lt;'.$matches[1].$matches[2].$matches[3];
+            return $string .= str_replace(array('>', '<'), array('&gt;', '&lt;'), $matches[4]);
+        }, $string);
 
-        if (preg_match_all('#\s*[a-z\-]+\s*=\s*(\042|\047)([^\\1]*?)\\1#is', $string, $matches)) {
-            foreach ($matches[0] as $match) {
-                $out .= preg_replace("#/\*.*?\*/#s", '', $match);
-            }
-        }
+        // sanitize naughty scripting elements
+        $string = preg_replace('#(alert|cmd|passthru|eval|exec|expression|system|fopen|fsockopen|file|file_get_contents|readfile|unlink)(\s*)\((.*?)\)#si', "\\1\\2&#40;\\3&#41;", $string);
 
-        return $out;
+        return $string;
     }
 }
