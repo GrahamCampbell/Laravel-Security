@@ -6,6 +6,7 @@ CHANGE LOG
 #### Major Release
 
 * Dropped Laravel 4.0 support
+* Some more refactoring
 * Travis and Scrutinizer tweaks
 * Coding style fixes
 * Added unit tests
