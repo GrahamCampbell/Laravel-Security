@@ -22,7 +22,6 @@
 
 class Security
 {
-
     /**
      * XSS clean.
      *
