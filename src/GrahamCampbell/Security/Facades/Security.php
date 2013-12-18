@@ -1,4 +1,4 @@
-<?php namespace GrahamCampbell\Security\Facades;
+<?php
 
 /**
  * This file is part of Laravel Security by Graham Campbell.
@@ -12,16 +12,21 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    Laravel-Security
- * @author     Graham Campbell
- * @license    Apache License
- * @copyright  Copyright 2013 Graham Campbell
- * @link       https://github.com/GrahamCampbell/Laravel-Security
  */
+
+namespace GrahamCampbell\Security\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * This is the security facade class.
+ *
+ * @package    Laravel-Security
+ * @author     Graham Campbell
+ * @copyright  Copyright 2013 Graham Campbell
+ * @license    https://github.com/GrahamCampbell/Laravel-Security/blob/develop/LICENSE.md
+ * @link       https://github.com/GrahamCampbell/Laravel-Security
+ */
 class Security extends Facade
 {
     /**
