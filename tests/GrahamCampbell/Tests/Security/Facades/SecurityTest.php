@@ -54,6 +54,6 @@ class SecurityTest extends AbstractFacadeTestCase
      */
     protected function getFacadeRoot()
     {
-        return 'GrahamCampbell\Security\Providers\Security';
+        return 'GrahamCampbell\Security\Classes\Security';
     }
 }
