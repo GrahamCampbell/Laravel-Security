@@ -53,8 +53,18 @@ class SecurityServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['security'] = $this->app->share(function ($app) {
-            return new Classes\Security;
+        $this->registerSecurity();
+    }
+
+    /**
+     * Register the security class.
+     *
+     * @return void
+     */
+    protected function registerSecurity()
+    {
+        $this->app->bindShared('security', function ($app) {
+            return new Classes\Security();
         });
     }
 
