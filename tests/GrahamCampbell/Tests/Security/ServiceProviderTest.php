@@ -27,7 +27,7 @@ use GrahamCampbell\TestBench\Traits\ServiceProviderTestCaseTrait;
  * @license    https://github.com/GrahamCampbell/Laravel-Security/blob/develop/LICENSE.md
  * @link       https://github.com/GrahamCampbell/Laravel-Security
  */
-abstract class ServiceProviderTest extends AbstractTestCase
+class ServiceProviderTest extends AbstractTestCase
 {
     use ServiceProviderTestCaseTrait;
 
