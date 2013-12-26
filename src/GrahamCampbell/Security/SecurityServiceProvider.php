@@ -75,6 +75,8 @@ class SecurityServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('security');
+        return array(
+            'security'
+        );
     }
 }
