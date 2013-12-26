@@ -30,14 +30,4 @@ use GrahamCampbell\TestBench\Traits\ServiceProviderTestCaseTrait;
 class ServiceProviderTest extends AbstractTestCase
 {
     use ServiceProviderTestCaseTrait;
-
-    /**
-     * Get the service provider class.
-     *
-     * @return string
-     */
-    protected function getServiceProviderClass()
-    {
-        return 'GrahamCampbell\Security\SecurityServiceProvider';
-    }
 }
