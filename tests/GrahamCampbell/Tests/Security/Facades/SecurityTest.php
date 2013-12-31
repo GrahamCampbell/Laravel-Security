@@ -16,8 +16,11 @@
 
 namespace GrahamCampbell\Tests\Security\Facades;
 
+use GrahamCampbell\Tests\Security\AbstractTestCase;
+use GrahamCampbell\TestBench\Traits\FacadeTestCaseTrait;
+
 /**
- * This is the security facade test case class.
+ * This is the security facade test class.
  *
  * @package    Laravel-Security
  * @author     Graham Campbell
@@ -27,6 +30,8 @@ namespace GrahamCampbell\Tests\Security\Facades;
  */
 class SecurityTest extends AbstractFacadeTestCase
 {
+    use FacadeTestCaseTrait;
+
     /**
      * Get the facade accessor.
      *
