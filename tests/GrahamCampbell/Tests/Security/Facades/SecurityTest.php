@@ -28,7 +28,7 @@ use GrahamCampbell\TestBench\Traits\FacadeTestCaseTrait;
  * @license    https://github.com/GrahamCampbell/Laravel-Security/blob/develop/LICENSE.md
  * @link       https://github.com/GrahamCampbell/Laravel-Security
  */
-class SecurityTest extends AbstractFacadeTestCase
+class SecurityTest extends AbstractTestCase
 {
     use FacadeTestCaseTrait;
 
