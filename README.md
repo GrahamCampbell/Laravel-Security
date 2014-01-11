@@ -51,8 +51,8 @@ You can register the Security facade in the `aliases` key of your `app/config/ap
 
 ## Usage
 
-There is currently no usage documentation besides the [API Documentation](http://grahamcampbell.github.io/Laravel-Core
-) for Laravel Core.  
+There is currently no usage documentation besides the [API Documentation](http://grahamcampbell.github.io/Laravel-Security
+) for Laravel Security.  
 
 You may see an example of implementation in [Laravel Binput](https://github.com/GrahamCampbell/Laravel-Binput).  
 
