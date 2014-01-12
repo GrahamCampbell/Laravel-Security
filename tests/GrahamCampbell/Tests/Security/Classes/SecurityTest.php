@@ -20,7 +20,7 @@ use GrahamCampbell\Security\Classes\Security;
 use GrahamCampbell\TestBench\Classes\AbstractTestCase;
 
 /**
- * This is the htmlmin test class.
+ * This is the security test class.
  *
  * @package    Laravel-Security
  * @author     Graham Campbell
