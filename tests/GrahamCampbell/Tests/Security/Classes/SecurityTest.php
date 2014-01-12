@@ -16,7 +16,6 @@
 
 namespace GrahamCampbell\Tests\Security\Classes;
 
-use Mockery;
 use GrahamCampbell\Security\Classes\Security;
 use GrahamCampbell\TestBench\Classes\AbstractTestCase;
 
