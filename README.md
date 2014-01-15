@@ -36,7 +36,7 @@ Please check the system requirements before installing Laravel Security.
 
 To get the latest version of Laravel Security, simply require it in your `composer.json` file.  
 
-`"graham-campbell/security": "dev-master"`  
+`"graham-campbell/security": "*"`  
 
 You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.  
 
