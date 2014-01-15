@@ -2,7 +2,7 @@ CHANGE LOG
 ==========
 
 
-## V0.5 Alpha (Upcoming)
+## V1.0 Beta 1 (Upcoming)
 #### Major Release
 
 * Dropped Laravel 4.0 support
