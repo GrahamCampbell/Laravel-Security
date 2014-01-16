@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-namespace GrahamCampbell\Security\Facades;
+namespace GrahamCampbell\Tests\Security\Classes;
 
-use Illuminate\Support\Facades\Facade;
+use GrahamCampbell\Security\Classes\Security;
+use GrahamCampbell\TestBench\Classes\AbstractTestCase;
 
 /**
- * This is the security facade class.
+ * This is the security test class.
  *
  * @package    Laravel-Security
  * @author     Graham Campbell
@@ -27,15 +28,21 @@ use Illuminate\Support\Facades\Facade;
  * @license    https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md
  * @link       https://github.com/GrahamCampbell/Laravel-Security
  */
-class Security extends Facade
+class SecurityTest extends AbstractTestCase
 {
-    /**
-     * Get the registered name of the component.
-     *
-     * @return string
-     */
-    protected static function getFacadeAccessor()
+    public function testClean()
     {
-        return 'security';
+        // this test is rubbish, and need more tests
+
+        $security = $this->getSecurity();
+
+        $return = $security->clean('test');
+
+        $this->assertEquals('test', $return);
+    }
+
+    protected function getSecurity()
+    {
+        return new Security();
     }
 }

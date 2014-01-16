@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-namespace GrahamCampbell\Security;
+namespace GrahamCampbell\Tests\Security\Facades;
 
-use Illuminate\Support\ServiceProvider;
+use GrahamCampbell\Tests\Security\AbstractTestCase;
+use GrahamCampbell\TestBench\Traits\FacadeTestCaseTrait;
 
 /**
- * This is the security service provider class.
+ * This is the security facade test class.
  *
  * @package    Laravel-Security
  * @author     Graham Campbell
@@ -27,56 +28,37 @@ use Illuminate\Support\ServiceProvider;
  * @license    https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md
  * @link       https://github.com/GrahamCampbell/Laravel-Security
  */
-class SecurityServiceProvider extends ServiceProvider
+class SecurityTest extends AbstractTestCase
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
+    use FacadeTestCaseTrait;
 
     /**
-     * Bootstrap the application events.
+     * Get the facade accessor.
      *
-     * @return void
+     * @return string
      */
-    public function boot()
+    protected function getFacadeAccessor()
     {
-        $this->package('graham-campbell/security');
+        return 'security';
     }
 
     /**
-     * Register the service provider.
+     * Get the facade class.
      *
-     * @return void
+     * @return string
      */
-    public function register()
+    protected function getFacadeClass()
     {
-        $this->registerSecurity();
+        return 'GrahamCampbell\Security\Facades\Security';
     }
 
     /**
-     * Register the security class.
+     * Get the facade route.
      *
-     * @return void
+     * @return string
      */
-    protected function registerSecurity()
+    protected function getFacadeRoot()
     {
-        $this->app->bindShared('security', function ($app) {
-            return new Classes\Security();
-        });
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return array(
-            'security'
-        );
+        return 'GrahamCampbell\Security\Classes\Security';
     }
 }
