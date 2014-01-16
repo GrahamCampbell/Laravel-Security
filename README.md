@@ -3,8 +3,8 @@ Laravel Security
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/GrahamCampbell/Laravel-Security/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-[![Build Status](https://travis-ci.org/GrahamCampbell/Laravel-Security.png?branch=develop)](https://travis-ci.org/GrahamCampbell/Laravel-Security)
-[![Coverage Status](https://coveralls.io/repos/GrahamCampbell/Laravel-Security/badge.png?branch=develop)](https://coveralls.io/r/GrahamCampbell/Laravel-Security)
+[![Build Status](https://travis-ci.org/GrahamCampbell/Laravel-Security.png)](https://travis-ci.org/GrahamCampbell/Laravel-Security)
+[![Coverage Status](https://coveralls.io/repos/GrahamCampbell/Laravel-Security/badge.png)](https://coveralls.io/r/GrahamCampbell/Laravel-Security)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security/badges/quality-score.png?s=e927889c4b3b569c6c078a797d37d8a847ad9106)](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security)
 [![Latest Version](https://poser.pugx.org/graham-campbell/security/v/stable.png)](https://packagist.org/packages/graham-campbell/security)
 [![Still Maintained](http://stillmaintained.com/GrahamCampbell/Laravel-Security.png)](http://stillmaintained.com/GrahamCampbell/Laravel-Security)
@@ -20,7 +20,7 @@ Laravel Security is a port of the security class from [Codeigniter 2.1](http://e
 * Laravel Security uses [Scrutinizer CI](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security) and [Coveralls](https://coveralls.io/r/GrahamCampbell/Laravel-Security) to run additional tests and checks.  
 * Laravel Security uses [Composer](https://getcomposer.org) to load and manage dependencies.  
 * Laravel Security provides a [change log](https://github.com/GrahamCampbell/Laravel-Security/blob/develop/CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), and a [wiki](https://github.com/GrahamCampbell/Laravel-Security/wiki).  
-* Laravel Security is licensed under the Apache License, available [here](https://github.com/GrahamCampbell/Laravel-Security/blob/develop/LICENSE.md).  
+* Laravel Security is licensed under the Apache License, available [here](https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md).  
 
 
 ## System Requirements
@@ -70,7 +70,7 @@ The first command is only necessary the first time. If you have issues merging, 
 
 You can then update the branch:  
 
-    git pull --rebase upstream develop
+    git pull --rebase upstream master
     git push --force origin <branch_name>
 
 Once it is set up, run `git mergetool`. Once all conflicts are fixed, run `git rebase --continue`, and `git push --force origin <branch_name>`.  
@@ -80,9 +80,8 @@ Once it is set up, run `git mergetool`. Once all conflicts are fixed, run `git r
 
 Please submit pull requests against the develop branch.  
 
-* Any pull requests made against the master branch will be closed immediately.  
-* If you plan to fix a bug, please create a branch called `fix-`, followed by an appropriate name.  
-* If you plan to add a feature, please create a branch called `feature-`, followed by an appropriate name.  
+* Bug fixes shouldn't be sent to the master branch unless they fix features that exist only in the upcoming release.  
+* Before sending a pull request for a new feature, you should first create an issue with [Proposal] in the title.  
 * Please follow the [PSR-2 Coding Style](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) and [PHP-FIG Naming Conventions](https://github.com/php-fig/fig-standards/blob/master/bylaws/002-psr-naming-conventions.md).  
 
 

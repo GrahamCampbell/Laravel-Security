@@ -22,7 +22,7 @@ namespace GrahamCampbell\Security\Classes;
  * @package    Laravel-Security
  * @author     Graham Campbell
  * @copyright  Copyright 2013-2014 Graham Campbell
- * @license    https://github.com/GrahamCampbell/Laravel-Security/blob/develop/LICENSE.md
+ * @license    https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md
  * @link       https://github.com/GrahamCampbell/Laravel-Security
  */
 class Security
