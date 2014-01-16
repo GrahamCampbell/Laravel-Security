@@ -19,7 +19,7 @@ Laravel Security is a port of the security class from [Codeigniter 2.1](http://e
 * Laravel Security uses [Travis CI](https://travis-ci.org/GrahamCampbell/Laravel-Security) to run tests to check if it's working as it should.  
 * Laravel Security uses [Scrutinizer CI](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security) and [Coveralls](https://coveralls.io/r/GrahamCampbell/Laravel-Security) to run additional tests and checks.  
 * Laravel Security uses [Composer](https://getcomposer.org) to load and manage dependencies.  
-* Laravel Security provides a [change log](https://github.com/GrahamCampbell/Laravel-Security/blob/develop/CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), and a [wiki](https://github.com/GrahamCampbell/Laravel-Security/wiki).  
+* Laravel Security provides a [change log](https://github.com/GrahamCampbell/Laravel-Security/blob/master/CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), and a [wiki](https://github.com/GrahamCampbell/Laravel-Security/wiki).  
 * Laravel Security is licensed under the Apache License, available [here](https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md).  
 
 
@@ -78,7 +78,7 @@ Once it is set up, run `git mergetool`. Once all conflicts are fixed, run `git r
 
 ## Pull Requests
 
-Please submit pull requests against the develop branch.  
+Please review these guidelines before submitting any pull requests.  
 
 * Bug fixes shouldn't be sent to the master branch unless they fix features that exist only in the upcoming release.  
 * Before sending a pull request for a new feature, you should first create an issue with [Proposal] in the title.  
