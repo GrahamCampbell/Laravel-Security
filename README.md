@@ -6,8 +6,8 @@ Laravel Security
 [![Build Status](https://travis-ci.org/GrahamCampbell/Laravel-Security.png)](https://travis-ci.org/GrahamCampbell/Laravel-Security)
 [![Coverage Status](https://coveralls.io/repos/GrahamCampbell/Laravel-Security/badge.png)](https://coveralls.io/r/GrahamCampbell/Laravel-Security)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security/badges/quality-score.png?s=e927889c4b3b569c6c078a797d37d8a847ad9106)](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/b2322c14-a2ef-4074-9b53-1be96faba85c/mini.png)](https://insight.sensiolabs.com/projects/b2322c14-a2ef-4074-9b53-1be96faba85c)
 [![Latest Version](https://poser.pugx.org/graham-campbell/security/v/stable.png)](https://packagist.org/packages/graham-campbell/security)
-[![Still Maintained](http://stillmaintained.com/GrahamCampbell/Laravel-Security.png)](http://stillmaintained.com/GrahamCampbell/Laravel-Security)
 
 
 ## What Is Laravel Security?
@@ -19,7 +19,7 @@ Laravel Security is a port of the security class from [Codeigniter 2.1](http://e
 * Laravel Security uses [Travis CI](https://travis-ci.org/GrahamCampbell/Laravel-Security) to run tests to check if it's working as it should.  
 * Laravel Security uses [Scrutinizer CI](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security) and [Coveralls](https://coveralls.io/r/GrahamCampbell/Laravel-Security) to run additional tests and checks.  
 * Laravel Security uses [Composer](https://getcomposer.org) to load and manage dependencies.  
-* Laravel Security provides a [change log](https://github.com/GrahamCampbell/Laravel-Security/blob/master/CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), and a [wiki](https://github.com/GrahamCampbell/Laravel-Security/wiki).  
+* Laravel Security provides a [change log](https://github.com/GrahamCampbell/Laravel-Security/blob/master/CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), and [api docs](http://grahamcampbell.github.io/Laravel-Security).  
 * Laravel Security is licensed under the Apache License, available [here](https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md).  
 
 
@@ -80,7 +80,7 @@ Once it is set up, run `git mergetool`. Once all conflicts are fixed, run `git r
 
 Please review these guidelines before submitting any pull requests.  
 
-* Bug fixes shouldn't be sent to the master branch unless they fix features that exist only in the upcoming release.  
+* When submitting bug fixes, check if a maintenance branch exists for an older series, then pull against that older branch if the bug is present in it.  
 * Before sending a pull request for a new feature, you should first create an issue with [Proposal] in the title.  
 * Please follow the [PSR-2 Coding Style](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) and [PHP-FIG Naming Conventions](https://github.com/php-fig/fig-standards/blob/master/bylaws/002-psr-naming-conventions.md).  
 
