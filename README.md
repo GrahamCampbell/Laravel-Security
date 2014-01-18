@@ -16,8 +16,8 @@ Laravel Security is a port of the security class from [Codeigniter 2.1](http://e
 
 * Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell).  
 * Laravel Security is heavily based on the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter).  
-* Laravel Security uses [Travis CI](https://travis-ci.org/GrahamCampbell/Laravel-Security) to run tests to check if it's working as it should.  
-* Laravel Security uses [Scrutinizer CI](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security) and [Coveralls](https://coveralls.io/r/GrahamCampbell/Laravel-Security) to run additional tests and checks.  
+* Laravel Security uses [Travis CI](https://travis-ci.org/GrahamCampbell/Laravel-Security) with [Coveralls](https://coveralls.io/r/GrahamCampbell/Laravel-Security) to check everything is working.  
+* Laravel Security uses [Scrutinizer CI](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security) and [SensioLabsInsight](https://insight.sensiolabs.com/projects/b2322c14-a2ef-4074-9b53-1be96faba85c) to run additional checks.  
 * Laravel Security uses [Composer](https://getcomposer.org) to load and manage dependencies.  
 * Laravel Security provides a [change log](https://github.com/GrahamCampbell/Laravel-Security/blob/master/CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), and [api docs](http://grahamcampbell.github.io/Laravel-Security).  
 * Laravel Security is licensed under the Apache License, available [here](https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md).  
