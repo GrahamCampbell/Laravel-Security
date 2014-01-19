@@ -9,6 +9,7 @@ CHANGE LOG
 * Travis and Scrutinizer tweaks
 * Coding style fixes
 * Added unit tests
+* Code cleanup
 * Minor tweaks
 
 

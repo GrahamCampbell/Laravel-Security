@@ -45,7 +45,7 @@ class SecurityTest extends AbstractTestCase
 
         $return = $security->clean(array('test'));
 
-        $this->assertEquals('test', $return);
+        $this->assertEquals(array('test'), $return);
     }
 
     protected function getSecurity()
