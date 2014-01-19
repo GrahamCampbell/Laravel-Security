@@ -30,13 +30,20 @@ use GrahamCampbell\TestBench\Classes\AbstractTestCase;
  */
 class SecurityTest extends AbstractTestCase
 {
-    public function testClean()
+    public function testCleanString()
     {
-        // this test is rubbish, and need more tests
-
         $security = $this->getSecurity();
 
         $return = $security->clean('test');
+
+        $this->assertEquals('test', $return);
+    }
+
+    public function testCleanArray()
+    {
+        $security = $this->getSecurity();
+
+        $return = $security->clean(array('test'));
 
         $this->assertEquals('test', $return);
     }
