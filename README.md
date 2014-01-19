@@ -7,6 +7,7 @@ Laravel Security
 [![Coverage Status](https://coveralls.io/repos/GrahamCampbell/Laravel-Security/badge.png)](https://coveralls.io/r/GrahamCampbell/Laravel-Security)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security/badges/quality-score.png?s=e927889c4b3b569c6c078a797d37d8a847ad9106)](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/b2322c14-a2ef-4074-9b53-1be96faba85c/mini.png)](https://insight.sensiolabs.com/projects/b2322c14-a2ef-4074-9b53-1be96faba85c)
+[![Software License](https://poser.pugx.org/graham-campbell/security/license.png)](https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md)
 [![Latest Version](https://poser.pugx.org/graham-campbell/security/v/stable.png)](https://packagist.org/packages/graham-campbell/security)
 
 
