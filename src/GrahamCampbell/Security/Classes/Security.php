@@ -31,10 +31,9 @@ class Security
      * XSS clean.
      *
      * @param  string  $string
-     * @param  bool    $image
      * @return string
      */
-    public function clean($string, $image = false)
+    public function clean($string)
     {
         if (is_array($string)) {
             while (list($key) = each($string)) {
@@ -48,16 +47,12 @@ class Security
         $converted = $string;
 
         $string = $this->neverAllowed($string);
-        $string = $this->tags($string, $image);
+        $string = $this->tags($string);
         $string = $this->compact($string);
         $string = $this->links($string);
-        $string = $this->evilAttributes($string, $image);
+        $string = $this->evilAttributes($string);
         $string = $this->naughty($string);
         $string = $this->neverAllowed($string);
-
-        if ($image === true) {
-            return ($string == $converted) ? true: false;
-        }
 
         return $string;
     }
@@ -207,16 +202,11 @@ class Security
      * Make php tags safe.
      *
      * @param  string  $string
-     * @param  bool    $image
      * @return string
      */
-    protected function tags($string, $image)
+    protected function tags($string)
     {
-        if ($image === true) {
-            $string = preg_replace('/<\?(php)/i', "&lt;?\\1", $string);
-        } else {
-            $string = str_replace(array('<?', '?'.'>'), array('&lt;?', '?&gt;'), $string);
-        }
+         $string = str_replace(array('<?', '?'.'>'), array('&lt;?', '?&gt;'), $string);
 
         return $string;
     }
@@ -328,16 +318,11 @@ class Security
      * Remove evil attributes.
      *
      * @param  string  $string
-     * @param  bool    $image
      * @return string
      */
-    protected function evilAttributes($string, $image)
+    protected function evilAttributes($string)
     {
         $attributes = array('on\w*', 'style', 'xmlns', 'formaction');
-
-        if ($image === true) {
-            unset($attributes[array_search('xmlns', $attributes)]);
-        }
 
         do {
             $count = 0;
