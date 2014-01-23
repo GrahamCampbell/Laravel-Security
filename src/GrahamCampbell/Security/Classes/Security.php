@@ -43,9 +43,6 @@ class Security
         }
 
         $string = $this->checks($string);
-
-        $converted = $string;
-
         $string = $this->neverAllowed($string);
         $string = $this->tags($string);
         $string = $this->compact($string);
