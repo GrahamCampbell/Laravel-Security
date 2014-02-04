@@ -43,11 +43,11 @@ You'll then need to run `composer install` or `composer update` to download it a
 
 Once Laravel Security is installed, you need to register the service provider. Open up `app/config/app.php` and add the following to the `providers` key.
 
-`'GrahamCampbell\Security\SecurityServiceProvider'`
+* `'GrahamCampbell\Security\SecurityServiceProvider'`
 
 You can register the Security facade in the `aliases` key of your `app/config/app.php` file if you like.
 
-`'Security' => 'GrahamCampbell\Security\Facades\Security'`
+* `'Security' => 'GrahamCampbell\Security\Facades\Security'`
 
 
 ## Configuration
