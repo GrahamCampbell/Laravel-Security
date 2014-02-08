@@ -40,9 +40,9 @@
         "graham-campbell/testbench": "0.2.*"
     },
     "autoload": {
-        "psr-0": {
-            "GrahamCampbell\\Security": "src/",
-            "GrahamCampbell\\Tests\\Security": "tests/"
+        "psr-4": {
+            "GrahamCampbell\\Security\\": "src/",
+            "GrahamCampbell\\Tests\\Security\\": "tests/"
         }
     },
     "extra": {

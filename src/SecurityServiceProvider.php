@@ -43,7 +43,7 @@ class SecurityServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('graham-campbell/security');
+        $this->package('graham-campbell/security', 'graham-campbell/security', __DIR__);
     }
 
     /**
