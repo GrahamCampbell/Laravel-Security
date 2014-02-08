@@ -53,10 +53,24 @@ Laravel Security requires no configuration. Just follow the simple install instr
 
 ## Usage
 
-There is currently no usage documentation besides the [API Documentation](http://grahamcampbell.github.io/Laravel-Security
-) for Laravel Security.
+**Classes\Security**
 
-You may see an example of implementation in [Laravel Binput](https://github.com/GrahamCampbell/Laravel-Binput).
+This is the class of most interest. It is bound to the ioc container as `'security'` and can be accessed using the `Facades\Security` facade. There is one public method of interest.
+
+The `'clean'` method will parse a string removing xss vulnerabilities. This parsing is strongly based on the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter).
+
+**Facades\Security**
+
+This facade will dynamically pass static method calls to the `'security'` object in the ioc container which by default is the `Classes\Security` class.
+
+**SecurityServiceProvider**
+
+This class contains no public methods of interest. This class should be added to the providers array in `app/config/app.php`. This class will setup ioc bindings.
+
+**Further Information**
+
+Feel free to check out the [API Documentation](http://grahamcampbell.github.io/Laravel-Security
+) for Laravel Security. You may see an example of implementation in [Laravel Binput](https://github.com/GrahamCampbell/Laravel-Binput).
 
 
 ## Updating Your Fork
