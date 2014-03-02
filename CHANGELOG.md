@@ -5,6 +5,7 @@ CHANGE LOG
 ## V1.1 (Upcoming)
 
 * PHP 5.6 and HHVM compatibility
+* Further improvements
 
 
 ## V1.0 (12/02/2014)

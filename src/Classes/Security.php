@@ -69,7 +69,9 @@ class Security
         $string = $this->validateEntities($string);
 
         // url decode
-        $string = rawurldecode($string);
+        do {
+            $string = rawurldecode($string);
+        } while (preg_match('/%[0-9a-f]{2,}/i', $str));
 
         // remove HTML Tags
         $string = strip_tags($string);
@@ -170,7 +172,6 @@ class Security
             'document.write'    => '[removed]',
             '.parentNode'       => '[removed]',
             '.innerHTML'        => '[removed]',
-            'window.location'   => '[removed]',
             '-moz-binding'      => '[removed]',
             '<!--'              => '&lt;!--',
             '-->'               => '--&gt;',
@@ -180,10 +181,14 @@ class Security
 
         $never_allowed_regex = array(
             'javascript\s*:',
+            '(document|(document\.)?window)\.(location|on\w*)',
             'expression\s*(\(|&\#40;)',
             'vbscript\s*:',
-            'Redirect\s+302',
-            "([\"'])?data\s*:[^\\1]*?base64[^\\1]*?,[^\\1]*?\\1?",
+            'wscript\s*:',
+            'jscript\s*:',
+            'vbs\s*:',
+            'Redirect\s+30\d',
+            "([\"'])?data\s*:[^\\1]*?base64[^\\1]*?,[^\\1]*?\\1?"
         );
 
         $string = str_replace(array_keys($never_allowed_str), $never_allowed_str, $string);
@@ -220,14 +225,18 @@ class Security
             'javascript',
             'expression',
             'vbscript',
+            'jscript',
+            'wscript',
+            'vbs',
             'script',
             'base64',
             'applet',
             'alert',
-            'document',
             'write',
             'cookie',
-            'window'
+            'window',
+            'confirm',
+            'prompt'
         );
 
         foreach ($words as $word) {
@@ -358,14 +367,14 @@ class Security
     protected function naughty($string)
     {
         // sanitize naughty html elements
-        $naughty = 'alert|applet|audio|basefont|base|behavior|bgsound|blink|body|embed|expression|form|frameset|frame|head|html|ilayer|iframe|input|isindex|layer|link|meta|object|plaintext|style|script|textarea|title|video|xml|xss';
+        $naughty = 'alert|prompt|confirm|applet|audio|basefont|base|behavior|bgsound|blink|body|embed|expression|form|frameset|frame|head|html|ilayer|iframe|input|button|select|isindex|layer|link|meta|keygen|object|plaintext|style|script|textarea|title|math|video|svg|xml|xss';
         $string = preg_replace_callback('#<(/*\s*)('.$naughty.')([^><]*)([><]*)#is', function ($matches) {
             $string = '&lt;'.$matches[1].$matches[2].$matches[3];
             return $string .= str_replace(array('>', '<'), array('&gt;', '&lt;'), $matches[4]);
         }, $string);
 
         // sanitize naughty scripting elements
-        $string = preg_replace('#(alert|cmd|passthru|eval|exec|expression|system|fopen|fsockopen|file|file_get_contents|readfile|unlink)(\s*)\((.*?)\)#si', "\\1\\2&#40;\\3&#41;", $string);
+        $string = preg_replace('#(alert|prompt|confirm|cmd|passthru|eval|exec|expression|system|fopen|fsockopen|file|file_get_contents|readfile|unlink)(\s*)\((.*?)\)#si', "\\1\\2&#40;\\3&#41;", $string);
 
         return $string;
     }
