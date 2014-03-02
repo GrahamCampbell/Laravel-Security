@@ -71,7 +71,7 @@ class Security
         // url decode
         do {
             $string = rawurldecode($string);
-        } while (preg_match('/%[0-9a-f]{2,}/i', $str));
+        } while (preg_match('/%[0-9a-f]{2,}/i', $string));
 
         // remove HTML Tags
         $string = strip_tags($string);
