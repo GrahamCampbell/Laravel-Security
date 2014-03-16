@@ -59,7 +59,7 @@ class Security
         $str = preg_replace_callback("/[a-z]+=([\'\"]).*?\\1/si", array($this, 'convertAttribute'), $str);
         $str = preg_replace_callback('/<\w+.*/si', array($this, 'decodeEntity'), $str);
 
-        $str = removeInvisibleCharacters($str);
+        $str = $this->removeInvisibleCharacters($str);
 
         $str = str_replace("\t", ' ', $str);
 
