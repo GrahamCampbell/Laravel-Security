@@ -309,7 +309,7 @@ class Security
         return str_ireplace(
             array_keys($entities),
             array_values($entities),
-            $this->entityDecode($match[0]))
+            $this->entityDecode($match[0])
         );
     }
 
