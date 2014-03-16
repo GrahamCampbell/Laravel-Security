@@ -75,7 +75,7 @@ class Security
 
         foreach ($words as $word) {
             $word = implode('\s*', str_split($word)).'\s*';
-            $str = preg_replace_callback('#('.substr($word, 0, -3).')(\W)#is', array($this, 'compactExplodedords'), $str);
+            $str = preg_replace_callback('#('.substr($word, 0, -3).')(\W)#is', array($this, 'compactExplodedWords'), $str);
         }
 
         do {
