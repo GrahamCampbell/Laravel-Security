@@ -5,6 +5,7 @@ CHANGE LOG
 ## V1.1 (Upcoming)
 
 * PHP 5.6 and HHVM compatibility
+* Rebased against codeignighter
 * Further improvements
 
 
