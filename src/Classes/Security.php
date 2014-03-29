@@ -42,6 +42,8 @@ class Security
      */
     public function clean($str)
     {
+        $old = $str;
+
         if (is_array($str)) {
             while (list($key) = each($str)) {
                 $str[$key] = $this->clean($str[$key]);
@@ -105,6 +107,10 @@ class Security
 
 
         $str = $this->doNeverAllowed($str);
+
+        if ($str !== $old) {
+            return $this->clean($str);
+        }
 
         return $str;
     }
