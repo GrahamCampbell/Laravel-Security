@@ -5,7 +5,7 @@ Laravel Security
 [![Build Status](https://img.shields.io/travis/GrahamCampbell/Laravel-Security/master.svg)](https://travis-ci.org/GrahamCampbell/Laravel-Security)
 [![Coverage Status](https://img.shields.io/coveralls/GrahamCampbell/Laravel-Security/master.svg)](https://coveralls.io/r/GrahamCampbell/Laravel-Security)
 [![Software License](https://img.shields.io/badge/license-Apache%202.0-brightgreen.svg)](https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md)
-[![Latest Version](https://img.shields.io/github/tag/GrahamCampbell/Laravel-Security.svg)](https://github.com/GrahamCampbell/Laravel-Security/releases)
+[![Latest Version](https://img.shields.io/github/release/GrahamCampbell/Laravel-Security.svg)](https://github.com/GrahamCampbell/Laravel-Security/releases)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security/badges/quality-score.png?s=e927889c4b3b569c6c078a797d37d8a847ad9106)](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/b2322c14-a2ef-4074-9b53-1be96faba85c/mini.png)](https://insight.sensiolabs.com/projects/b2322c14-a2ef-4074-9b53-1be96faba85c)
 
