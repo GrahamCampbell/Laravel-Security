@@ -2,18 +2,18 @@ Laravel Security
 ================
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/GrahamCampbell/Laravel-Security/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![Build Status](https://travis-ci.org/GrahamCampbell/Laravel-Security.png)](https://travis-ci.org/GrahamCampbell/Laravel-Security)
 [![Coverage Status](https://coveralls.io/repos/GrahamCampbell/Laravel-Security/badge.png)](https://coveralls.io/r/GrahamCampbell/Laravel-Security)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security/badges/quality-score.png?s=e927889c4b3b569c6c078a797d37d8a847ad9106)](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/b2322c14-a2ef-4074-9b53-1be96faba85c/mini.png)](https://insight.sensiolabs.com/projects/b2322c14-a2ef-4074-9b53-1be96faba85c)
 [![Software License](https://poser.pugx.org/graham-campbell/security/license.png)](https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md)
 [![Latest Version](https://poser.pugx.org/graham-campbell/security/v/stable.png)](https://packagist.org/packages/graham-campbell/security)
+[![Still Maintained](http://stillmaintained.com/GrahamCampbell/Laravel-Security.png)](http://stillmaintained.com/GrahamCampbell/Laravel-Security)
 
 
 ## What Is Laravel Security?
 
-Laravel Security is a port of the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter) for [Laravel 4.1](http://laravel.com).
+Laravel Security is a port of the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter) for [Laravel 4.1](http://laravel.com). Try the [demo](http://demo.mineuk.com/).
 
 * Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell).
 * Laravel Security is heavily based on the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter).
@@ -26,7 +26,7 @@ Laravel Security is a port of the security class from [Codeigniter 2.1](http://e
 
 ## System Requirements
 
-* PHP 5.4.7+ or PHP 5.5+ is required.
+* PHP 5.4.7+ or HHVM 2.4+ is required.
 * You will need [Laravel 4.1](http://laravel.com) because this package is designed for it.
 * You will need [Composer](https://getcomposer.org) installed to load the dependencies of Laravel Security.
 
@@ -35,7 +35,7 @@ Laravel Security is a port of the security class from [Codeigniter 2.1](http://e
 
 Please check the system requirements before installing Laravel Security.
 
-To get the latest version of Laravel Security, simply require `"graham-campbell/security": "1.0.*"` in your `composer.json` file. You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
+To get the latest version of Laravel Security, simply require `"graham-campbell/security": "1.1.*@dev"` in your `composer.json` file. You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
 
 Once Laravel Security is installed, you need to register the service provider. Open up `app/config/app.php` and add the following to the `providers` key.
 
