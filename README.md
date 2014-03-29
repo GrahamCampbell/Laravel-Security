@@ -2,13 +2,12 @@ Laravel Security
 ================
 
 
-[![Build Status](https://travis-ci.org/GrahamCampbell/Laravel-Security.png)](https://travis-ci.org/GrahamCampbell/Laravel-Security)
-[![Coverage Status](https://coveralls.io/repos/GrahamCampbell/Laravel-Security/badge.png)](https://coveralls.io/r/GrahamCampbell/Laravel-Security)
+[![Build Status](https://img.shields.io/travis/GrahamCampbell/Laravel-Security/master.svg)](https://travis-ci.org/GrahamCampbell/Laravel-Security)
+[![Coverage Status](https://img.shields.io/coveralls/GrahamCampbell/Laravel-Security/master.svg)](https://coveralls.io/r/GrahamCampbell/Laravel-Security)
+[![Software License](https://img.shields.io/badge/license-Apache%202.0-brightgreen.svg)](https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md)
+[![Latest Version](https://img.shields.io/github/tag/GrahamCampbell/Laravel-Security.svg)](https://github.com/GrahamCampbell/Laravel-Security/releases)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security/badges/quality-score.png?s=e927889c4b3b569c6c078a797d37d8a847ad9106)](https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/b2322c14-a2ef-4074-9b53-1be96faba85c/mini.png)](https://insight.sensiolabs.com/projects/b2322c14-a2ef-4074-9b53-1be96faba85c)
-[![Software License](https://poser.pugx.org/graham-campbell/security/license.png)](https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md)
-[![Latest Version](https://poser.pugx.org/graham-campbell/security/v/stable.png)](https://packagist.org/packages/graham-campbell/security)
-[![Still Maintained](http://stillmaintained.com/GrahamCampbell/Laravel-Security.png)](http://stillmaintained.com/GrahamCampbell/Laravel-Security)
 
 
 ## What Is Laravel Security?
@@ -26,7 +25,7 @@ Laravel Security is a port of the security class from [Codeigniter 2.1](http://e
 
 ## System Requirements
 
-* PHP 5.4.7+ or HHVM 2.4+ is required.
+* PHP 5.4.7+ or HHVM 3.0+ is required.
 * You will need [Laravel 4.1](http://laravel.com) because this package is designed for it.
 * You will need [Composer](https://getcomposer.org) installed to load the dependencies of Laravel Security.
 
