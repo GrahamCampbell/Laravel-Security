@@ -7,6 +7,7 @@ CHANGE LOG
 * PHP 5.6 and HHVM compatibility
 * Rebased against codeignighter
 * Further improvements
+* Composer tweaks
 
 
 ## V1.0 (12/02/2014)
