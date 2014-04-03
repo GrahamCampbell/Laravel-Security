@@ -84,11 +84,11 @@ class Security
             $original = $str;
 
             if (preg_match('/<a/i', $str)) {
-                $str = preg_replace_callback('#<a[\s\d"\'`;/=,\(\\\\]+([^>]*?)(?:>|$)#si', array($this, 'jsLinkRemoval'), $str);
+                $str = preg_replace_callback('#<a[^a-z0-9>]+([^>]*?)(?:>|$)#si', array($this, 'jsLinkRemoval'), $str);
             }
 
             if (preg_match('/<img/i', $str)) {
-                $str = preg_replace_callback('#<img[\s\d"\'`;/=,\(\\\\]+([^>]*?)(?:\s?/?>|$)#si', array($this, 'jsImgRemoval'), $str);
+                $str = preg_replace_callback('#<img[^a-z0-9]+([^>]*?)(?:\s?/?>|$)#si', array($this, 'jsImgRemoval'), $str);
             }
 
             if (preg_match('/script|xss/i', $str)) {
@@ -168,12 +168,12 @@ class Security
         }
 
         do {
-            $m1 = $m2 = 0;
+            $str_compare = $str;
 
-            $str = preg_replace('/(&#x0*[0-9a-f]{2,5})(?![0-9a-f;])/iS', '$1;', $str, -1, $m1);
-            $str = preg_replace('/(&#\d{2,4})(?![0-9;])/S', '$1;', $str, -1, $m2);
+            $str = preg_replace('/(&#x0*[0-9a-f]{2,5})(?![0-9a-f;])/iS', '$1;', $str);
+            $str = preg_replace('/(&#0*\d{2,4})(?![0-9;])/S', '$1;', $str);
             $str = html_entity_decode($str, ENT_COMPAT, $charset);
-        } while ($m1 || $m2);
+        } while ($str_compare !== $str);
 
         return $str;
     }
