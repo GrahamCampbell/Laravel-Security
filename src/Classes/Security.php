@@ -32,7 +32,7 @@ class Security
      *
      * @var string
      */
-    protected $xssHash =  '';
+    protected $xssHash;
 
     /**
      * XSS clean.
@@ -122,7 +122,7 @@ class Security
      */
     protected function xssHash()
     {
-        if ($this->xssHash === '') {
+        if (!$this->xssHash) {
             $this->xssHash = md5(uniqid(mt_rand(), true));
         }
 
