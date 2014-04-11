@@ -10,6 +10,11 @@ Laravel Security
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/b2322c14-a2ef-4074-9b53-1be96faba85c/mini.png)](https://insight.sensiolabs.com/projects/b2322c14-a2ef-4074-9b53-1be96faba85c)
 
 
+## This Code Comes With A Demo
+
+#### Feel free to take a look at the [demo](http://demo.mineuk.com/) if you'd like to test it out first.
+
+
 ## What Is Laravel Security?
 
 Laravel Security is a port of the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter) for [Laravel 4.1](http://laravel.com). Try the [demo](http://demo.mineuk.com/).
