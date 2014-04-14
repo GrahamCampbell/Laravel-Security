@@ -77,18 +77,29 @@ class Security
 
         foreach ($words as $word) {
             $word = implode('\s*', str_split($word)).'\s*';
-            $str = preg_replace_callback('#('.substr($word, 0, -3).')(\W)#is', array($this, 'compactExplodedWords'), $str);
+            $str = preg_replace_callback(
+                '#('.substr($word, 0, -3).')(\W)#is', array($this, 'compactExplodedWords'),
+                $str
+            );
         }
 
         do {
             $original = $str;
 
             if (preg_match('/<a/i', $str)) {
-                $str = preg_replace_callback('#<a[^a-z0-9>]+([^>]*?)(?:>|$)#si', array($this, 'jsLinkRemoval'), $str);
+                $str = preg_replace_callback(
+                    '#<a[^a-z0-9>]+([^>]*?)(?:>|$)#si',
+                    array($this, 'jsLinkRemoval'),
+                    $str
+                );
             }
 
             if (preg_match('/<img/i', $str)) {
-                $str = preg_replace_callback('#<img[^a-z0-9]+([^>]*?)(?:\s?/?>|$)#si', array($this, 'jsImgRemoval'), $str);
+                $str = preg_replace_callback(
+                    '#<img[^a-z0-9]+([^>]*?)(?:\s?/?>|$)#si',
+                    array($this, 'jsImgRemoval'),
+                    $str
+                );
             }
 
             if (preg_match('/script|xss/i', $str)) {
@@ -101,9 +112,17 @@ class Security
         $str = $this->removeEvilAttributes($str);
 
         $naughty = 'alert|prompt|confirm|applet|audio|basefont|base|behavior|bgsound|blink|body|embed|expression|form|frameset|frame|head|html|ilayer|iframe|input|button|select|isindex|layer|link|meta|keygen|object|plaintext|style|script|textarea|title|math|video|svg|xml|xss';
-        $str = preg_replace_callback('#<(/*\s*)('.$naughty.')([^><]*)([><]*)#is', array($this, 'sanitizeNaughtyHtml'), $str);
+        $str = preg_replace_callback(
+            '#<(/*\s*)('.$naughty.')([^><]*)([><]*)#is',
+            array($this, 'sanitizeNaughtyHtml'),
+            $str
+        );
 
-        $str = preg_replace('#(alert|prompt|confirm|cmd|passthru|eval|exec|expression|system|fopen|fsockopen|file|file_get_contents|readfile|unlink)(\s*)\((.*?)\)#si', '\\1\\2&#40;\\3&#41;', $str);
+        $str = preg_replace(
+            '#(alert|prompt|confirm|cmd|passthru|eval|exec|expression|system|fopen|fsockopen|file|file_get_contents|readfile|unlink)(\s*)\((.*?)\)#si',
+            '\\1\\2&#40;\\3&#41;',
+            $str
+        );
 
 
         $str = $this->doNeverAllowed($str);
@@ -203,20 +222,36 @@ class Security
             $count = 0;
             $attribs = array();
 
-            preg_match_all('/(?<!\w)('.implode('|', $evilAttributes).')\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is', $str, $matches, PREG_SET_ORDER);
+            preg_match_all(
+                '/(?<!\w)('.implode('|', $evilAttributes).')\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is',
+                $str,
+                $matches,
+                PREG_SET_ORDER
+            );
 
             foreach ($matches as $attr) {
                 $attribs[] = preg_quote($attr[0], '/');
             }
 
-            preg_match_all('/(?<!\w)('.implode('|', $evilAttributes).')\s*=\s*([^\s>]*)/is', $str, $matches, PREG_SET_ORDER);
+            preg_match_all(
+                '/(?<!\w)('.implode('|', $evilAttributes).')\s*=\s*([^\s>]*)/is',
+                $str,
+                $matches,
+                PREG_SET_ORDER
+            );
 
             foreach ($matches as $attr) {
                 $attribs[] = preg_quote($attr[0], '/');
             }
 
             if (count($attribs) > 0) {
-                $str = preg_replace('/(<?)(\/?[^><]+?)([^A-Za-z<>\-])(.*?)('.implode('|', $attribs).')(.*?)([\s><]?)([><]*)/i', '$1$2 $4$6$7$8', $str, -1, $count);
+                $str = preg_replace(
+                    '/(<?)(\/?[^><]+?)([^A-Za-z<>\-])(.*?)('.implode('|', $attribs).')(.*?)([\s><]?)([><]*)/i',
+                    '$1$2 $4$6$7$8',
+                    $str,
+                    -1,
+                    $count
+                );
             }
         } while ($count);
 
@@ -231,7 +266,8 @@ class Security
      */
     protected function sanitizeNaughtyHtml($matches)
     {
-        return '&lt;'.$matches[1].$matches[2].$matches[3].str_replace(array('>', '<'), array('&gt;', '&lt;'), $matches[4]);
+        return '&lt;'.$matches[1].$matches[2].$matches[3]
+            .str_replace(array('>', '<'), array('&gt;', '&lt;'), $matches[4]);
     }
 
     /**
@@ -243,10 +279,13 @@ class Security
     protected function jsLinkRemoval($match)
     {
         return str_replace($match[1],
-            preg_replace('#href=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|data\s*:)#si',
-                            '',
-            $this->filterAttributes(str_replace(array('<', '>'), '', $match[1]))
-        ), $match[0]);
+            preg_replace(
+                '#href=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|data\s*:)#si',
+                '',
+                $this->filterAttributes(str_replace(array('<', '>'), '', $match[1]))
+            ),
+            $match[0]
+        );
     }
 
     /**
@@ -258,10 +297,15 @@ class Security
     protected function jsImgRemoval($match)
     {
         return str_replace($match[1],
-            preg_replace('#src=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|base64\s*,)#si',
-                        '',
-            $this->filterAttributes(str_replace(array('<', '>'), '', $match[1]))
-        ), $match[0]);
+            preg_replace(
+                '#src=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|base64\s*,)#si',
+                '',
+                $this->filterAttributes(str_replace(array('<', '>'),
+                '',
+                $match[1]))
+            ),
+            $match[0]
+        );
     }
 
     /**
