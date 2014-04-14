@@ -78,7 +78,8 @@ class Security
         foreach ($words as $word) {
             $word = implode('\s*', str_split($word)).'\s*';
             $str = preg_replace_callback(
-                '#('.substr($word, 0, -3).')(\W)#is', array($this, 'compactExplodedWords'),
+                '#('.substr($word, 0, -3).')(\W)#is',
+                array($this, 'compactExplodedWords'),
                 $str
             );
         }
@@ -278,7 +279,8 @@ class Security
      */
     protected function jsLinkRemoval($match)
     {
-        return str_replace($match[1],
+        return str_replace(
+            $match[1],
             preg_replace(
                 '#href=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|data\s*:)#si',
                 '',
@@ -296,13 +298,12 @@ class Security
      */
     protected function jsImgRemoval($match)
     {
-        return str_replace($match[1],
+        return str_replace(
+            $match[1],
             preg_replace(
                 '#src=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|base64\s*,)#si',
                 '',
-                $this->filterAttributes(str_replace(array('<', '>'),
-                '',
-                $match[1]))
+                $this->filterAttributes(str_replace(array('<', '>'), '',$match[1]))
             ),
             $match[0]
         );
