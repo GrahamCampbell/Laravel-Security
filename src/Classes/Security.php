@@ -303,7 +303,7 @@ class Security
             preg_replace(
                 '#src=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|base64\s*,)#si',
                 '',
-                $this->filterAttributes(str_replace(array('<', '>'), '',$match[1]))
+                $this->filterAttributes(str_replace(array('<', '>'), '', $match[1]))
             ),
             $match[0]
         );
