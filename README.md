@@ -39,7 +39,7 @@ Laravel Security is a port of the security class from [Codeigniter 2.1](http://e
 
 Please check the system requirements before installing Laravel Security.
 
-To get the latest version of Laravel Security, simply require `"graham-campbell/security": "1.1.*@dev"` in your `composer.json` file. You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
+To get the latest version of Laravel Security, simply require `"graham-campbell/security": "1.1.*"` in your `composer.json` file. You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
 
 Once Laravel Security is installed, you need to register the service provider. Open up `app/config/app.php` and add the following to the `providers` key.
 
@@ -74,7 +74,9 @@ This class contains no public methods of interest. This class should be added to
 **Further Information**
 
 Feel free to check out the [API Documentation](http://grahamcampbell.github.io/Laravel-Security
-) for Laravel Security. You may see an example of implementation in [Laravel Binput](https://github.com/GrahamCampbell/Laravel-Binput).
+) for Laravel Security.
+
+You may see an example of implementation in [Laravel Binput](https://github.com/GrahamCampbell/Laravel-Binput).
 
 
 ## Updating Your Fork
