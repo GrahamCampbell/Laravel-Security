@@ -217,7 +217,7 @@ class Security
      */
     protected function removeEvilAttributes($str)
     {
-        $evilAttributes = array('on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href');
+        $evilAttributes = \Config::get('graham-campbell/security::config.evil-attributes', array('on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href'));
 
         do {
             $count = 0;
