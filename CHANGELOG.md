@@ -6,6 +6,10 @@ CHANGE LOG
 
 * Upgrade to Laravel 4.2
 
+## V1.2 (Upcoming)
+
+* Configurable evil attributes
+
 
 ## V1.1 (21/04/2014)
 

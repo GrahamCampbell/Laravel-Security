@@ -39,7 +39,7 @@ Laravel Security is a port of the security class from [Codeigniter 2.1](http://e
 
 Please check the system requirements before installing Laravel Security.
 
-To get the latest version of Laravel Security, simply require `"graham-campbell/security": "1.1.*"` in your `composer.json` file. You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
+To get the latest version of Laravel Security, simply require `"graham-campbell/security": "1.2.*"` in your `composer.json` file. You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
 
 Once Laravel Security is installed, you need to register the service provider. Open up `app/config/app.php` and add the following to the `providers` key.
 
@@ -52,7 +52,17 @@ You can register the Security facade in the `aliases` key of your `app/config/ap
 
 ## Configuration
 
-Laravel Security requires no configuration. Just follow the simple install instructions and go!
+Laravel Security supports optional configuration.
+
+To get started, first publish the package config file:
+
+    php artisan config:publish graham-campbell/security
+
+There is one config options:
+
+**Evil attributes**
+
+This option (`'evil'`) defines the evil attributes and they will be always be removed from the input.
 
 
 ## Usage

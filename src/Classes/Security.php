@@ -35,6 +35,24 @@ class Security
     protected $xssHash;
 
     /**
+     * The evil attributes.
+     *
+     * @var array
+     */
+    protected $evil;
+
+    /**
+     * Create a new security instance.
+     *
+     * @param  array  $evil
+     * @return void
+     */
+    public function __construct(array $evil = array('on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href'))
+    {
+        $this->evil = $evil;
+    }
+
+    /**
      * XSS clean.
      *
      * @param  array|string  $str
@@ -217,14 +235,12 @@ class Security
      */
     protected function removeEvilAttributes($str)
     {
-        $evilAttributes = array('on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href');
-
         do {
             $count = 0;
             $attribs = array();
 
             preg_match_all(
-                '/(?<!\w)('.implode('|', $evilAttributes).')\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is',
+                '/(?<!\w)('.implode('|', $this->evil).')\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is',
                 $str,
                 $matches,
                 PREG_SET_ORDER
@@ -235,7 +251,7 @@ class Security
             }
 
             preg_match_all(
-                '/(?<!\w)('.implode('|', $evilAttributes).')\s*=\s*([^\s>]*)/is',
+                '/(?<!\w)('.implode('|', $this->evil).')\s*=\s*([^\s>]*)/is',
                 $str,
                 $matches,
                 PREG_SET_ORDER
