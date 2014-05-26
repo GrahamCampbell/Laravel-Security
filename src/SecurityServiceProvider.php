@@ -64,7 +64,7 @@ class SecurityServiceProvider extends ServiceProvider
     protected function registerSecurity()
     {
         $this->app->bindShared('security', function ($app) {
-            $evil = $app['config']['evil'];
+            $evil = $app['config']['graham-campbell/security::evil'];
 
             return new Classes\Security($evil);
         });
