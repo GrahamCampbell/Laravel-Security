@@ -4,11 +4,8 @@ CHANGE LOG
 
 ## V2.0 Beta 1 (Upcoming - July 2014)
 
-* Upgrade to Laravel 4.2
-
-## V1.2 (Upcoming)
-
 * Configurable evil attributes
+* Upgrade to Laravel ~4.1
 
 
 ## V1.1 (21/04/2014)

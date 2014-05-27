@@ -17,7 +17,7 @@ Laravel Security
 
 ## What Is Laravel Security?
 
-Laravel Security is a port of the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter) for [Laravel 4.1](http://laravel.com). Try the [demo](http://demo.mineuk.com/).
+Laravel Security is a port of the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter) for [Laravel 4.1+](http://laravel.com). Try the [demo](http://demo.mineuk.com/).
 
 * Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell).
 * Laravel Security is heavily based on the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter).
@@ -30,8 +30,8 @@ Laravel Security is a port of the security class from [Codeigniter 2.1](http://e
 
 ## System Requirements
 
-* PHP 5.4.7+ or HHVM 3.0+ is required.
-* You will need [Laravel 4.1](http://laravel.com) because this package is designed for it.
+* PHP 5.4.7+ or HHVM 3.1+ is required.
+* You will need [Laravel 4.1+](http://laravel.com) because this package is designed for it.
 * You will need [Composer](https://getcomposer.org) installed to load the dependencies of Laravel Security.
 
 
@@ -39,7 +39,7 @@ Laravel Security is a port of the security class from [Codeigniter 2.1](http://e
 
 Please check the system requirements before installing Laravel Security.
 
-To get the latest version of Laravel Security, simply require `"graham-campbell/security": "1.2.*"` in your `composer.json` file. You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
+To get the latest version of Laravel Security, simply require `"graham-campbell/security": "~2.0"` in your `composer.json` file. You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
 
 Once Laravel Security is installed, you need to register the service provider. Open up `app/config/app.php` and add the following to the `providers` key.
 
