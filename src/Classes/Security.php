@@ -70,7 +70,7 @@ class Security
             return $str;
         }
 
-        $str = $this->validateEntities($this->removeInvisibleCharacters($str));
+        $str = $this->removeInvisibleCharacters($str);
 
         do {
             $str = rawurldecode($str);
@@ -196,21 +196,38 @@ class Security
      * HTML entities decode.
      *
      * @param   string  $str
-     * @param   string  $charset
      * @return  string
      */
-    protected function entityDecode($str, $charset = 'UTF-8')
+    protected function entityDecode($str)
     {
+        static $entities;
+
         if (strpos($str, '&') === false) {
             return $str;
         }
 
+        $flags = ENT_COMPAT | ENT_HTML5;
+
         do {
             $str_compare = $str;
 
-            $str = preg_replace('/(&#x0*[0-9a-f]{2,5})(?![0-9a-f;])/iS', '$1;', $str);
-            $str = preg_replace('/(&#0*\d{2,4})(?![0-9;])/S', '$1;', $str);
-            $str = html_entity_decode($str, ENT_COMPAT, $charset);
+            if ($c = preg_match_all('/&[a-z]{2,}(?![a-z;])/i', $str, $matches)) {
+                if (!isset($entities)) {
+                    $entities = array_map('strtolower', get_html_translation_table(HTML_ENTITIES, $flags));
+                }
+
+                $replace = array();
+                $matches = array_unique(array_map('strtolower', $matches[0]));
+                for ($i = 0; $i < $c; $i++) {
+                    if (($char = array_search($matches[$i].';', $entities, true)) !== false) {
+                        $replace[$matches[$i]] = $character;
+                    }
+                }
+
+                $str = str_ireplace(array_keys($replace), array_values($replace), $str);
+            }
+
+            $str = html_entity_decode(preg_replace('/(&#(?:x0*[0-9a-f]{2,5}(?![0-9a-f;]))|(?:0*\d{2,4}(?![0-9;])))/iS', '$1;', $str), $flags);
         } while ($str_compare !== $str);
 
         return $str;
@@ -363,37 +380,11 @@ class Security
      */
     protected function decodeEntity($match)
     {
-        $entities = array(
-            '&colon;'   => ':',
-            '&lpar;'    => '(',
-            '&rpar;'    => ')',
-            '&newline;' => "\n",
-            '&tab;'     => "\t"
-        );
+        $hash = $this->xssHash();
 
-        return str_ireplace(
-            array_keys($entities),
-            array_values($entities),
-            $this->entityDecode($match[0])
-        );
-    }
+        $match = preg_replace('|\&([a-z\_0-9\-]+)\=([a-z\_0-9\-/]+)|i', $hash.'\\1=\\2', $match[0]);
 
-    /**
-     * Validate url entities.
-     *
-     * @param   string  $str
-     * @return  string
-     */
-    protected function validateEntities($str)
-    {
-        $str = preg_replace('|\&([a-z\_0-9\-]+)\=([a-z\_0-9\-]+)|i', $this->xssHash().'\\1=\\2', $str);
-
-        $str = preg_replace('/(&#\d{2,4})(?![0-9;])/', '$1;', $str);
-        $str = preg_replace('/(&[a-z]{2,})(?![a-z;])/i', '$1;', $str);
-
-        $str = preg_replace('/(&#x0*[0-9a-f]{2,5})(?![0-9a-f;])/i', '$1;', $str);
-
-        return str_replace($this->xssHash(), '&', $str);
+        return str_replace($hash, '&', $this->entityDecode($match));
     }
 
     /**
