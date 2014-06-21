@@ -68,6 +68,8 @@ class SecurityServiceProvider extends ServiceProvider
 
             return new Security($evil);
         });
+
+        $this->app->alias('security', 'GrahamCampbell\Security\Security');
     }
 
     /**

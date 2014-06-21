@@ -6,6 +6,8 @@ CHANGE LOG
 
 * Configurable evil attributes
 * Upgrade to Laravel ~4.1
+* Minor refactoring
+* Added di aliases
 * Minor improvements
 
 
