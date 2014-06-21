@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-namespace GrahamCampbell\Security\Classes;
+namespace GrahamCampbell\Security;
 
 /**
  * This is the security class.

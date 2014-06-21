@@ -67,7 +67,7 @@ This option (`'evil'`) defines the evil attributes and they will be always be re
 
 ## Usage
 
-**Classes\Security**
+**Security**
 
 This is the class of most interest. It is bound to the ioc container as `'security'` and can be accessed using the `Facades\Security` facade. There is one public method of interest.
 
@@ -75,7 +75,7 @@ The `'clean'` method will parse a string removing xss vulnerabilities. This pars
 
 **Facades\Security**
 
-This facade will dynamically pass static method calls to the `'security'` object in the ioc container which by default is the `Classes\Security` class.
+This facade will dynamically pass static method calls to the `'security'` object in the ioc container which by default is the `Security` class.
 
 **SecurityServiceProvider**
 
