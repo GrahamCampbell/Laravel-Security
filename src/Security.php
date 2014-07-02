@@ -220,7 +220,7 @@ class Security
                 $matches = array_unique(array_map('strtolower', $matches[0]));
                 for ($i = 0; $i < $c; $i++) {
                     if (($char = array_search($matches[$i].';', $entities, true)) !== false) {
-                        $replace[$matches[$i]] = $character;
+                        $replace[$matches[$i]] = $char;
                     }
                 }
 
