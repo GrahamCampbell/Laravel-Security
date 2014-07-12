@@ -19,6 +19,10 @@ namespace GrahamCampbell\Security;
 /**
  * This is the security class.
  *
+ * Some code in this class it taken from EllisLab's CodeIgniter.
+ * That code is licensed under the Open Software License version 3.0.
+ * See the original here: http://bit.ly/1oQnpjn.
+ *
  * @package    Laravel-Security
  * @author     Graham Campbell
  * @copyright  Copyright 2013-2014 Graham Campbell

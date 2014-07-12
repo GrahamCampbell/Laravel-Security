@@ -11,7 +11,7 @@ Laravel Security
 
 ## Introduction
 
-Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a port of the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter) for [Laravel 4.1+](http://laravel.com). Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), [license](LICENSE.md), [demo](http://demo.grahamjcampbell.co.uk/), [api docs](http://grahamcampbell.github.io/Laravel-Security), and [contribution guidelines](CONTRIBUTING.md).
+Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a port of the security class from [CodeIgniter 2.1](http://ellislab.com/codeigniter) for [Laravel 4.1+](http://laravel.com). Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), [license](LICENSE.md), [demo](http://demo.grahamjcampbell.co.uk), [api docs](http://docs.grahamjcampbell.co.uk), and [contribution guidelines](CONTRIBUTING.md).
 
 
 ## Installation
@@ -50,7 +50,7 @@ This option (`'evil'`) defines the evil attributes and they will be always be re
 
 This is the class of most interest. It is bound to the ioc container as `'security'` and can be accessed using the `Facades\Security` facade. There is one public method of interest.
 
-The `'clean'` method will parse a string removing xss vulnerabilities. This parsing is strongly based on the security class from [Codeigniter 2.1](http://ellislab.com/codeigniter).
+The `'clean'` method will parse a string removing xss vulnerabilities. This parsing is strongly based on the security class from [CodeIgniter 2.1](http://ellislab.com/codeigniter).
 
 **Facades\Security**
 
@@ -85,3 +85,12 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+
+Open Software License ("OSL") v 3.0
+
+Copyright (c) 2008 - 2014, EllisLab, Inc.
+
+All rights reserved.
+
+This license is a legal agreement between you and EllisLab Inc. for the use of CodeIgniter Software (the "Software"). By obtaining the Software you agree to comply with the terms and conditions of this license.
