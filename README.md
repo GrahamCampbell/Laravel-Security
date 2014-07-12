@@ -97,4 +97,4 @@ All rights reserved.
 
 This license is a legal agreement between you and EllisLab Inc. for the use of CodeIgniter Software (the "Software"). By obtaining the Software you agree to comply with the terms and conditions of this license.
 
-Please see the (license agreement)[CODEIGNITER.md].
+Please see the [license agreement](CODEIGNITER.md).
