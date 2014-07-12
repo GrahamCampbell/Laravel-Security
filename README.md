@@ -62,8 +62,7 @@ This class contains no public methods of interest. This class should be added to
 
 **Further Information**
 
-Feel free to check out the [API Documentation](http://grahamcampbell.github.io/Laravel-Security
-) for Laravel Security.
+Feel free to check out the [API Documentation](http://docs.grahamjcampbell.co.uk) for Laravel Security.
 
 You may see an example of implementation in [Laravel Binput](https://github.com/GrahamCampbell/Laravel-Binput).
 
