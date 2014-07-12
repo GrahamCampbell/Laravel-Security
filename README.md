@@ -87,6 +87,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
+## CodeIgniter License
+
 Open Software License ("OSL") v 3.0
 
 Copyright (c) 2008 - 2014, EllisLab, Inc.
@@ -94,3 +96,5 @@ Copyright (c) 2008 - 2014, EllisLab, Inc.
 All rights reserved.
 
 This license is a legal agreement between you and EllisLab Inc. for the use of CodeIgniter Software (the "Software"). By obtaining the Software you agree to comply with the terms and conditions of this license.
+
+Please see the (license agreement)[CODEIGNITER.md].
