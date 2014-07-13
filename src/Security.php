@@ -231,8 +231,8 @@ class Security
                 $replace = array();
                 $matches = array_unique(array_map('strtolower', $matches[0]));
                 for ($i = 0; $i < $c; $i++) {
-                    if (($char = array_search($matches[$i].';', $entities, true)) !== false) {
-                        $replace[$matches[$i]] = $char;
+                    if (($char = array_search(array_get($matches, $i).';', $entities, true)) !== false) {
+                        $replace[array_get($matches, $i)] = $char;
                     }
                 }
 
