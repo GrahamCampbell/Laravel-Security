@@ -17,3 +17,8 @@ script:
 after_success:
   - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm-nightly" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi;'
   - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm-nightly" ]; then php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml; fi;'
+
+matrix:
+  allow_failures:
+    - php: hhvm-nightly
+  fast_finish: true
