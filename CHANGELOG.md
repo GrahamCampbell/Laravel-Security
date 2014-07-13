@@ -10,6 +10,7 @@ CHANGE LOG
 * Added di aliases
 * Minor improvements
 * Fixed an infinite recursion issue (thanks MichaelBanks)
+* Added more tests
 
 
 ## V1.1 (21/04/2014)
