@@ -162,7 +162,6 @@ class Security
             $str
         );
 
-
         return $this->doNeverAllowed($str);
     }
 
