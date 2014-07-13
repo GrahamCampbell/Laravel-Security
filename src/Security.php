@@ -64,8 +64,6 @@ class Security
      */
     public function clean($str)
     {
-        $old = $str;
-
         if (is_array($str)) {
             while (list($key) = each($str)) {
                 $str[$key] = $this->clean($str[$key]);
@@ -74,6 +72,23 @@ class Security
             return $str;
         }
 
+        $i = 0;
+        do {
+            $i++;
+            $processed = $this->process($str);
+        } while ($i < 5 && $processed !== $str);
+
+        return $processed;
+    }
+
+    /**
+     * Process a string for cleaning.
+     *
+     * @param  string  $str
+     * @return string
+     */
+    protected function process($str)
+    {
         $str = $this->removeInvisibleCharacters($str);
 
         do {
@@ -148,13 +163,7 @@ class Security
         );
 
 
-        $str = $this->doNeverAllowed($str);
-
-        if ($str !== $old) {
-            return $this->clean($str);
-        }
-
-        return $str;
+        return $this->doNeverAllowed($str);
     }
 
     /**
