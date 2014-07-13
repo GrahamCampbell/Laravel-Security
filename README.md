@@ -39,28 +39,28 @@ To get started, first publish the package config file:
 
 There is one config option:
 
-**Evil attributes**
+##### Evil attributes
 
 This option (`'evil'`) defines the evil attributes and they will be always be removed from the input.
 
 
 ## Usage
 
-**Security**
+##### Security
 
 This is the class of most interest. It is bound to the ioc container as `'security'` and can be accessed using the `Facades\Security` facade. There is one public method of interest.
 
 The `'clean'` method will parse a string removing xss vulnerabilities. This parsing is strongly based on the security class from [CodeIgniter 2.2](http://ellislab.com/codeigniter).
 
-**Facades\Security**
+##### Facades\Security
 
 This facade will dynamically pass static method calls to the `'security'` object in the ioc container which by default is the `Security` class.
 
-**SecurityServiceProvider**
+##### SecurityServiceProvider
 
 This class contains no public methods of interest. This class should be added to the providers array in `app/config/app.php`. This class will setup ioc bindings.
 
-**Further Information**
+##### Further Information
 
 Feel free to check out the [API Documentation](http://docs.grahamjcampbell.co.uk) for Laravel Security.
 
