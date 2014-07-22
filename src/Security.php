@@ -168,7 +168,7 @@ class Security
     /**
      * Generates the XSS hash if needed and returns it.
      *
-     * @return  string
+     * @return string
      */
     protected function xssHash()
     {
@@ -182,9 +182,9 @@ class Security
     /**
      * Removes invisible characters.
      *
-     * @param   string
-     * @param   bool
-     * @return  string
+     * @param  string  $str
+     * @param  bool    $urlEncoded
+     * @return string
      */
     protected function removeInvisibleCharacters($str, $urlEncoded = true)
     {
@@ -207,8 +207,8 @@ class Security
     /**
      * HTML entities decode.
      *
-     * @param   string  $str
-     * @return  string
+     * @param  string  $str
+     * @return string
      */
     protected function entityDecode($str)
     {
@@ -248,8 +248,8 @@ class Security
     /**
      * Compact exploded words.
      *
-     * @param   array   $matches
-     * @return  string
+     * @param  array  $matches
+     * @return string
      */
     protected function compactExplodedWords($matches)
     {
@@ -259,8 +259,8 @@ class Security
     /**
      * Remove evil html attributes.
      *
-     * @param   string  $str
-     * @return  string
+     * @param  string  $str
+     * @return string
      */
     protected function removeEvilAttributes($str)
     {
@@ -307,8 +307,8 @@ class Security
     /**
      * Sanitize naughty html.
      *
-     * @param   array   $matches
-     * @return  string
+     * @param  array  $matches
+     * @return string
      */
     protected function sanitizeNaughtyHtml($matches)
     {
@@ -319,8 +319,8 @@ class Security
     /**
      * JS link removal.
      *
-     * @param   array   $match
-     * @return  string
+     * @param  array  $match
+     * @return string
      */
     protected function jsLinkRemoval($match)
     {
@@ -338,8 +338,8 @@ class Security
     /**
      * JS image removal.
      *
-     * @param   array   $match
-     * @return  string
+     * @param  array  $match
+     * @return string
      */
     protected function jsImgRemoval($match)
     {
@@ -357,8 +357,8 @@ class Security
     /**
      * Attribute conversion.
      *
-     * @param   array   $match
-     * @return  string
+     * @param  array $match
+     * @return string
      */
     protected function convertAttribute($match)
     {
@@ -368,8 +368,8 @@ class Security
     /**
      * Attribute filtering.
      *
-     * @param   string  $str
-     * @return  string
+     * @param  string  $str
+     * @return string
      */
     protected function filterAttributes($str)
     {
@@ -387,8 +387,8 @@ class Security
     /**
      * HTML entity decode callback.
      *
-     * @param   array   $match
-     * @return  string
+     * @param  array  $match
+     * @return string
      */
     protected function decodeEntity($match)
     {
@@ -402,8 +402,8 @@ class Security
     /**
      * Do never allowed.
      *
-     * @param   string  $str
-     * @return  string
+     * @param  string  $str
+     * @return string
      */
     protected function doNeverAllowed($str)
     {
