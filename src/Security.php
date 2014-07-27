@@ -23,32 +23,31 @@ namespace GrahamCampbell\Security;
  * That code is licensed under the Open Software License version 3.0.
  * See the original here: http://bit.ly/1oQnpjn.
  *
- * @package    Laravel-Security
- * @author     Graham Campbell
- * @copyright  Copyright 2013-2014 Graham Campbell
- * @license    https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md
- * @link       https://github.com/GrahamCampbell/Laravel-Security
+ * @author    Graham Campbell <graham@mineuk.com>
+ * @copyright 2013-2014 Graham Campbell
+ * @license   <https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md> Apache 2.0
  */
 class Security
 {
     /**
      * A random hash for protecting urls.
      *
-     * @var string
+     * @type string
      */
     protected $xssHash;
 
     /**
      * The evil attributes.
      *
-     * @var array
+     * @type string[]
      */
     protected $evil;
 
     /**
      * Create a new security instance.
      *
-     * @param  array  $evil
+     * @param string[] $evil
+     *
      * @return void
      */
     public function __construct(array $evil = array('on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href'))
@@ -59,7 +58,8 @@ class Security
     /**
      * XSS clean.
      *
-     * @param  array|string  $str
+     * @param string|string[] $str
+     *
      * @return string
      */
     public function clean($str)
@@ -84,7 +84,8 @@ class Security
     /**
      * Process a string for cleaning.
      *
-     * @param  string  $str
+     * @param string $str
+     *
      * @return string
      */
     protected function process($str)
@@ -182,8 +183,9 @@ class Security
     /**
      * Removes invisible characters.
      *
-     * @param  string  $str
-     * @param  bool    $urlEncoded
+     * @param string $str
+     * @param bool   $urlEncoded
+     *
      * @return string
      */
     protected function removeInvisibleCharacters($str, $urlEncoded = true)
@@ -207,7 +209,8 @@ class Security
     /**
      * HTML entities decode.
      *
-     * @param  string  $str
+     * @param string $str
+     *
      * @return string
      */
     protected function entityDecode($str)
@@ -248,7 +251,8 @@ class Security
     /**
      * Compact exploded words.
      *
-     * @param  array  $matches
+     * @param array $matches
+     *
      * @return string
      */
     protected function compactExplodedWords($matches)
@@ -259,7 +263,8 @@ class Security
     /**
      * Remove evil html attributes.
      *
-     * @param  string  $str
+     * @param string $str
+     *
      * @return string
      */
     protected function removeEvilAttributes($str)
@@ -307,7 +312,8 @@ class Security
     /**
      * Sanitize naughty html.
      *
-     * @param  array  $matches
+     * @param array $matches
+     *
      * @return string
      */
     protected function sanitizeNaughtyHtml($matches)
@@ -319,7 +325,8 @@ class Security
     /**
      * JS link removal.
      *
-     * @param  array  $match
+     * @param array $match
+     *
      * @return string
      */
     protected function jsLinkRemoval($match)
@@ -338,7 +345,8 @@ class Security
     /**
      * JS image removal.
      *
-     * @param  array  $match
+     * @param array $match
+     *
      * @return string
      */
     protected function jsImgRemoval($match)
@@ -357,7 +365,8 @@ class Security
     /**
      * Attribute conversion.
      *
-     * @param  array $match
+     * @param array $match
+     *
      * @return string
      */
     protected function convertAttribute($match)
@@ -368,7 +377,8 @@ class Security
     /**
      * Attribute filtering.
      *
-     * @param  string  $str
+     * @param string $str
+     *
      * @return string
      */
     protected function filterAttributes($str)
@@ -387,7 +397,8 @@ class Security
     /**
      * HTML entity decode callback.
      *
-     * @param  array  $match
+     * @param array $match
+     *
      * @return string
      */
     protected function decodeEntity($match)
@@ -402,7 +413,8 @@ class Security
     /**
      * Do never allowed.
      *
-     * @param  string  $str
+     * @param string $str
+     *
      * @return string
      */
     protected function doNeverAllowed($str)
