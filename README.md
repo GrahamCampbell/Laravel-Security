@@ -35,7 +35,9 @@ Laravel Security supports optional configuration.
 
 To get started, first publish the package config file:
 
-    php artisan config:publish graham-campbell/security
+```bash
+$ php artisan config:publish graham-campbell/security
+```
 
 There is one config option:
 
