@@ -32,14 +32,14 @@ class Security
     /**
      * A random hash for protecting urls.
      *
-     * @type string
+     * @var string
      */
     protected $xssHash;
 
     /**
      * The evil attributes.
      *
-     * @type string[]
+     * @var string[]
      */
     protected $evil;
 
