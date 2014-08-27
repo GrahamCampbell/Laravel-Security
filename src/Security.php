@@ -76,7 +76,7 @@ class Security
         do {
             $i++;
             $processed = $this->process($str);
-        } while ($i < 5 && $processed !== $str);
+        } while ($i < 3 && $processed !== $str);
 
         return $processed;
     }
@@ -96,8 +96,8 @@ class Security
             $str = rawurldecode($str);
         } while (preg_match('/%[0-9a-f]{2,}/i', $str));
 
-        $str = preg_replace_callback("/[a-z]+=([\'\"]).*?\\1/si", array($this, 'convertAttribute'), $str);
-        $str = preg_replace_callback('/<\w+.*/si', array($this, 'decodeEntity'), $str);
+        $str = preg_replace_callback("/[^a-z0-9>]+[a-z0-9]+=([\'\"]).*?\\1/si", array($this, 'convertAttribute'), $str);
+        $str = preg_replace_callback('/<\w+.*?(?=>|<|$)/si', array($this, 'decodeEntity'), $str);
 
         $str = $this->removeInvisibleCharacters($str);
 

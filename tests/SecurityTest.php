@@ -65,7 +65,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ),
             array(
                 '<svg/contentScriptType=text/vbs><script>Execute(MsgBox(chr(88)&chr(83)&chr(83)))',
-                '&lt;svg/contentScriptType=text/vbs&gt;[removed]Execute(MsgBox(chr(88;)&chr(83;)&chr(83;)))'
+                '&lt;svg/contentScriptType=text/vbs&gt;[removed]Execute(MsgBox(chr(88)&chr(83)&chr(83)))'
             ),
             array(
                 '<iframe/src="javascript:a=[alert&lpar;1&rpar;,confirm&#40;2&#41;,prompt%283%29];eval(a[0]);">',
@@ -161,7 +161,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ),
             array(
                 '<svg><style>&#x7B;-o-link-source&#x3A;\'<style/onload=confirm(1)>\'&#x7D;',
-                '&lt;svg&gt;&lt;style>{-o-link-source \'&lt;style/&gt;\'}'
+                '&lt;svg&gt;&lt;style>& x7B;-o-link-source&#x3A;\'&lt;style/&gt;\'&#x7D;'
             ),
             array(
                 '<math><solve i.e., x=2+2*2-2/2=? href="data:text/html,<script>prompt(1)</script>">X',
