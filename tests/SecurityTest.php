@@ -219,7 +219,7 @@ class SecurityTest extends AbstractTestBenchTestCase
 
         $return = $security->clean($input);
 
-        $this->assertEquals($output, $return);
+        $this->assertSame($output, $return);
     }
 
     public function testCleanArray()
@@ -228,7 +228,7 @@ class SecurityTest extends AbstractTestBenchTestCase
 
         $return = $security->clean(array('test', '123', array('abc')));
 
-        $this->assertEquals(array('test', '123', array('abc')), $return);
+        $this->assertSame(array('test', '123', array('abc')), $return);
     }
 
     protected function getSecurity()
