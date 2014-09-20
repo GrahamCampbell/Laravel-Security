@@ -2,7 +2,12 @@ CHANGE LOG
 ==========
 
 
-## V2.1.0 (27/08/2014)
+## V2.1.1 (Upcoming)
+
+* Improved the test suite
+
+
+## V2.1 (27/08/2014)
 
 * Fixed an issue with urls
 * Minor performance improvements
