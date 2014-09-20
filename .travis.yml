@@ -4,21 +4,21 @@ php:
   - 5.4
   - 5.5
   - 5.6
-  - hhvm-nightly
+  - hhvm
 
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source
 
 script:
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "hhvm-nightly" ]; then vendor/bin/phpunit; fi;'
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm-nightly" ]; then vendor/bin/phpunit --coverage-clover build/logs/clover.xml; fi;'
+  - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "hhvm" ]; then vendor/bin/phpunit; fi;'
+  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then vendor/bin/phpunit --coverage-clover build/logs/clover.xml; fi;'
 
 after_success:
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm-nightly" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi;'
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm-nightly" ]; then php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml; fi;'
+  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi;'
+  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml; fi;'
 
 matrix:
   allow_failures:
-    - php: hhvm-nightly
+    - php: hhvm
   fast_finish: true
