@@ -2,6 +2,11 @@ CHANGE LOG
 ==========
 
 
+## V3.0 Beta 1 (Upcoming)
+
+* Upgraded to laravel 5
+
+
 ## V2.1.1 (Upcoming)
 
 * Improved the test suite

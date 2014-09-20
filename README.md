@@ -9,21 +9,21 @@ Laravel Security
 [![Latest Version](https://img.shields.io/github/release/GrahamCampbell/Laravel-Security.svg?style=flat-square)](https://github.com/GrahamCampbell/Laravel-Security/releases)
 
 
-### Looking for a laravel 5 compatable version?
+### Looking for a laravel 4 compatable version?
 
-Checkout the [master branch](https://github.com/GrahamCampbell/Laravel-Security/tree/master), installable by requiring `"graham-campbell/security": "~3.0"`.
+Checkout the [2.1 branch](https://github.com/GrahamCampbell/Laravel-Security/tree/2.1), installable by requiring `"graham-campbell/security": "~2.0"`.
 
 
 ## Introduction
 
-Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a port of the security class from [CodeIgniter 2.2](http://ellislab.com/codeigniter) for [Laravel 4.1/4.2](http://laravel.com). This package is best used wrapped in my [Laravel Binput](https://github.com/GrahamCampbell/Laravel-Binput) package. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), [license](LICENSE.md), [demo](http://demo.grahamjcampbell.co.uk), [api docs](http://docs.grahamjcampbell.co.uk), and [contribution guidelines](CONTRIBUTING.md).
+Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a port of the security class from [CodeIgniter 2.2](http://ellislab.com/codeigniter) for [Laravel 5](http://laravel.com). This package is best used wrapped in my [Laravel Binput](https://github.com/GrahamCampbell/Laravel-Binput) package. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), [license](LICENSE.md), [demo](http://demo.grahamjcampbell.co.uk), [api docs](http://docs.grahamjcampbell.co.uk), and [contribution guidelines](CONTRIBUTING.md).
 
 
 ## Installation
 
 [PHP](https://php.net) 5.4+ or [HHVM](http://hhvm.com) 3.2+, and [Composer](https://getcomposer.org) are required.
 
-To get the latest version of Laravel Security, simply require `"graham-campbell/security": "~2.0"` in your `composer.json` file. You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
+To get the latest version of Laravel Security, simply require `"graham-campbell/security": "~3.0"` in your `composer.json` file. You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
 
 Once Laravel Security is installed, you need to register the service provider. Open up `app/config/app.php` and add the following to the `providers` key.
 
