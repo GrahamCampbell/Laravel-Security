@@ -110,7 +110,7 @@ class Security
         $words = array(
             'javascript', 'expression', 'vbscript', 'jscript', 'wscript',
             'vbs', 'script', 'base64', 'applet', 'alert', 'document',
-            'write', 'cookie', 'window', 'confirm', 'prompt'
+            'write', 'cookie', 'window', 'confirm', 'prompt',
         );
 
         foreach ($words as $word) {
@@ -428,7 +428,7 @@ class Security
             '<!--'              => '&lt;!--',
             '-->'               => '--&gt;',
             '<![CDATA['         => '&lt;![CDATA[',
-            '<comment>'         => '&lt;comment&gt;'
+            '<comment>'         => '&lt;comment&gt;',
         );
 
         $str = str_replace(array_keys($never), $never, $str);
@@ -442,7 +442,7 @@ class Security
             'jscript\s*:',
             'vbs\s*:',
             'Redirect\s+30\d',
-            "([\"'])?data\s*:[^\\1]*?base64[^\\1]*?,[^\\1]*?\\1?"
+            "([\"'])?data\s*:[^\\1]*?base64[^\\1]*?,[^\\1]*?\\1?",
         );
 
         foreach ($regex as $val) {

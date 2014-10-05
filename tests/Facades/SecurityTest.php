@@ -16,8 +16,8 @@
 
 namespace GrahamCampbell\Tests\Security\Facades;
 
-use GrahamCampbell\Tests\Security\AbstractTestCase;
 use GrahamCampbell\TestBench\Traits\FacadeTestCaseTrait;
+use GrahamCampbell\Tests\Security\AbstractTestCase;
 
 /**
  * This is the security facade test class.
