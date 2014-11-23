@@ -7,6 +7,11 @@ CHANGE LOG
 * Upgraded to laravel 5
 
 
+## V2.1.2 (Upcoming)
+
+* Removed the cs fixers
+
+
 ## V2.1.1 (05/10/2014)
 
 * Improved the test suite
