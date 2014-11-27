@@ -174,7 +174,7 @@ class Security
     protected function xssHash()
     {
         if (!$this->xssHash) {
-            $this->xssHash = md5(uniqid(mt_rand(), true));
+            $this->xssHash = str_random(40);
         }
 
         return $this->xssHash;
