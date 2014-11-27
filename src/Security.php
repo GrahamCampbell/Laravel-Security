@@ -50,7 +50,7 @@ class Security
      *
      * @return void
      */
-    public function __construct(array $evil = ['on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href'])
+    public function __construct(array $evil = ['(?<!\w)on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href'])
     {
         $this->evil = $evil;
     }
@@ -174,7 +174,7 @@ class Security
     protected function xssHash()
     {
         if (!$this->xssHash) {
-            $this->xssHash = md5(uniqid(mt_rand(), true));
+            $this->xssHash = str_random(40);
         }
 
         return $this->xssHash;
