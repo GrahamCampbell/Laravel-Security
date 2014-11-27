@@ -2,7 +2,7 @@ CHANGE LOG
 ==========
 
 
-## V2.1.2 (Upcoming)
+## V2.1.2 (27/11/2014)
 
 * Removed the cs fixers
 * Made the xss hash more robust
