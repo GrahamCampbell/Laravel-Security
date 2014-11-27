@@ -50,7 +50,7 @@ class Security
      *
      * @return void
      */
-    public function __construct(array $evil = array('on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href'))
+    public function __construct(array $evil = array('(?<!\w)on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href'))
     {
         $this->evil = $evil;
     }
