@@ -5,6 +5,8 @@ CHANGE LOG
 ## V2.1.2 (Upcoming)
 
 * Removed the cs fixers
+* Made the xss hash more robust
+* Updated the evil attributes
 
 
 ## V2.1.1 (05/10/2014)
