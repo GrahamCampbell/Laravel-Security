@@ -46,13 +46,13 @@ class Security
     /**
      * Create a new security instance.
      *
-     * @param string[] $evil
+     * @param string[]|null $evil
      *
      * @return void
      */
-    public function __construct(array $evil = ['(?<!\w)on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href'])
+    public function __construct(array $evil = null)
     {
-        $this->evil = $evil;
+        $this->evil = $evil ?: ['(?<!\w)on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href'];
     }
 
     /**

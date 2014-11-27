@@ -5,6 +5,7 @@ CHANGE LOG
 ## V3.0 Beta 1 (Upcoming)
 
 * Upgraded to laravel 5
+* Improved the constructor
 
 
 ## V2.1.2 (Upcoming)
