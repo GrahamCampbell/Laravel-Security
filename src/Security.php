@@ -50,7 +50,7 @@ class Security
      *
      * @return void
      */
-    public function __construct(array $evil = array('(?<!\w)on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href'))
+    public function __construct(array $evil = ['(?<!\w)on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href'])
     {
         $this->evil = $evil;
     }
@@ -96,8 +96,8 @@ class Security
             $str = rawurldecode($str);
         } while (preg_match('/%[0-9a-f]{2,}/i', $str));
 
-        $str = preg_replace_callback("/[^a-z0-9>]+[a-z0-9]+=([\'\"]).*?\\1/si", array($this, 'convertAttribute'), $str);
-        $str = preg_replace_callback('/<\w+.*?(?=>|<|$)/si', array($this, 'decodeEntity'), $str);
+        $str = preg_replace_callback("/[^a-z0-9>]+[a-z0-9]+=([\'\"]).*?\\1/si", [$this, 'convertAttribute'], $str);
+        $str = preg_replace_callback('/<\w+.*?(?=>|<|$)/si', [$this, 'decodeEntity'], $str);
 
         $str = $this->removeInvisibleCharacters($str);
 
@@ -105,19 +105,19 @@ class Security
 
         $str = $this->doNeverAllowed($str);
 
-        $str = str_replace(array('<?', '?'.'>'), array('&lt;?', '?&gt;'), $str);
+        $str = str_replace(['<?', '?'.'>'], ['&lt;?', '?&gt;'], $str);
 
-        $words = array(
+        $words = [
             'javascript', 'expression', 'vbscript', 'jscript', 'wscript',
             'vbs', 'script', 'base64', 'applet', 'alert', 'document',
             'write', 'cookie', 'window', 'confirm', 'prompt',
-        );
+        ];
 
         foreach ($words as $word) {
             $word = implode('\s*', str_split($word)).'\s*';
             $str = preg_replace_callback(
                 '#('.substr($word, 0, -3).')(\W)#is',
-                array($this, 'compactExplodedWords'),
+                [$this, 'compactExplodedWords'],
                 $str
             );
         }
@@ -128,7 +128,7 @@ class Security
             if (preg_match('/<a/i', $str)) {
                 $str = preg_replace_callback(
                     '#<a[^a-z0-9>]+([^>]*?)(?:>|$)#si',
-                    array($this, 'jsLinkRemoval'),
+                    [$this, 'jsLinkRemoval'],
                     $str
                 );
             }
@@ -136,7 +136,7 @@ class Security
             if (preg_match('/<img/i', $str)) {
                 $str = preg_replace_callback(
                     '#<img[^a-z0-9]+([^>]*?)(?:\s?/?>|$)#si',
-                    array($this, 'jsImgRemoval'),
+                    [$this, 'jsImgRemoval'],
                     $str
                 );
             }
@@ -153,7 +153,7 @@ class Security
         $naughty = 'alert|prompt|confirm|applet|audio|basefont|base|behavior|bgsound|blink|body|embed|expression|form|frameset|frame|head|html|ilayer|iframe|input|button|select|isindex|layer|link|meta|keygen|object|plaintext|style|script|textarea|title|math|video|svg|xml|xss';
         $str = preg_replace_callback(
             '#<(/*\s*)('.$naughty.')([^><]*)([><]*)#is',
-            array($this, 'sanitizeNaughtyHtml'),
+            [$this, 'sanitizeNaughtyHtml'],
             $str
         );
 
@@ -190,7 +190,7 @@ class Security
      */
     protected function removeInvisibleCharacters($str, $urlEncoded = true)
     {
-        $nonDisplayables = array();
+        $nonDisplayables = [];
 
         if ($urlEncoded) {
             $nonDisplayables[] = '/%0[0-8bcef]/';
@@ -231,7 +231,7 @@ class Security
                     $entities = array_map('strtolower', get_html_translation_table(HTML_ENTITIES, $flags));
                 }
 
-                $replace = array();
+                $replace = [];
                 $matches = array_unique(array_map('strtolower', $matches[0]));
                 for ($i = 0; $i < $c; $i++) {
                     if (($char = array_search(array_get($matches, $i).';', $entities, true)) !== false) {
@@ -271,7 +271,7 @@ class Security
     {
         do {
             $count = 0;
-            $attribs = array();
+            $attribs = [];
 
             preg_match_all(
                 '/(?<!\w)('.implode('|', $this->evil).')\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is',
@@ -319,7 +319,7 @@ class Security
     protected function sanitizeNaughtyHtml($matches)
     {
         return '&lt;'.$matches[1].$matches[2].$matches[3]
-            .str_replace(array('>', '<'), array('&gt;', '&lt;'), $matches[4]);
+            .str_replace(['>', '<'], ['&gt;', '&lt;'], $matches[4]);
     }
 
     /**
@@ -336,7 +336,7 @@ class Security
             preg_replace(
                 '#href=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|data\s*:)#si',
                 '',
-                $this->filterAttributes(str_replace(array('<', '>'), '', $match[1]))
+                $this->filterAttributes(str_replace(['<', '>'], '', $match[1]))
             ),
             $match[0]
         );
@@ -356,7 +356,7 @@ class Security
             preg_replace(
                 '#src=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|base64\s*,)#si',
                 '',
-                $this->filterAttributes(str_replace(array('<', '>'), '', $match[1]))
+                $this->filterAttributes(str_replace(['<', '>'], '', $match[1]))
             ),
             $match[0]
         );
@@ -371,7 +371,7 @@ class Security
      */
     protected function convertAttribute($match)
     {
-        return str_replace(array('>', '<', '\\'), array('&gt;', '&lt;', '\\\\'), $match[0]);
+        return str_replace(['>', '<', '\\'], ['&gt;', '&lt;', '\\\\'], $match[0]);
     }
 
     /**
@@ -419,7 +419,7 @@ class Security
      */
     protected function doNeverAllowed($str)
     {
-        $never = array(
+        $never = [
             'document.cookie'   => '[removed]',
             'document.write'    => '[removed]',
             '.parentNode'       => '[removed]',
@@ -429,11 +429,11 @@ class Security
             '-->'               => '--&gt;',
             '<![CDATA['         => '&lt;![CDATA[',
             '<comment>'         => '&lt;comment&gt;',
-        );
+        ];
 
         $str = str_replace(array_keys($never), $never, $str);
 
-        $regex = array(
+        $regex = [
             'javascript\s*:',
             '(document|(document\.)?window)\.(location|on\w*)',
             'expression\s*(\(|&\#40;)',
@@ -443,7 +443,7 @@ class Security
             'vbs\s*:',
             'Redirect\s+30\d',
             "([\"'])?data\s*:[^\\1]*?base64[^\\1]*?,[^\\1]*?\\1?",
-        );
+        ];
 
         foreach ($regex as $val) {
             $str = preg_replace('#'.$val.'#is', '[removed]', $str);
