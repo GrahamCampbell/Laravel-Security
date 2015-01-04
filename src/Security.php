@@ -1,17 +1,12 @@
 <?php
 
 /*
- * This file is part of Laravel Security by Graham Campbell.
+ * This file is part of Laravel Security.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at http://bit.ly/UWsjkb.
+ * (c) Graham Campbell <graham@mineuk.com>
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace GrahamCampbell\Security;
@@ -19,13 +14,12 @@ namespace GrahamCampbell\Security;
 /**
  * This is the security class.
  *
- * Some code in this class it taken from EllisLab's CodeIgniter.
- * That code is licensed under the Open Software License version 3.0.
+ * Some code in this class it taken from CodeIgniter 3.
  * See the original here: http://bit.ly/1oQnpjn.
  *
- * @author    Graham Campbell <graham@mineuk.com>
- * @copyright 2013-2014 Graham Campbell
- * @license   <https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md> Apache 2.0
+ * @author Andrey Andreev <narf@bofh.bg>
+ * @author Derek Jones <derek.jones@ellislab.com>
+ * @author Graham Campbell <graham@mineuk.com>
  */
 class Security
 {
@@ -242,7 +236,7 @@ class Security
                 $str = str_ireplace(array_keys($replace), array_values($replace), $str);
             }
 
-            $str = html_entity_decode(preg_replace('/(&#(?:x0*[0-9a-f]{2,5}(?![0-9a-f;]))|(?:0*\d{2,4}(?![0-9;])))/iS', '$1;', $str), $flags);
+            $str = html_entity_decode(preg_replace('/(&#(?:x0*[0-9a-f]{2,5}(?![0-9a-f;])|(?:0*\d{2,4}(?![0-9;]))))/iS', '$1;', $str), $flags);
         } while ($str_compare !== $str);
 
         return $str;

@@ -2,6 +2,14 @@ CHANGE LOG
 ==========
 
 
+## V2.1.3 (Upcoming)
+
+* CS fixes
+* Moved to the MIT license
+* Resynced with codeigniter
+* Fixed an issue with ";" being appended to numbers
+
+
 ## V2.1.2 (27/11/2014)
 
 * Removed the cs fixers
