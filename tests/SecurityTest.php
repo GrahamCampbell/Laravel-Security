@@ -98,7 +98,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<form/action=javascript&#x0003A;eval(setTimeout(confirm(1)))><input/type=submit>',
-                '&lt;form/action=javascript&#x0003;A;eval&#40;setTimeout(confirm(1&#41;))&gt;&lt;input/type=submit>',
+                '&lt;form/action=[removed]eval&#40;setTimeout(confirm(1&#41;))&gt;&lt;input/type=submit>',
             ],
             [
                 '<body/onload=this.onload=document.body.innerHTML=alert&lpar;1&rpar;>',
@@ -110,7 +110,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<object/type="text/x-scriptlet"/data="data:X,&#60script&#62setInterval&lpar;\'prompt(1)\',10&rpar;&#60/script&#62"></object>',
-                '&lt;object/type="text/x-scriptlet"/data="data:X,[removed]setInterval(\'prompt&#40;1&#41;\',10;)[removed]"&gt;&lt;/object>',
+                '&lt;object/type="text/x-scriptlet"/data="data:X,[removed]setInterval(\'prompt&#40;1&#41;\',10)[removed]"&gt;&lt;/object>',
             ],
             [
                 '<i<f<r<a<m<e><iframe/onload=confirm(1);></i>f>r>a>m>e>',
@@ -162,7 +162,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<iframe/src="j&Tab;AVASCRIP&NewLine;t:\u0061ler\u0074&#x28;1&#x29;">',
-                '&lt;iframe/src="[removed]\\\u0061;ler\\\u0074;(1)"&gt;',
+                '&lt;iframe/src="[removed]\\\u0061ler\\\u0074(1)"&gt;',
             ],
             [
                 '<iframe/src="javascript:void(alert(1))?alert(1):confirm(1),prompt(1)">',
@@ -170,7 +170,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<embed/src=javascript&colon;\u0061&#x6C;&#101%72t&#x28;1&#x29;>',
-                '&lt;embed/src=[removed]\u0061;lert(1)&gt;',
+                '&lt;embed/src=[removed]\u0061lert(1)&gt;',
             ],
             [
                 '<img/src=\'http://i.imgur.com/P8mL8.jpg \' onmouseover={confirm(1)}f()>',
