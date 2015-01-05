@@ -1,17 +1,12 @@
 <?php
 
 /*
- * This file is part of Laravel Security by Graham Campbell.
+ * This file is part of Laravel Security.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at http://bit.ly/UWsjkb.
+ * (c) Graham Campbell <graham@mineuk.com>
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace GrahamCampbell\Tests\Security;
@@ -22,9 +17,7 @@ use GrahamCampbell\TestBench\AbstractTestCase as AbstractTestBenchTestCase;
 /**
  * This is the security test class.
  *
- * @author    Graham Campbell <graham@mineuk.com>
- * @copyright 2013-2014 Graham Campbell
- * @license   <https://github.com/GrahamCampbell/Laravel-Security/blob/master/LICENSE.md> Apache 2.0
+ * @author Graham Campbell <graham@mineuk.com>
  */
 class SecurityTest extends AbstractTestBenchTestCase
 {
@@ -105,7 +98,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<form/action=javascript&#x0003A;eval(setTimeout(confirm(1)))><input/type=submit>',
-                '&lt;form/action=javascript&#x0003;A;eval&#40;setTimeout(confirm(1&#41;))&gt;&lt;input/type=submit>',
+                '&lt;form/action=[removed]eval&#40;setTimeout(confirm(1&#41;))&gt;&lt;input/type=submit>',
             ],
             [
                 '<body/onload=this.onload=document.body.innerHTML=alert&lpar;1&rpar;>',
@@ -117,7 +110,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<object/type="text/x-scriptlet"/data="data:X,&#60script&#62setInterval&lpar;\'prompt(1)\',10&rpar;&#60/script&#62"></object>',
-                '&lt;object/type="text/x-scriptlet"/data="data:X,[removed]setInterval(\'prompt&#40;1&#41;\',10;)[removed]"&gt;&lt;/object>',
+                '&lt;object/type="text/x-scriptlet"/data="data:X,[removed]setInterval(\'prompt&#40;1&#41;\',10)[removed]"&gt;&lt;/object>',
             ],
             [
                 '<i<f<r<a<m<e><iframe/onload=confirm(1);></i>f>r>a>m>e>',
@@ -169,7 +162,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<iframe/src="j&Tab;AVASCRIP&NewLine;t:\u0061ler\u0074&#x28;1&#x29;">',
-                '&lt;iframe/src="[removed]\\\u0061;ler\\\u0074;(1)"&gt;',
+                '&lt;iframe/src="[removed]\\\u0061ler\\\u0074(1)"&gt;',
             ],
             [
                 '<iframe/src="javascript:void(alert(1))?alert(1):confirm(1),prompt(1)">',
@@ -177,7 +170,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<embed/src=javascript&colon;\u0061&#x6C;&#101%72t&#x28;1&#x29;>',
-                '&lt;embed/src=[removed]\u0061;lert(1)&gt;',
+                '&lt;embed/src=[removed]\u0061lert(1)&gt;',
             ],
             [
                 '<img/src=\'http://i.imgur.com/P8mL8.jpg \' onmouseover={confirm(1)}f()>',

@@ -1,8 +1,8 @@
 {
     "name": "graham-campbell/security",
-    "description": "Security Is A Port Of The Security Class From Codeigniter 2.2 For Laravel 5",
+    "description": "Security Is A Port Of The Security Class From Codeigniter 3 For Laravel 5",
     "keywords": ["laravel", "framework", "security", "codeigniter", "Security", "Laravel Security", "Laravel-Security", "Graham Campbell", "GrahamCampbell"],
-    "license": "Apache-2.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "Graham Campbell",
