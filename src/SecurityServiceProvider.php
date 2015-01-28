@@ -11,7 +11,8 @@
 
 namespace GrahamCampbell\Security;
 
-use Orchestra\Support\Providers\ServiceProvider;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\ServiceProvider;
 
 /**
  * This is the security service provider class.
@@ -27,7 +28,21 @@ class SecurityServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->addConfigComponent('graham-campbell/security', 'graham-campbell/security', realpath(__DIR__.'/../config'));
+        $this->setupConfig();
+    }
+
+    /**
+     * Setup the config.
+     *
+     * @return void
+     */
+    protected function setupConfig()
+    {
+        $source = realpath(__DIR__.'/../config/security.php');
+
+        $this->publishes([$source => config_path('security.php')]);
+
+        $this->mergeConfigFrom('security', $source);
     }
 
     /**
@@ -37,23 +52,25 @@ class SecurityServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerSecurity();
+        $this->registerSecurity($this->app);
     }
 
     /**
      * Register the security class.
      *
+     * @param Illuminate\Contracts\Foundation\Application $app
+     *
      * @return void
      */
-    protected function registerSecurity()
+    protected function registerSecurity(Application $app)
     {
-        $this->app->singleton('security', function ($app) {
-            $evil = $app['config']['graham-campbell/security::evil'];
+        $app->singleton('security', function ($app) {
+            $evil = $app->config->get('security.evil');
 
             return new Security($evil);
         });
 
-        $this->app->alias('security', 'GrahamCampbell\Security\Security');
+        $app->alias('security', 'GrahamCampbell\Security\Security');
     }
 
     /**
