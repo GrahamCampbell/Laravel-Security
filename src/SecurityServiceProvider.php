@@ -42,7 +42,7 @@ class SecurityServiceProvider extends ServiceProvider
 
         $this->publishes([$source => config_path('security.php')]);
 
-        $this->mergeConfigFrom('security', $source);
+        $this->mergeConfigFrom($source, 'security');
     }
 
     /**
