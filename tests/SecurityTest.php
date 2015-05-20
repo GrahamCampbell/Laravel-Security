@@ -42,7 +42,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<div style="color:rgb(\'\'&#0;x:expression(alert(1))"></div>',
-                '<div ></div>',
+                '<div [removed]></div>',
             ],
             [
                 '<img/src=%00 id=confirm(1) onerror=eval(id)',
@@ -50,11 +50,11 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<div id=confirm(1) onmouseover=eval(id)>X</div>',
-                '<div id=confirm&#40;1&#41; >X</div>',
+                '<div id=confirm&#40;1&#41; [removed]>X</div>',
             ],
             [
                 '<span/onmouseover=confirm(1)>X</span>',
-                '<span >X</span>',
+                '<span/[removed]>X</span>',
             ],
             [
                 '<svg/contentScriptType=text/vbs><script>Execute(MsgBox(chr(88)&chr(83)&chr(83)))',
@@ -66,7 +66,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<div/style=content:url(data:image/svg+xml);visibility:visible onmouseover=alert(1)>x</div>',
-                '<div  >x</div>',
+                '<div/[removed] [removed]>x</div>',
             ],
             [
                 '<script>Object.defineProperties(window,{w:{value:{f:function(){return 1}}}});confirm(w.f())</script>',
@@ -74,7 +74,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<keygen/onfocus=prompt(1);>',
-                '&lt;keygen &gt;',
+                '&lt;keygen/[removed]&gt;',
             ],
             [
                 '<img/src=`%00` id=confirm(1) onerror=eval(id)',
@@ -86,7 +86,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<iframe/src="data:text/html,<iframe%09onload=confirm(1);>">',
-                '&lt;iframe src="data:text/html,&lt;iframe >">',
+                '&lt;iframe/src="data:text/html,&lt;iframe [removed]>">',
             ],
             [
                 '<math><a/xlink:href=javascript:prompt(1)>X',
@@ -94,7 +94,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<input/type="image"/value=""`<span/onmouseover=\'confirm(1)\'>X`</span>',
-                '&lt;input type="image"/value=""`&lt;span/>X`</span>',
+                '&lt;input/type="image"/value=""`&lt;span/[removed]>X`</span>',
             ],
             [
                 '<form/action=javascript&#x0003A;eval(setTimeout(confirm(1)))><input/type=submit>',
@@ -102,11 +102,11 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<body/onload=this.onload=document.body.innerHTML=alert&lpar;1&rpar;>',
-                '&lt;body &gt;',
+                '&lt;body/[removed]&gt;',
             ],
             [
                 '<iframe/onload=\'javascript&#58;void&#40;1&#41;&quest;void&#40;1&#41;&#58;confirm&#40;1&#41;\'>',
-                '&lt;iframe &gt;',
+                '&lt;iframe/[removed]&gt;',
             ],
             [
                 '<object/type="text/x-scriptlet"/data="data:X,&#60script&#62setInterval&lpar;\'prompt(1)\',10&rpar;&#60/script&#62"></object>',
@@ -114,7 +114,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<i<f<r<a<m<e><iframe/onload=confirm(1);></i>f>r>a>m>e>',
-                '<i<f<r<a<>&lt;iframe &gt;&lt;/i>f>r>a>m>e>',
+                '<i<f<r<a<>&lt;iframe/[removed]&gt;&lt;/i>f>r>a>m>e>',
             ],
             [
                 'http://www.<script abc>setTimeout(\'confirm(1)\',1)</script .com>',
@@ -122,7 +122,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<style/onload    =    !-alert&#x28;1&#x29;>',
-                '&lt;style &gt;',
+                '&lt;style/[removed]&gt;',
             ],
             [
                 '<svg id=a /><script language=vbs for=a event=onload>alert 1</script>',
@@ -138,7 +138,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<iframe/srcdoc=\'&lt;iframe&sol;onload&equals;confirm(&sol;&iexcl;&hearts;&xcup;&sol;)&gt;\'>',
-                '&lt;iframe srcdoc=\'&lt;iframe/>\'>',
+                '&lt;iframe/srcdoc=\'&lt;iframe/[removed]>\'>',
             ],
             [
                 '<meta/http-equiv="refresh"/content="0;url=javascript&Tab;:&Tab;void(alert(0))?0:0,0,prompt(0)">',
@@ -150,11 +150,11 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<style/onload=\'javascript&colon;void(0)?void(0)&colon;confirm(1)\'>',
-                '&lt;style &gt;',
+                '&lt;style/[removed]&gt;',
             ],
             [
                 '<svg><style>&#x7B;-o-link-source&#x3A;\'<style/onload=confirm(1)>\'&#x7D;',
-                '&lt;svg&gt;&lt;style>& x7B;-o-link-source&#x3A;\'&lt;style/&gt;\'&#x7D;',
+                '&lt;svg&gt;&lt;style>&#x7B;-o-link-source&#x3A;\'&lt;style/[removed]&gt;\'&#x7D;',
             ],
             [
                 '<math><solve i.e., x=2+2*2-2/2=? href="data:text/html,<script>prompt(1)</script>">X',
@@ -178,7 +178,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<style/&Tab;/onload=;&Tab;this&Tab;.&Tab;onload=confirm(1)>',
-                '&lt;style  / this . &gt;',
+                '&lt;style/ /[removed] this . [removed]&gt;',
             ],
             [
                 '<embed/src=//goo.gl/nlX0P>',
@@ -186,7 +186,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<form><button formaction=javascript:alert(1)>CLICKME',
-                '&lt;form&gt;&lt;button >CLICKME',
+                '&lt;form&gt;&lt;button [removed]>CLICKME',
             ],
             [
                 '<script>x=\'con\';s=\'firm\';S=\'(1)\';setTimeout(x+s+S,0);</script>',
@@ -199,6 +199,23 @@ class SecurityTest extends AbstractTestBenchTestCase
             [
                 '<iframe/src="data&colon;text&sol;html,<s&Tab;cr&Tab;ip&Tab;t>confirm(1)</script>">',
                 '&lt;iframe/src="data:text/html,[removed]confirm&#40;1&#41;[removed]"&gt;',
+            ],
+            [
+                '<foo fscommand=case-insensitive><foo seekSegmentTime=whatever>',
+                '<foo [removed]><foo [removed]>',
+            ],
+            [
+                '<foo onAttribute="bar">',
+                '<foo [removed]>',
+            ],
+            [
+                '<foo onAttributeWithSpaces = bar>',
+                '<foo [removed]>',
+
+            ],
+            [
+                '<foo prefixOnAttribute="bar">',
+                '<foo prefixOnAttribute="bar">',
             ],
         ];
     }
