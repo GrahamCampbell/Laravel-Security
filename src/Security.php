@@ -46,7 +46,7 @@ class Security
      */
     public function __construct(array $evil = null)
     {
-        $this->evil = $evil ?: ['(?<!\w)on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href'];
+        $this->evil = $evil ?: ['(?<!\w)on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href', 'FSCommand', 'seekSegmentTime'];
     }
 
     /**
@@ -220,14 +220,14 @@ class Security
         do {
             $str_compare = $str;
 
-            if ($c = preg_match_all('/&[a-z]{2,}(?![a-z;])/i', $str, $matches)) {
+            if (preg_match_all('/&[a-z]{2,}(?![a-z;])/i', $str, $matches)) {
                 if (!isset($entities)) {
                     $entities = array_map('strtolower', get_html_translation_table(HTML_ENTITIES, $flags));
                 }
 
                 $replace = [];
                 $matches = array_unique(array_map('strtolower', $matches[0]));
-                for ($i = 0; $i < $c; $i++) {
+                for ($i = 0, $c = count($matches); $i < $c; $i++) {
                     if (($char = array_search(array_get($matches, $i).';', $entities, true)) !== false) {
                         $replace[array_get($matches, $i)] = $char;
                     }
@@ -264,40 +264,15 @@ class Security
     protected function removeEvilAttributes($str)
     {
         do {
-            $count = 0;
-            $attribs = [];
+            $count = $tempCount = 0;
 
-            preg_match_all(
-                '/(?<!\w)('.implode('|', $this->evil).')\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is',
-                $str,
-                $matches,
-                PREG_SET_ORDER
-            );
+            // replace occurrences of illegal attribute strings with quotes (042 and 047 are octal quotes)
+            $str = preg_replace('/(<[^>]+)(?<!\w)('.implode('|', $evil_attributes).')\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is', '$1[removed]', $str, -1, $tempCount);
+            $count += $tempCount;
 
-            foreach ($matches as $attr) {
-                $attribs[] = preg_quote($attr[0], '/');
-            }
-
-            preg_match_all(
-                '/(?<!\w)('.implode('|', $this->evil).')\s*=\s*([^\s>]*)/is',
-                $str,
-                $matches,
-                PREG_SET_ORDER
-            );
-
-            foreach ($matches as $attr) {
-                $attribs[] = preg_quote($attr[0], '/');
-            }
-
-            if (count($attribs) > 0) {
-                $str = preg_replace(
-                    '/(<?)(\/?[^><]+?)([^A-Za-z<>\-])(.*?)('.implode('|', $attribs).')(.*?)([\s><]?)([><]*)/i',
-                    '$1$2 $4$6$7$8',
-                    $str,
-                    -1,
-                    $count
-                );
-            }
+            // find occurrences of illegal attribute strings without quotes
+            $str = preg_replace('/(<[^>]+)(?<!\w)('.implode('|', $evil_attributes).')\s*=\s*([^\s>]*)/is', '$1[removed]', $str, -1, $tempCount);
+            $count += $tempCount;
         } while ($count);
 
         return $str;
