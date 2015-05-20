@@ -34,10 +34,6 @@ You can register the Security facade in the `aliases` key of your `config/app.ph
 
 * `'Security' => 'GrahamCampbell\Security\Facades\Security'`
 
-#### Looking for a laravel 4 compatable version?
-
-Checkout the [2.1 branch](https://github.com/GrahamCampbell/Laravel-Security/tree/2.1), installable by requiring `"graham-campbell/security": "~2.0"`.
-
 
 ## Configuration
 
