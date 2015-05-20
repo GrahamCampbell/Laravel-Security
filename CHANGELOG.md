@@ -2,6 +2,13 @@ CHANGE LOG
 ==========
 
 
+## V3.1 (Upcoming)
+
+* Support both laravel 5.0 and 5.1
+* Dropped php 5.4 support
+* Resynced with codeigniter
+
+
 ## V3.0 (05/02/2015)
 
 * Upgraded to laravel 5.0
