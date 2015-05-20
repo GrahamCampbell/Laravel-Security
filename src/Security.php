@@ -267,11 +267,11 @@ class Security
             $count = $tempCount = 0;
 
             // replace occurrences of illegal attribute strings with quotes (042 and 047 are octal quotes)
-            $str = preg_replace('/(<[^>]+)(?<!\w)('.implode('|', $evil_attributes).')\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is', '$1[removed]', $str, -1, $tempCount);
+            $str = preg_replace('/(<[^>]+)(?<!\w)('.implode('|', $this->evil).')\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is', '$1[removed]', $str, -1, $tempCount);
             $count += $tempCount;
 
             // find occurrences of illegal attribute strings without quotes
-            $str = preg_replace('/(<[^>]+)(?<!\w)('.implode('|', $evil_attributes).')\s*=\s*([^\s>]*)/is', '$1[removed]', $str, -1, $tempCount);
+            $str = preg_replace('/(<[^>]+)(?<!\w)('.implode('|', $this->evil).')\s*=\s*([^\s>]*)/is', '$1[removed]', $str, -1, $tempCount);
             $count += $tempCount;
         } while ($count);
 
