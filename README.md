@@ -1,7 +1,7 @@
 Laravel Security
 ================
 
-Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a port of the security class from [CodeIgniter 3](http://ellislab.com/codeigniter) for [Laravel 5](http://laravel.com). This package is best used wrapped in my [Laravel Binput](https://github.com/GrahamCampbell/Laravel-Binput) package. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), [license](LICENSE), [api docs](http://docs.grahamjcampbell.co.uk), and [contribution guidelines](CONTRIBUTING.md).
+Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a port of the security class from [CodeIgniter 3](http://ellislab.com/codeigniter) for [Laravel 5](http://laravel.com). This package is best used wrapped in my [Laravel Binput](https://github.com/GrahamCampbell/Laravel-Binput) package. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), [license](LICENSE), [api docs](http://docs.gjcampbell.co.uk), and [contribution guidelines](CONTRIBUTING.md).
 
 ![Laravel Security](https://cloud.githubusercontent.com/assets/2829600/4432293/c1126c70-468c-11e4-8552-d0076442bd63.PNG)
 
@@ -72,7 +72,7 @@ This class contains no public methods of interest. This class should be added to
 
 ##### Further Information
 
-Feel free to check out the [API Documentation](http://docs.grahamjcampbell.co.uk) for Laravel Security.
+Feel free to check out the [API Documentation](http://docs.gjcampbell.co.uk) for Laravel Security.
 
 You may see an example of implementation in [Laravel Binput](https://github.com/GrahamCampbell/Laravel-Binput).
 
