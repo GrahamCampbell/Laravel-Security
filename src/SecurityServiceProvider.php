@@ -40,7 +40,9 @@ class SecurityServiceProvider extends ServiceProvider
     {
         $source = realpath(__DIR__.'/../config/security.php');
 
-        $this->publishes([$source => config_path('security.php')]);
+        if (class_exists('Illuminate\Foundation\Application', false)) {
+            $this->publishes([$source => config_path('security.php')]);
+        }
 
         $this->mergeConfigFrom($source, 'security');
     }
