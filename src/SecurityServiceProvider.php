@@ -72,7 +72,7 @@ class SecurityServiceProvider extends ServiceProvider
             return new Security($evil);
         });
 
-        $app->alias('security', 'GrahamCampbell\Security\Security');
+        $app->alias('security', Security::class);
     }
 
     /**

@@ -11,7 +11,9 @@
 
 namespace GrahamCampbell\Tests\Security\Facades;
 
-use GrahamCampbell\TestBench\Traits\FacadeTestCaseTrait;
+use GrahamCampbell\Security\Facades\Security as Facade;
+use GrahamCampbell\Security\Security;
+use GrahamCampbell\TestBenchCore\FacadeTrait;
 use GrahamCampbell\Tests\Security\AbstractTestCase;
 
 /**
@@ -21,7 +23,7 @@ use GrahamCampbell\Tests\Security\AbstractTestCase;
  */
 class SecurityTest extends AbstractTestCase
 {
-    use FacadeTestCaseTrait;
+    use FacadeTrait;
 
     /**
      * Get the facade accessor.
@@ -40,7 +42,7 @@ class SecurityTest extends AbstractTestCase
      */
     protected function getFacadeClass()
     {
-        return 'GrahamCampbell\Security\Facades\Security';
+        return Facade::class;
     }
 
     /**
@@ -50,6 +52,6 @@ class SecurityTest extends AbstractTestCase
      */
     protected function getFacadeRoot()
     {
-        return 'GrahamCampbell\Security\Security';
+        return Security::class;
     }
 }

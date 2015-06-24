@@ -11,6 +11,7 @@
 
 namespace GrahamCampbell\Tests\Security;
 
+use GrahamCampbell\Security\SecurityServiceProvider;
 use GrahamCampbell\TestBench\AbstractPackageTestCase;
 
 /**
@@ -29,6 +30,6 @@ abstract class AbstractTestCase extends AbstractPackageTestCase
      */
     protected function getServiceProviderClass($app)
     {
-        return 'GrahamCampbell\Security\SecurityServiceProvider';
+        return SecurityServiceProvider::class;
     }
 }
