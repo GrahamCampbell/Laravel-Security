@@ -60,7 +60,7 @@ class SecurityServiceProvider extends ServiceProvider
     /**
      * Register the security class.
      *
-     * @param Illuminate\Contracts\Foundation\Application $app
+     * @param \Illuminate\Contracts\Foundation\Application $app
      *
      * @return void
      */
