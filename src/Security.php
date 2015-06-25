@@ -218,7 +218,7 @@ class Security
         $flags = ENT_COMPAT | ENT_HTML5;
 
         do {
-            $str_compare = $str;
+            $compare = $str;
 
             if (preg_match_all('/&[a-z]{2,}(?![a-z;])/i', $str, $matches)) {
                 if (!isset($entities)) {
@@ -228,7 +228,7 @@ class Security
                 $replace = [];
                 $matches = array_unique(array_map('strtolower', $matches[0]));
                 foreach ($matches as &$match) {
-                    if (($char = array_search($match.';', $_entities, true)) !== false) {
+                    if (($char = array_search($match.';', $entities, true)) !== false) {
                         $replace[$match] = $char;
                     }
                 }
@@ -237,7 +237,7 @@ class Security
             }
 
             $str = html_entity_decode(preg_replace('/(&#(?:x0*[0-9a-f]{2,5}(?![0-9a-f;])|(?:0*\d{2,4}(?![0-9;]))))/iS', '$1;', $str), $flags);
-        } while ($str_compare !== $str);
+        } while ($compare !== $str);
 
         return $str;
     }
