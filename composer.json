@@ -29,6 +29,9 @@
             "GrahamCampbell\\Tests\\Security\\": "tests/"
         }
     },
+    "config": {
+        "preferred-install": "dist"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "3.2-dev"
