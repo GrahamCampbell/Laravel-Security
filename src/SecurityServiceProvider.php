@@ -42,6 +42,8 @@ class SecurityServiceProvider extends ServiceProvider
 
         if (class_exists('Illuminate\Foundation\Application', false)) {
             $this->publishes([$source => config_path('security.php')]);
+        } elseif (class_exists('Laravel\Lumen\Application', false)) {
+            $this->configure('security');
         }
 
         $this->mergeConfigFrom($source, 'security');
