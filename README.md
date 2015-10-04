@@ -75,6 +75,11 @@ This class contains no public methods of interest. This class should be added to
 You may see an example of implementation in [Laravel Binput](https://github.com/GrahamCampbell/Laravel-Binput).
 
 
+## Security
+
+If you discover a security vulnerability within this package, please send an e-mail to Graham Campbell at graham@alt-three.com. All security vulnerabilities will be promptly addressed.
+
+
 ## License
 
 Laravel Security is licensed under [The MIT License (MIT)](LICENSE).
