@@ -279,7 +279,7 @@ class Security
             'plaintext', 'style', 'script', 'textarea', 'title', 'math', 'video', 'svg', 'xml', 'xss',
         ];
 
-        static $attributes = [
+        static $evilAttributes = [
             'on\w+', 'style', 'xmlns', 'formaction', 'form', 'xlink:href', 'FSCommand', 'seekSegmentTime',
         ];
 
@@ -297,7 +297,7 @@ class Security
             if ($count = preg_match_all($pattern, $matches['attributes'], $attributes, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) {
                 for ($i = $count - 1; $i > -1; $i--) {
                     if (
-                        preg_match('#^('.implode('|', $attributes).')$#i', $attributes[$i]['name'][0])
+                        preg_match('#^('.implode('|', $evilAttributes).')$#i', $attributes[$i]['name'][0])
                         || !ctype_alpha($attributes[$i]['name'][0][0])
                         || trim($attributes[$i]['value'][0]) === ''
                     ) {
