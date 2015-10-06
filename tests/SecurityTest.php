@@ -86,7 +86,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<iframe/src="data:text/html,<iframe%09onload=confirm(1);>">',
-                '&lt;iframe/src="data:text/html,&lt;iframe onload=confirm&#40;1&#41;;&gt;"&gt',
+                '&lt;iframe/src="data:text/html,&lt;iframe onload=confirm&#40;1&#41;;&gt;"&gt;',
             ],
             [
                 '<math><a/xlink:href=javascript:prompt(1)>X',
@@ -98,19 +98,19 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<form/action=javascript&#x0003A;eval(setTimeout(confirm(1)))><input/type=submit>',
-                '&lt;form/action=[removed]eval&#40;setTimeout(confirm(1&#41;))&gt;&lt;input/type=submit&gt',
+                '&lt;form/action=[removed]eval&#40;setTimeout(confirm(1&#41;))&gt;&lt;input/type=submit&gt;',
             ],
             [
                 '<body/onload=this.onload=document.body.innerHTML=alert&lpar;1&rpar;>',
-                '&lt;body/onload=this.onload=document.body[removed]=alert&#40;1&#41;&gt',
+                '&lt;body/onload=this.onload=document.body[removed]=alert&#40;1&#41;&gt;',
             ],
             [
                 '<iframe/onload=\'javascript&#58;void&#40;1&#41;&quest;void&#40;1&#41;&#58;confirm&#40;1&#41;\'>',
-                '&lt;iframe/onload=\'[removed]void(1)?void(1):confirm&#40;1&#41;\'&gt',
+                '&lt;iframe/onload=\'[removed]void(1)?void(1):confirm&#40;1&#41;\'&gt;',
             ],
             [
                 '<object/type="text/x-scriptlet"/data="data:X,&#60script&#62setInterval&lpar;\'prompt(1)\',10&rpar;&#60/script&#62"></object>',
-                '&lt;object/type="text/x-scriptlet"/data="data:X,[removed]setInterval(\'prompt&#40;1&#41;\',10)[removed]"&gt;&lt;/object&gt',
+                '&lt;object/type="text/x-scriptlet"/data="data:X,[removed]setInterval(\'prompt&#40;1&#41;\',10)[removed]"&gt;&lt;/object&gt;',
             ],
             [
                 '<i<f<r<a<m<e><iframe/onload=confirm(1);></i>f>r>a>m>e>',
