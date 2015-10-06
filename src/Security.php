@@ -155,7 +155,7 @@ class Security
 
         do {
             $original = $str;
-            $str = preg_replace_callback($pattern, array($this, 'sanitizeNaughtyHtml'), $str);
+            $str = preg_replace_callback($pattern, [$this, 'sanitizeNaughtyHtml'], $str);
         } while ($original !== $str);
 
         unset($original);
@@ -285,11 +285,9 @@ class Security
 
         if (empty($matches['closeTag'])) {
             return '&lt;'.$matches[1];
-        }
-        elseif (in_array(strtolower($matches['tagName']), $tags, true)) {
+        } elseif (in_array(strtolower($matches['tagName']), $tags, true)) {
             return '&lt;'.$matches[1].'&gt;';
-        }
-        elseif (isset($matches['attributes'])) {
+        } elseif (isset($matches['attributes'])) {
             $pattern = '#'
                 .'([\s\042\047/=]*)'
                 .'(?<name>[^\s\042\047>/=]+)'
@@ -300,7 +298,7 @@ class Security
                 for ($i = $count - 1; $i > -1; $i--) {
                     if (
                         preg_match('#^('.implode('|', $attributes).')$#i', $attributes[$i]['name'][0])
-                        || ! ctype_alpha($attributes[$i]['name'][0][0])
+                        || !ctype_alpha($attributes[$i]['name'][0][0])
                         || trim($attributes[$i]['value'][0]) === ''
                     ) {
                         $matches['attributes'] = substr_replace(
