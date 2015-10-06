@@ -104,7 +104,7 @@ class Security
         $words = [
             'javascript', 'expression', 'vbscript', 'jscript', 'wscript',
             'vbs', 'script', 'base64', 'applet', 'alert', 'document',
-            'write', 'cookie', 'window', 'confirm', 'prompt',
+            'write', 'cookie', 'window', 'confirm', 'prompt', 'eval',
         ];
 
         foreach ($words as $word) {
@@ -142,14 +142,23 @@ class Security
 
         unset($original);
 
-        $str = $this->removeEvilAttributes($str);
+        $pattern = '#'
+            .'<((?<slash>/*\s*)(?<tagName>[a-z0-9]+)(?=[^a-z0-9]|$)'
+            .'[^\s\042\047a-z0-9>/=]*'
+            .'(?<attributes>(?:[\s\042\047/=]*'
+            .'[^\s\042\047>/=]+'
+                .'(?:\s*='
+                    .'(?:[^\s\042\047=><`]+|\s*\042[^\042]*\042|\s*\047[^\047]*\047|\s*(?U:[^\s\042\047=><`]*))'
+                .')?'
+            .')*)'
+            .'[^>]*)(?<closeTag>\>)?#isS';
 
-        $naughty = 'alert|prompt|confirm|applet|audio|basefont|base|behavior|bgsound|blink|body|embed|expression|form|frameset|frame|head|html|ilayer|iframe|input|button|select|isindex|layer|link|meta|keygen|object|plaintext|style|script|textarea|title|math|video|svg|xml|xss';
-        $str = preg_replace_callback(
-            '#<(/*\s*)('.$naughty.')([^><]*)([><]*)#is',
-            [$this, 'sanitizeNaughtyHtml'],
-            $str
-        );
+        do {
+            $original = $str;
+            $str = preg_replace_callback($pattern, array($this, 'sanitizeNaughtyHtml'), $str);
+        } while ($original !== $str);
+
+        unset($original);
 
         $str = preg_replace(
             '#(alert|prompt|confirm|cmd|passthru|eval|exec|expression|system|fopen|fsockopen|file|file_get_contents|readfile|unlink)(\s*)\((.*?)\)#si',
@@ -255,30 +264,6 @@ class Security
     }
 
     /**
-     * Remove evil html attributes.
-     *
-     * @param string $str
-     *
-     * @return string
-     */
-    protected function removeEvilAttributes($str)
-    {
-        do {
-            $count = $tempCount = 0;
-
-            // replace occurrences of illegal attribute strings with quotes (042 and 047 are octal quotes)
-            $str = preg_replace('/(<[^>]+)(?<!\w)('.implode('|', $this->evil).')\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is', '$1[removed]', $str, -1, $tempCount);
-            $count += $tempCount;
-
-            // find occurrences of illegal attribute strings without quotes
-            $str = preg_replace('/(<[^>]+)(?<!\w)('.implode('|', $this->evil).')\s*=\s*([^\s>]*)/is', '$1[removed]', $str, -1, $tempCount);
-            $count += $tempCount;
-        } while ($count);
-
-        return $str;
-    }
-
-    /**
      * Sanitize naughty html.
      *
      * @param array $matches
@@ -287,8 +272,51 @@ class Security
      */
     protected function sanitizeNaughtyHtml($matches)
     {
-        return '&lt;'.$matches[1].$matches[2].$matches[3]
-            .str_replace(['>', '<'], ['&gt;', '&lt;'], $matches[4]);
+        static $tags = [
+            'alert', 'prompt', 'confirm', 'applet', 'audio', 'basefont', 'base', 'behavior', 'bgsound',
+            'blink', 'body', 'embed', 'expression', 'form', 'frameset', 'frame', 'head', 'html', 'ilayer',
+            'iframe', 'input', 'button', 'select', 'isindex', 'layer', 'link', 'meta', 'keygen', 'object',
+            'plaintext', 'style', 'script', 'textarea', 'title', 'math', 'video', 'svg', 'xml', 'xss',
+        ];
+
+        static $attributes = [
+            'on\w+', 'style', 'xmlns', 'formaction', 'form', 'xlink:href', 'FSCommand', 'seekSegmentTime',
+        ];
+
+        if (empty($matches['closeTag'])) {
+            return '&lt;'.$matches[1];
+        }
+        elseif (in_array(strtolower($matches['tagName']), $tags, true)) {
+            return '&lt;'.$matches[1].'&gt;';
+        }
+        elseif (isset($matches['attributes'])) {
+            $pattern = '#'
+                .'([\s\042\047/=]*)'
+                .'(?<name>[^\s\042\047>/=]+)'
+                .'(?:\s*=(?<value>[^\s\042\047=><`]+|\s*\042[^\042]*\042|\s*\047[^\047]*\047|\s*(?U:[^\s\042\047=><`]*)))'
+                .'#i';
+
+            if ($count = preg_match_all($pattern, $matches['attributes'], $attributes, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) {
+                for ($i = $count - 1; $i > -1; $i--) {
+                    if (
+                        preg_match('#^('.implode('|', $attributes).')$#i', $attributes[$i]['name'][0])
+                        || ! ctype_alpha($attributes[$i]['name'][0][0])
+                        || trim($attributes[$i]['value'][0]) === ''
+                    ) {
+                        $matches['attributes'] = substr_replace(
+                            $matches['attributes'],
+                            ' [removed]',
+                            $attributes[$i][0][1],
+                            strlen($attributes[$i][0][0])
+                        );
+                    }
+                }
+
+                return '<'.$matches['slash'].$matches['tagName'].' '.trim($matches['attributes']).'>';
+            }
+        }
+
+        return $matches[0];
     }
 
     /**
@@ -305,7 +333,7 @@ class Security
             preg_replace(
                 '#href=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|data\s*:)#si',
                 '',
-                $this->filterAttributes(str_replace(['<', '>'], '', $match[1]))
+                $this->filterAttributes($match[1])
             ),
             $match[0]
         );
@@ -323,9 +351,9 @@ class Security
         return str_replace(
             $match[1],
             preg_replace(
-                '#src=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|base64\s*,)#si',
+                '#src=.*?(?:(?:alert|prompt|confirm|eval)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|base64\s*,)#si',
                 '',
-                $this->filterAttributes(str_replace(['<', '>'], '', $match[1]))
+                $this->filterAttributes($match[1])
             ),
             $match[0]
         );

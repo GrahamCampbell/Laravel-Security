@@ -5,6 +5,7 @@ CHANGE LOG
 ## V3.3 (Upcoming)
 
 * Improved lumen support
+* Resynced with codeigniter
 
 
 ## V3.2 (26/06/2015)
