@@ -285,33 +285,41 @@ class Security
 
         if (empty($matches['closeTag'])) {
             return '&lt;'.$matches[1];
-        } elseif (in_array(strtolower($matches['tagName']), $tags, true)) {
+        }
+
+        if (in_array(strtolower($matches['tagName']), $tags, true)) {
             return '&lt;'.$matches[1].'&gt;';
-        } elseif (isset($matches['attributes'])) {
+        }
+
+        if (isset($matches['attributes'])) {
+            $attributes = [];
+
             $pattern = '#'
-                .'([\s\042\047/=]*)'
                 .'(?<name>[^\s\042\047>/=]+)'
                 .'(?:\s*=(?<value>[^\s\042\047=><`]+|\s*\042[^\042]*\042|\s*\047[^\047]*\047|\s*(?U:[^\s\042\047=><`]*)))'
                 .'#i';
 
-            if ($count = preg_match_all($pattern, $matches['attributes'], $attributes, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) {
-                for ($i = $count - 1; $i > -1; $i--) {
-                    if (
-                        preg_match('#^('.implode('|', $evilAttributes).')$#i', $attributes[$i]['name'][0])
-                        || !ctype_alpha($attributes[$i]['name'][0][0])
-                        || trim($attributes[$i]['value'][0]) === ''
-                    ) {
-                        $matches['attributes'] = substr_replace(
-                            $matches['attributes'],
-                            ' [removed]',
-                            $attributes[$i][0][1],
-                            strlen($attributes[$i][0][0])
-                        );
-                    }
+            $isEvil = '#^('.implode('|', $evilAttributes).')$#i';
+
+            do {
+                $matches['attributes'] = preg_replace('#^[^a-z]+#i', '', $matches['attributes']);
+
+                if (!preg_match($pattern, $matches['attributes'], $attribute, PREG_OFFSET_CAPTURE)) {
+                    break;
                 }
 
-                return '<'.$matches['slash'].$matches['tagName'].' '.trim($matches['attributes']).'>';
-            }
+                if (preg_match($isEvil, $attribute['name'][0]) || trim($attribute['value'][0]) === '') {
+                    $attributes[] = 'xss=removed';
+                } else {
+                    $attributes[] = $attribute[0][0];
+                }
+
+                $matches['attributes'] = substr($matches['attributes'], $attribute[0][1] + strlen($attribute[0][0]));
+            } while ($matches['attributes'] !== '');
+
+            $attributes = empty($attributes) ? '' : ' '.implode(' ', $attributes);
+
+            return '<'.$matches['slash'].$matches['tagName'].$attributes.'>';
         }
 
         return $matches[0];
