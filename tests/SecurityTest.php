@@ -30,7 +30,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<a href="&#38&#35&#49&#48&#54&#38&#35&#57&#55&#38&#35&#49&#49&#56&#38&#35&#57&#55&#38&#35&#49&#49&#53&#38&#35&#57&#57&#38&#35&#49&#49&#52&#38&#35&#49&#48&#53&#38&#35&#49&#49&#50&#38&#35&#49&#49&#54&#38&#35&#53&#56&#38&#35&#57&#57&#38&#35&#49&#49&#49&#38&#35&#49&#49&#48&#38&#35&#49&#48&#50&#38&#35&#49&#48&#53&#38&#35&#49&#49&#52&#38&#35&#49&#48&#57&#38&#35&#52&#48&#38&#35&#52&#57&#38&#35&#52&#49">Clickhere</a>',
-                '<a >Clickhere</a>',
+                '<a>Clickhere</a>',
             ],
             [
                 '&foo should not include a semicolon',
@@ -42,7 +42,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<div style="color:rgb(\'\'&#0;x:expression(alert(1))"></div>',
-                '<div [removed]></div>',
+                '<div xss=removed></div>',
             ],
             [
                 '<img/src=%00 id=confirm(1) onerror=eval(id)',
@@ -50,11 +50,11 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<div id=confirm(1) onmouseover=eval(id)>X</div>',
-                '<div id=confirm&#40;1&#41; [removed]>X</div>',
+                '<div id=confirm&#40;1&#41; xss=removed>X</div>',
             ],
             [
                 '<span/onmouseover=confirm(1)>X</span>',
-                '<span [removed]>X</span>',
+                '<span xss=removed>X</span>',
             ],
             [
                 '<svg/contentScriptType=text/vbs><script>Execute(MsgBox(chr(88)&chr(83)&chr(83)))',
@@ -66,7 +66,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<div/style=content:url(data:image/svg+xml);visibility:visible onmouseover=alert(1)>x</div>',
-                '<div [removed] [removed]>x</div>',
+                '<div xss=removed xss=removed>x</div>',
             ],
             [
                 '<script>Object.defineProperties(window,{w:{value:{f:function(){return 1}}}});confirm(w.f())</script>',
@@ -90,11 +90,11 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<math><a/xlink:href=javascript:prompt(1)>X',
-                '&lt;math&gt;<a/>X',
+                '&lt;math&gt;<a>X',
             ],
             [
                 '<input/type="image"/value=""`<span/onmouseover=\'confirm(1)\'>X`</span>',
-                '&lt;input/type="image"/value=""`<span [removed]&gt;X`</span>',
+                '&lt;input/type="image"/value=""`<span xss=removed>',
             ],
             [
                 '<form/action=javascript&#x0003A;eval(setTimeout(confirm(1)))><input/type=submit>',
@@ -114,7 +114,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<i<f<r<a<m<e><iframe/onload=confirm(1);></i>f>r>a>m>e>',
-                '<i<f<r<a<>&lt;iframe/onload=confirm&#40;1&#41;;&gt;</i>f>r>a>m>e>',
+                '<i>&lt;iframe/onload=confirm&#40;1&#41;;&gt;</i>f>r>a>m>e>',
             ],
             [
                 'http://www.<script abc>setTimeout(\'confirm(1)\',1)</script .com>',
@@ -158,7 +158,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<math><solve i.e., x=2+2*2-2/2=? href="data:text/html,<script>prompt(1)</script>">X',
-                '&lt;math&gt;<solve i.e., x=2+2*2-2/2=? href="data:text/html,[removed]prompt&#40;1&#41;[removed]">X',
+                '&lt;math&gt;<solve x=2+2*2-2/2 href="data:text/html,[removed]prompt&#40;1&#41;[removed]">X',
             ],
             [
                 '<iframe/src="j&Tab;AVASCRIP&NewLine;t:\u0061ler\u0074&#x28;1&#x29;">',
@@ -174,7 +174,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<img/src=\'http://i.imgur.com/P8mL8.jpg \' onmouseover={confirm(1)}f()>',
-                '<img /src=\'http://i.imgur.com/P8mL8.jpg \'>',
+                '<img src=\'http://i.imgur.com/P8mL8.jpg \'>',
             ],
             [
                 '<style/&Tab;/onload=;&Tab;this&Tab;.&Tab;onload=confirm(1)>',
@@ -194,7 +194,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<img/id="confirm&lpar;1&#x29;"/alt="/"src="/"onerror=eval(id&#x29;>',
-                '<img /id="confirm&#40;1&#41;"alt="/"src="/">',
+                '<img id="confirm&#40;1&#41;" alt="/" src="/">',
             ],
             [
                 '<iframe/src="data&colon;text&sol;html,<s&Tab;cr&Tab;ip&Tab;t>confirm(1)</script>">',
@@ -202,15 +202,15 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<foo fscommand=case-insensitive><foo seekSegmentTime=whatever>',
-                '<foo [removed]><foo [removed]>',
+                '<foo xss=removed><foo xss=removed>',
             ],
             [
                 '<foo onAttribute="bar">',
-                '<foo [removed]>',
+                '<foo xss=removed>',
             ],
             [
                 '<foo onAttributeWithSpaces = bar>',
-                '<foo [removed]bar>',
+                '<foo xss=removed>',
 
             ],
             [
