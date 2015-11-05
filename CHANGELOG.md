@@ -2,7 +2,7 @@ CHANGE LOG
 ==========
 
 
-## V3.4 (Upcoming)
+## V3.4 (05/11/2015)
 
 * Resynced with codeigniter
 
