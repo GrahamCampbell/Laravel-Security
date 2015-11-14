@@ -2,6 +2,12 @@ CHANGE LOG
 ==========
 
 
+## V3.5 (Upcoming)
+
+* Added laravel 5.2 support
+* Improved environment detection
+
+
 ## V3.4 (05/11/2015)
 
 * Resynced with codeigniter
