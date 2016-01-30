@@ -6,6 +6,7 @@ Laravel Security was created by, and is maintained by [Graham Campbell](https://
 ![Laravel Security](https://cloud.githubusercontent.com/assets/2829600/4432293/c1126c70-468c-11e4-8552-d0076442bd63.PNG)
 
 <p align="center">
+<a href="https://styleci.io/repos/12090755"><img src="https://styleci.io/repos/12090755/shield" alt="StyleCI Status"></img></a>
 <a href="https://travis-ci.org/GrahamCampbell/Laravel-Security"><img src="https://img.shields.io/travis/GrahamCampbell/Laravel-Security/master.svg?style=flat-square" alt="Build Status"></img></a>
 <a href="https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security/code-structure"><img src="https://img.shields.io/scrutinizer/coverage/g/GrahamCampbell/Laravel-Security.svg?style=flat-square" alt="Coverage Status"></img></a>
 <a href="https://scrutinizer-ci.com/g/GrahamCampbell/Laravel-Security"><img src="https://img.shields.io/scrutinizer/g/GrahamCampbell/Laravel-Security.svg?style=flat-square" alt="Quality Score"></img></a>
