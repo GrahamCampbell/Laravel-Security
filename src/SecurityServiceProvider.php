@@ -11,7 +11,7 @@
 
 namespace GrahamCampbell\Security;
 
-use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
@@ -58,25 +58,23 @@ class SecurityServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerSecurity($this->app);
+        $this->registerSecurity();
     }
 
     /**
      * Register the security class.
      *
-     * @param \Illuminate\Contracts\Foundation\Application $app
-     *
      * @return void
      */
-    protected function registerSecurity(Application $app)
+    protected function registerSecurity()
     {
-        $app->singleton('security', function ($app) {
+        $this->app->singleton('security', function (Container $app) {
             $evil = $app->config->get('security.evil');
 
             return new Security($evil);
         });
 
-        $app->alias('security', Security::class);
+        $this->app->alias('security', Security::class);
     }
 
     /**
