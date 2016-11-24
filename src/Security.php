@@ -41,8 +41,6 @@ class Security
      * Create a new security instance.
      *
      * @param string[]|null $evil
-     *
-     * @return void
      */
     public function __construct(array $evil = null)
     {
