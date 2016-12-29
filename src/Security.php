@@ -38,6 +38,13 @@ class Security
     protected $evil;
 
     /**
+     * The entities to decode.
+     *
+     * @var string[]
+     */
+    protected $entities;
+
+    /**
      * Create a new security instance.
      *
      * @param string[]|null $evil
@@ -47,6 +54,7 @@ class Security
     public function __construct(array $evil = null)
     {
         $this->evil = $evil ?: ['(?<!\w)on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href', 'FSCommand', 'seekSegmentTime'];
+        $this->entities = array_map('strtolower', get_html_translation_table(HTML_ENTITIES, ENT_COMPAT | ENT_HTML5));
     }
 
     /**
@@ -86,12 +94,30 @@ class Security
     {
         $str = $this->removeInvisibleCharacters($str);
 
-        do {
-            $str = rawurldecode($str);
-        } while (preg_match('/%[0-9a-f]{2,}/i', $str));
+        if (stripos($str, '%') !== false) {
+            do {
+                $original = $str;
+                $str = preg_replace_callback(
+                    '#%(?:\s*[0-9a-f]){2,}#i',
+                    [$this, 'urlDecodeSpaces'],
+                    rawurldecode($str)
+                );
+            } while ($original !== $str);
 
-        $str = preg_replace_callback("/[^a-z0-9>]+[a-z0-9]+=([\'\"]).*?\\1/si", [$this, 'convertAttribute'], $str);
-        $str = preg_replace_callback('/<\w+.*?(?=>|<|$)/si', [$this, 'decodeEntity'], $str);
+            unset($original);
+        }
+
+        $str = preg_replace_callback(
+            "/[^a-z0-9>]+[a-z0-9]+=([\'\"]).*?\\1/si",
+            [$this, 'convertAttribute'],
+            $str
+        );
+
+        $str = preg_replace_callback(
+            '/<\w+.*?(?=>|<|$)/si',
+            [$this, 'decodeEntity'],
+            $str
+        );
 
         $str = $this->removeInvisibleCharacters($str);
 
@@ -129,7 +155,7 @@ class Security
 
             if (preg_match('/<img/i', $str)) {
                 $str = preg_replace_callback(
-                    '#<img[^a-z0-9]+([^>]*?)(?:\s?/?>|$)#si',
+                    '#<a(?:rea)?[^a-z0-9>]+([^>]*?)(?:>|$)#si',
                     [$this, 'jsImgRemoval'],
                     $str
                 );
@@ -218,37 +244,46 @@ class Security
      */
     protected function entityDecode($str)
     {
-        static $entities;
-
         if (strpos($str, '&') === false) {
             return $str;
         }
 
-        $flags = ENT_COMPAT | ENT_HTML5;
-
         do {
-            $compare = $str;
+            $original = $str;
 
             if (preg_match_all('/&[a-z]{2,}(?![a-z;])/i', $str, $matches)) {
-                if (!isset($entities)) {
-                    $entities = array_map('strtolower', get_html_translation_table(HTML_ENTITIES, $flags));
-                }
-
                 $replace = [];
                 $matches = array_unique(array_map('strtolower', $matches[0]));
                 foreach ($matches as &$match) {
-                    if (($char = array_search($match.';', $entities, true)) !== false) {
+                    if (($char = array_search($match.';', $this->entities, true)) !== false) {
                         $replace[$match] = $char;
                     }
                 }
-
-                $str = str_ireplace(array_keys($replace), array_values($replace), $str);
+                $str = str_replace(array_keys($replace), array_values($replace), $str);
             }
 
-            $str = html_entity_decode(preg_replace('/(&#(?:x0*[0-9a-f]{2,5}(?![0-9a-f;])|(?:0*\d{2,4}(?![0-9;]))))/iS', '$1;', $str), $flags);
-        } while ($compare !== $str);
+            $str = html_entity_decode(
+                preg_replace('/(&#(?:x0*[0-9a-f]{2,5}(?![0-9a-f;])|(?:0*\d{2,4}(?![0-9;]))))/iS', '$1;', $str),
+                ENT_COMPAT | ENT_HTML5
+            );
+        } while ($original !== $str);
 
         return $str;
+    }
+
+    /**
+     * URL decode taking spaces into account.
+     *
+     * @param  array  $matches
+     *
+     * @return string
+     */
+    protected function urlDecodeSpaces($matches)
+    {
+        $input = $matches[0];
+        $nospaces = preg_replace('#\s+#', '', $input);
+
+        return $nospaces === $input ? $input : rawurldecode($nospaces);
     }
 
     /**
@@ -273,7 +308,7 @@ class Security
     protected function sanitizeNaughtyHtml($matches)
     {
         static $tags = [
-            'alert', 'prompt', 'confirm', 'applet', 'audio', 'basefont', 'base', 'behavior', 'bgsound',
+            'alert', 'area', 'prompt', 'confirm', 'applet', 'audio', 'basefont', 'base', 'behavior', 'bgsound',
             'blink', 'body', 'embed', 'expression', 'form', 'frameset', 'frame', 'head', 'html', 'ilayer',
             'iframe', 'input', 'button', 'select', 'isindex', 'layer', 'link', 'meta', 'keygen', 'object',
             'plaintext', 'style', 'script', 'textarea', 'title', 'math', 'video', 'svg', 'xml', 'xss',
@@ -314,7 +349,10 @@ class Security
                     $attributes[] = $attribute[0][0];
                 }
 
-                $matches['attributes'] = substr($matches['attributes'], $attribute[0][1] + strlen($attribute[0][0]));
+                $matches['attributes'] = substr(
+                    $matches['attributes'],
+                    $attribute[0][1] + strlen($attribute[0][0])
+                );
             } while ($matches['attributes'] !== '');
 
             $attributes = empty($attributes) ? '' : ' '.implode(' ', $attributes);
@@ -337,7 +375,7 @@ class Security
         return str_replace(
             $match[1],
             preg_replace(
-                '#href=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|data\s*:)#si',
+                '#href=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|d\s*a\s*t\s*a\s*:)#si',
                 '',
                 $this->filterAttributes($match[1])
             ),
@@ -423,15 +461,16 @@ class Security
     protected function doNeverAllowed($str)
     {
         $never = [
-            'document.cookie'   => '[removed]',
-            'document.write'    => '[removed]',
-            '.parentNode'       => '[removed]',
-            '.innerHTML'        => '[removed]',
-            '-moz-binding'      => '[removed]',
-            '<!--'              => '&lt;!--',
-            '-->'               => '--&gt;',
-            '<![CDATA['         => '&lt;![CDATA[',
-            '<comment>'         => '&lt;comment&gt;',
+            'document.cookie' => '[removed]',
+            'document.write'  => '[removed]',
+            '.parentNode'     => '[removed]',
+            '.innerHTML'      => '[removed]',
+            '-moz-binding'    => '[removed]',
+            '<!--'            => '&lt;!--',
+            '-->'             => '--&gt;',
+            '<![CDATA['       => '&lt;![CDATA[',
+            '<comment>'       => '&lt;comment&gt;',
+            '<%'              => '&lt;&#37;',
         ];
 
         $str = str_replace(array_keys($never), $never, $str);

@@ -46,7 +46,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<img/src=%00 id=confirm(1) onerror=eval(id)',
-                '&lt;img/',
+                '&lt;img/src= id=confirm&#40;1&#41; onerror=eval&#40;id&#41;',
             ],
             [
                 '<div id=confirm(1) onmouseover=eval(id)>X</div>',
@@ -78,11 +78,11 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<img/src=`%00` id=confirm(1) onerror=eval(id)',
-                '&lt;img/',
+                '&lt;img/src=`` id=confirm&#40;1&#41; onerror=eval&#40;id&#41;',
             ],
             [
                 '<img/src=`%00` onerror=this.onerror=confirm(1)',
-                '&lt;img/',
+                '&lt;img/src=`` onerror=this.onerror=confirm&#40;1&#41;',
             ],
             [
                 '<iframe/src="data:text/html,<iframe%09onload=confirm(1);>">',
@@ -174,7 +174,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<img/src=\'http://i.imgur.com/P8mL8.jpg \' onmouseover={confirm(1)}f()>',
-                '<img src=\'http://i.imgur.com/P8mL8.jpg \'>',
+                '<img src=\'http://i.imgur.com/P8mL8.jpg \' xss=removed>',
             ],
             [
                 '<style/&Tab;/onload=;&Tab;this&Tab;.&Tab;onload=confirm(1)>',
@@ -194,7 +194,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
             [
                 '<img/id="confirm&lpar;1&#x29;"/alt="/"src="/"onerror=eval(id&#x29;>',
-                '<img id="confirm&#40;1&#41;" alt="/" src="/">',
+                '<img id="confirm&#40;1&#41;" alt="/" src="/" xss=removed>',
             ],
             [
                 '<iframe/src="data&colon;text&sol;html,<s&Tab;cr&Tab;ip&Tab;t>confirm(1)</script>">',
