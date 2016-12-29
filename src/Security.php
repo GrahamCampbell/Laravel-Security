@@ -274,7 +274,7 @@ class Security
     /**
      * URL decode taking spaces into account.
      *
-     * @param  array  $matches
+     * @param array $matches
      *
      * @return string
      */
