@@ -232,7 +232,7 @@ class SecurityTest extends AbstractTestBenchTestCase
             $cases[34][1] = '&lt;iframe/src="j&Tab;AVASCRIP&NewLine;t:\\\u0061ler\\\u0074(1)"&gt;';
             $cases[36][1] = '&lt;embed/src=javascript&colon;\u0061lert(1)&gt;';
             $cases[38][1] = '&lt;style/&Tab;/onload=;&Tab;this&Tab;.&Tab;onload=confirm&#40;1&#41;&gt;';
-            $cases[42][1] = '<img id="confirm&lpar;1)" alt="/" src="/">';
+            $cases[42][1] = '<img id="confirm&lpar;1)" alt="/" src="/" xss=removed>';
             $cases[43][1] = '&lt;iframe/src="data&colon;text&sol;html,<s>confirm&#40;1&#41;[removed]"&gt;';
         }
 
