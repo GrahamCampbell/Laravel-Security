@@ -33,4 +33,6 @@ $ vendor/bin/phpunit
 
 If the test suite passes on your local machine you should be good to go.
 
-When you make a pull request, the tests will automatically be run again by [Travis CI](https://travis-ci.org/). We also have [StyleCI](https://styleci.io/) setup to automatically check and fix any code style issues.
+When you make a pull request, the tests will automatically be run again by [Travis CI](https://travis-ci.org/).
+
+We also have [StyleCI](https://styleci.io/) setup to automatically fix any code style issues.
