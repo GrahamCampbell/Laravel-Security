@@ -34,6 +34,14 @@
     "extra": {
         "branch-alias": {
             "dev-master": "3.7-dev"
+        },
+        "laravel": {
+            "providers": [
+                "GrahamCampbell\\Security\\SecurityServiceProvider"
+            ],
+            "aliases": {
+                "Security": "GrahamCampbell\\Security\\Facades\\Security"
+            }
         }
     },
     "minimum-stability": "dev",
