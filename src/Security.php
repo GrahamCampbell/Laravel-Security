@@ -67,8 +67,8 @@ class Security
     public function clean($str)
     {
         if (is_array($str)) {
-            while (list($key) = each($str)) {
-                $str[$key] = $this->clean($str[$key]);
+            foreach ($str as $key => &$value) {
+                $str[$key] = $this->clean(&$value);
             }
 
             return $str;
