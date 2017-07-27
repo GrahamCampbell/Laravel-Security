@@ -223,23 +223,6 @@ class SecurityTest extends AbstractTestBenchTestCase
             ],
         ];
 
-        if (defined('HHVM_VERSION')) {
-            $cases[9][1] = '&lt;iframe/src="[removed]a=[alert&lpar;1&rpar;,confirm&#40;2&#41;,prompt&#40;3&#41;];eval&#40;a[0]&#41;;"&gt;';
-            $cases[19][1] = '&lt;body/onload=this.onload=document.body[removed]=alert&lpar;1&rpar;&gt;';
-            $cases[20][1] = '&lt;iframe/onload=\'[removed]void(1)&quest;void(1):confirm&#40;1&#41;\'&gt;';
-            $cases[21][1] = '&lt;object/type="text/x-scriptlet"/data="data:X,[removed]setInterval&lpar;\'prompt&#40;1&#41;\',10&rpar;[removed]"&gt;&lt;/object&gt;';
-            $cases[26][1] = '&lt;object/data="data&colon;X&comma;[removed]alert&#40;1&#41;<&sol;script>"&gt;';
-            $cases[27][1] = '&lt;form/action=[removed]void(1)&quest;void(1)&colon;alert&#40;1&#41;&gt;&lt;input/type=\'submit\'&gt;';
-            $cases[28][1] = '&lt;iframe/srcdoc=\'&lt;iframe&sol;onload&equals;confirm&#40;&sol;¡♥&xcup;&sol;&#41;&gt;\'&gt;';
-            $cases[29][1] = '&lt;meta/http-equiv="refresh"/content="0;url=javascript&Tab;:&Tab;void(alert&#40;0&#41;)?0:0,0,prompt&#40;0&#41;"&gt;';
-            $cases[31][1] = '&lt;style/onload=\'javascript&colon;void(0)?void(0)&colon;confirm&#40;1&#41;\'&gt;';
-            $cases[34][1] = '&lt;iframe/src="j&Tab;AVASCRIP&NewLine;t:\\\u0061ler\\\u0074(1)"&gt;';
-            $cases[36][1] = '&lt;embed/src=javascript&colon;\u0061lert(1)&gt;';
-            $cases[38][1] = '&lt;style/&Tab;/onload=;&Tab;this&Tab;.&Tab;onload=confirm&#40;1&#41;&gt;';
-            $cases[42][1] = '<img id="confirm&lpar;1)" alt="/" src="/" xss=removed>';
-            $cases[43][1] = '&lt;iframe/src="data&colon;text&sol;html,<s>confirm&#40;1&#41;[removed]"&gt;';
-        }
-
         return $cases;
     }
 
