@@ -68,7 +68,7 @@ class Security
     {
         if (is_array($str)) {
             foreach ($str as $key => &$value) {
-                $str[$key] = $this->clean(&$value);
+                $str[$key] = $this->clean($value);
             }
 
             return $str;
