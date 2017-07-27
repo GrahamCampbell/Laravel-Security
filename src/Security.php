@@ -169,7 +169,7 @@ class Security
         unset($original);
 
         $pattern = '#'
-            .'<((?<slash>/*\s*)(?<tagName>[a-z0-9]+)(?=[^a-z0-9]|$)'
+            .'<((?<slash>/*\s*)((?<tagName>[a-z0-9]+)(?=[^a-z0-9]|$)|.+)'
             .'[^\s\042\047a-z0-9>/=]*'
             .'(?<attributes>(?:[\s\042\047/=]*'
             .'[^\s\042\047>/=]+'

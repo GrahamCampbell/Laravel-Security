@@ -217,6 +217,10 @@ class SecurityTest extends AbstractTestBenchTestCase
                 '<foo prefixOnAttribute="bar">',
                 '<foo prefixOnAttribute="bar">',
             ],
+            [
+                "\n><!-\n<b\n<c d=\"'e><iframe onload=alert(1) src=x>\n<a HREF=\"\">\n",
+                "\n>&lt;!-\n<b d=\"'e><iframe onload=alert&#40;1&#41; src=x>\n<a HREF=\">\n",
+            ],
         ];
 
         if (defined('HHVM_VERSION')) {
