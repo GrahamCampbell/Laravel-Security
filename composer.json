@@ -15,7 +15,7 @@
         "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*"
     },
     "require-dev": {
-        "graham-campbell/analyzer": "^1.0",
+        "graham-campbell/analyzer": "^1.1",
         "graham-campbell/testbench": "^4.0",
         "phpunit/phpunit": "^6.0"
     },

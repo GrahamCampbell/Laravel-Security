@@ -25,6 +25,11 @@ class AnalysisTest extends TestCase
 {
     use AnalysisTrait;
 
+    /**
+     * Get the code paths to analyze.
+     *
+     * @return string[]
+     */
     protected function getPaths()
     {
         return [
@@ -32,5 +37,15 @@ class AnalysisTest extends TestCase
             realpath(__DIR__.'/../src'),
             realpath(__DIR__),
         ];
+    }
+
+    /**
+     * Get the classes to ignore not existing.
+     *
+     * @return string[]
+     */
+    protected function getIgnored()
+    {
+        return [Application::class];
     }
 }
