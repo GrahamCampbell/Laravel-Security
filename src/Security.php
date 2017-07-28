@@ -90,7 +90,7 @@ class Security
      *
      * @return string
      */
-    protected function process($str)
+    protected function process(string $str)
     {
         $str = $this->removeInvisibleCharacters($str);
 
@@ -217,7 +217,7 @@ class Security
      *
      * @return string
      */
-    protected function removeInvisibleCharacters($str, $urlEncoded = true)
+    protected function removeInvisibleCharacters(string $str, bool $urlEncoded = true)
     {
         $nonDisplayables = [];
 
@@ -242,7 +242,7 @@ class Security
      *
      * @return string
      */
-    protected function entityDecode($str)
+    protected function entityDecode(string $str)
     {
         if (strpos($str, '&') === false) {
             return $str;
@@ -274,11 +274,11 @@ class Security
     /**
      * URL decode taking spaces into account.
      *
-     * @param array $matches
+     * @param string[] $matches
      *
      * @return string
      */
-    protected function urlDecodeSpaces($matches)
+    protected function urlDecodeSpaces(array $matches)
     {
         $input = $matches[0];
         $nospaces = preg_replace('#\s+#', '', $input);
@@ -289,11 +289,11 @@ class Security
     /**
      * Compact exploded words.
      *
-     * @param array $matches
+     * @param string[] $matches
      *
      * @return string
      */
-    protected function compactExplodedWords($matches)
+    protected function compactExplodedWords(array $matches)
     {
         return preg_replace('/\s+/s', '', $matches[1]).$matches[2];
     }
@@ -301,11 +301,11 @@ class Security
     /**
      * Sanitize naughty html.
      *
-     * @param array $matches
+     * @param string[] $matches
      *
      * @return string
      */
-    protected function sanitizeNaughtyHtml($matches)
+    protected function sanitizeNaughtyHtml(array $matches)
     {
         static $tags = [
             'alert', 'area', 'prompt', 'confirm', 'applet', 'audio', 'basefont', 'base', 'behavior', 'bgsound',
@@ -366,11 +366,11 @@ class Security
     /**
      * JS link removal.
      *
-     * @param array $match
+     * @param string[] $match
      *
      * @return string
      */
-    protected function jsLinkRemoval($match)
+    protected function jsLinkRemoval(array $match)
     {
         return str_replace(
             $match[1],
@@ -386,11 +386,11 @@ class Security
     /**
      * JS image removal.
      *
-     * @param array $match
+     * @param string[] $match
      *
      * @return string
      */
-    protected function jsImgRemoval($match)
+    protected function jsImgRemoval(array $match)
     {
         return str_replace(
             $match[1],
@@ -406,11 +406,11 @@ class Security
     /**
      * Attribute conversion.
      *
-     * @param array $match
+     * @param string[] $match
      *
      * @return string
      */
-    protected function convertAttribute($match)
+    protected function convertAttribute(array $match)
     {
         return str_replace(['>', '<', '\\'], ['&gt;', '&lt;', '\\\\'], $match[0]);
     }
@@ -422,7 +422,7 @@ class Security
      *
      * @return string
      */
-    protected function filterAttributes($str)
+    protected function filterAttributes(string $str)
     {
         $out = '';
 
@@ -438,11 +438,11 @@ class Security
     /**
      * HTML entity decode callback.
      *
-     * @param array $match
+     * @param string[] $match
      *
      * @return string
      */
-    protected function decodeEntity($match)
+    protected function decodeEntity(array $match)
     {
         $hash = $this->xssHash();
 
@@ -458,7 +458,7 @@ class Security
      *
      * @return string
      */
-    protected function doNeverAllowed($str)
+    protected function doNeverAllowed(string $str)
     {
         $never = [
             'document.cookie' => '[removed]',
