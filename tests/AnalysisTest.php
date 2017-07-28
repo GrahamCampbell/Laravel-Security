@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace GrahamCampbell\Tests\Security;
 
 use GrahamCampbell\Analyzer\AnalysisTrait;
+use Laravel\Lumen\Application;
 use PHPUnit\Framework\TestCase;
 
 /**
