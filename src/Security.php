@@ -194,6 +194,12 @@ class Security
             $str
         );
 
+        $str = preg_replace(
+            '#(alert|prompt|confirm|cmd|passthru|eval|exec|expression|system|fopen|fsockopen|file|file_get_contents|readfile|unlink)(\s*)`(.*?)`#si',
+            '\\1\\2&#96;\\3&#96;',
+            $str
+        );
+
         return $this->doNeverAllowed($str);
     }
 
@@ -377,7 +383,7 @@ class Security
         return str_replace(
             $match[1],
             preg_replace(
-                '#href=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|d\s*a\s*t\s*a\s*:)#si',
+                '#href=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;|`|&\#96;)|javascript:|livescript:|mocha:|charset=|window\.|\(?document\)?\.|\.cookie|<script|<xss|d\s*a\s*t\s*a\s*:)#si',
                 '',
                 $this->filterAttributes($match[1])
             ),
@@ -397,7 +403,7 @@ class Security
         return str_replace(
             $match[1],
             preg_replace(
-                '#src=.*?(?:(?:alert|prompt|confirm|eval)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|base64\s*,)#si',
+                '#src=.*?(?:(?:alert|prompt|confirm|eval)(?:\(|&\#40;|`|&\#96;)|javascript:|livescript:|mocha:|charset=|window\.|\(?document\)?\.|\.cookie|<script|<xss|base64\s*,)#si',
                 '',
                 $this->filterAttributes($match[1])
             ),
@@ -463,23 +469,25 @@ class Security
     protected function doNeverAllowed(string $str)
     {
         $never = [
-            'document.cookie' => '[removed]',
-            'document.write'  => '[removed]',
-            '.parentNode'     => '[removed]',
-            '.innerHTML'      => '[removed]',
-            '-moz-binding'    => '[removed]',
-            '<!--'            => '&lt;!--',
-            '-->'             => '--&gt;',
-            '<![CDATA['       => '&lt;![CDATA[',
-            '<comment>'       => '&lt;comment&gt;',
-            '<%'              => '&lt;&#37;',
+            'document.cookie'   => '[removed]',
+            '(document).cookie' => '[removed]',
+            'document.write'    => '[removed]',
+            '(document).write'  => '[removed]',
+            '.parentNode'       => '[removed]',
+            '.innerHTML'        => '[removed]',
+            '-moz-binding'      => '[removed]',
+            '<!--'              => '&lt;!--',
+            '-->'               => '--&gt;',
+            '<![CDATA['         => '&lt;![CDATA[',
+            '<comment>'         => '&lt;comment&gt;',
+            '<%'                => '&lt;&#37;',
         ];
 
         $str = str_replace(array_keys($never), $never, $str);
 
         $regex = [
             'javascript\s*:',
-            '(document|(document\.)?window)\.(location|on\w*)',
+            '(\(?document\)?|\(?window\)?(\.document)?)\.(location|on\w*)',
             'expression\s*(\(|&\#40;)',
             'vbscript\s*:',
             'wscript\s*:',
