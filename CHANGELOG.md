@@ -2,6 +2,12 @@ CHANGE LOG
 ==========
 
 
+## V5.1 (23/08/2018)
+
+* Added Laravel 5.7 support
+* Pulled in upstream fixes
+
+
 ## V5.0 (02/03/2018)
 
 * Support PHP 7.1 or 7.2
