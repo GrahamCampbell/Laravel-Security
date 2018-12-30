@@ -322,10 +322,6 @@ class Security
             'plaintext', 'style', 'script', 'textarea', 'title', 'math', 'video', 'svg', 'xml', 'xss',
         ];
 
-        static $evilAttributes = [
-            'on\w+', 'style', 'xmlns', 'formaction', 'form', 'xlink:href', 'FSCommand', 'seekSegmentTime',
-        ];
-
         if (empty($matches['closeTag'])) {
             return '&lt;'.$matches[1];
         }
@@ -342,7 +338,7 @@ class Security
                 .'(?:\s*=(?<value>[^\s\042\047=><`]+|\s*\042[^\042]*\042|\s*\047[^\047]*\047|\s*(?U:[^\s\042\047=><`]*)))'
                 .'#i';
 
-            $isEvil = '#^('.implode('|', $evilAttributes).')$#i';
+            $isEvil = '#^('.implode('|', $this->evil).')$#i';
 
             do {
                 $matches['attributes'] = preg_replace('#^[^a-z]+#i', '', $matches['attributes']);
