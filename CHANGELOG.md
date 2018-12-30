@@ -2,6 +2,11 @@ CHANGE LOG
 ==========
 
 
+## V5.1.1 (30/12/2018)
+
+* Respect the evil attributes argument
+
+
 ## V5.1 (23/08/2018)
 
 * Added Laravel 5.7 support
