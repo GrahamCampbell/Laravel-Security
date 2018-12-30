@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace GrahamCampbell\Security;
 
+use GrahamCampbell\SecurityCore\Security;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;

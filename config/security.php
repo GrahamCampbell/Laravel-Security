@@ -23,6 +23,15 @@ return [
     |
     */
 
-    'evil' => ['(?<!\w)on\w*', 'style', 'xmlns', 'formaction', 'form', 'xlink:href', 'FSCommand', 'seekSegmentTime'],
+    'evil' => [
+        '(?<!\w)on\w*',
+        'style',
+        'xmlns',
+        'formaction',
+        'form',
+        'xlink:href',
+        'FSCommand',
+        'seekSegmentTime',
+    ],
 
 ];

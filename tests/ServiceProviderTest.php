@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace GrahamCampbell\Tests\Security;
 
-use GrahamCampbell\Security\Security;
+use GrahamCampbell\SecurityCore\Security;
 use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
 
 /**

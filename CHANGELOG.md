@@ -2,6 +2,11 @@ CHANGE LOG
 ==========
 
 
+## V6.0 (Upcoming)
+
+* Extracted core to seperate package
+
+
 ## V5.1.1 (30/12/2018)
 
 * Respect the evil attributes argument

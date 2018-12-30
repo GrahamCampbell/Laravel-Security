@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace GrahamCampbell\Tests\Security\Facades;
 
 use GrahamCampbell\Security\Facades\Security as Facade;
-use GrahamCampbell\Security\Security;
+use GrahamCampbell\SecurityCore\Security;
 use GrahamCampbell\TestBenchCore\FacadeTrait;
 use GrahamCampbell\Tests\Security\AbstractTestCase;
 
@@ -55,5 +55,10 @@ class SecurityTest extends AbstractTestCase
     protected function getFacadeRoot()
     {
         return Security::class;
+    }
+
+    public function testClean()
+    {
+        $this->assertSame('<span xss=removed>X</span>', Facade::clean('<span/onmouseover=confirm(1)>X</span>'));
     }
 }
