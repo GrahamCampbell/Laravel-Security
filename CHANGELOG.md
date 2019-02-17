@@ -2,6 +2,11 @@ CHANGE LOG
 ==========
 
 
+## V6.1 (17/02/2019)
+
+* Added Laravel 5.8 support
+
+
 ## V6.0 (30/12/2018)
 
 * Extracted core to separate package
