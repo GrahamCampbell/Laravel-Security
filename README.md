@@ -1,7 +1,7 @@
 Laravel Security
 ================
 
-Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a port of the security class from [CodeIgniter 3](https://codeigniter.com) for [Laravel 5](http://laravel.com). As of V6.0, the core has been extracted to [Security Core](https://github.com/GrahamCampbell/Security-Core). Laravel Security is best used wrapped in my [Laravel Binput](https://github.com/GrahamCampbell/Laravel-Binput) package. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), [license](LICENSE), and [contribution guidelines](CONTRIBUTING.md).
+Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and provides a port of the security class from [CodeIgniter 3](https://codeigniter.com) for [Laravel 5](http://laravel.com). As of V6.0, the core has been extracted to [Security Core](https://github.com/GrahamCampbell/Security-Core). Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), [security policy](https://github.com/GrahamCampbell/Laravel-Security/security/policy), [license](LICENSE), [code of conduct](.github/CODE_OF_CONDUCT.md), and [contribution guidelines](.github/CONTRIBUTING.md).
 
 ![Laravel Security](https://cloud.githubusercontent.com/assets/2829600/4432293/c1126c70-468c-11e4-8552-d0076442bd63.PNG)
 
@@ -76,11 +76,9 @@ You may see an example of implementation in [Laravel Binput](https://github.com/
 
 ## Security
 
-If you discover a security vulnerability within this package, please send an e-mail to Graham Campbell at graham@alt-three.com. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within this package, please send an email to Graham Campbell at graham@alt-three.com. All security vulnerabilities will be promptly addressed. You may view our full security policy [here](https://github.com/GrahamCampbell/Laravel-Security/security/policy).
 
 
 ## License
 
 Laravel Security is licensed under [The MIT License (MIT)](LICENSE).
-
-Laravel Security contains code taken from CodeIgniter, also licensed under [The MIT License (MIT)](CODEIGNITER).
