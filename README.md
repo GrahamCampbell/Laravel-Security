@@ -1,7 +1,7 @@
 Laravel Security
 ================
 
-Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and provides a port of the security class from [CodeIgniter 3](https://codeigniter.com) for [Laravel 5](http://laravel.com). As of V6.0, the core has been extracted to [Security Core](https://github.com/GrahamCampbell/Security-Core). Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), [security policy](https://github.com/GrahamCampbell/Laravel-Security/security/policy), [license](LICENSE), [code of conduct](.github/CODE_OF_CONDUCT.md), and [contribution guidelines](.github/CONTRIBUTING.md).
+Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a [voku/anti-xss](https://github.com/voku/anti-xss) wrapper for [Laravel 5](http://laravel.com), using [graham-campbell/security-core](https://github.com/GrahamCampbell/Security-Core). Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), [security policy](https://github.com/GrahamCampbell/Laravel-Security/security/policy), [license](LICENSE), [code of conduct](.github/CODE_OF_CONDUCT.md), and [contribution guidelines](.github/CONTRIBUTING.md).
 
 ![Laravel Security](https://cloud.githubusercontent.com/assets/2829600/4432293/c1126c70-468c-11e4-8552-d0076442bd63.PNG)
 
@@ -46,11 +46,15 @@ $ php artisan vendor:publish
 
 This will create a `config/security.php` file in your app that you can modify to set your configuration. Also, make sure you check for changes to the original config file in this package between releases.
 
-There is one config option:
+There are two config option:
 
 ##### Evil attributes
 
-This option (`'evil'`) defines the evil attributes and they will be always be removed from the input.
+This option (`'evil'`) defines the evil attributes, which will always be stripped from the input.
+
+##### Replacement string
+
+This option (`'replacement'`) defines the replacement string, which will be used to take the place of removed portions of strings where XSS was present.
 
 
 ## Usage
@@ -59,7 +63,7 @@ This option (`'evil'`) defines the evil attributes and they will be always be re
 
 This is the class of most interest. It is bound to the ioc container as `'security'` and can be accessed using the `Facades\Security` facade. There is one public method of interest.
 
-The `'clean'` method will parse a string removing xss vulnerabilities. This parsing is strongly based on the security class from [CodeIgniter 3](http://www.codeigniter.com/).
+The `'clean'` method will parse a string removing XSS vulnerabilities, on a best effort basis.
 
 ##### Facades\Security
 

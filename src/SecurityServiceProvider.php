@@ -73,8 +73,9 @@ class SecurityServiceProvider extends ServiceProvider
     {
         $this->app->singleton('security', function (Container $app) {
             $evil = $app->config->get('security.evil');
+            $replacement = $app->config->get('security.replacement');
 
-            return new Security($evil);
+            return Security::create($evil, $replacement);
         });
 
         $this->app->alias('security', Security::class);

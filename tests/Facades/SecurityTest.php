@@ -59,6 +59,6 @@ class SecurityTest extends AbstractTestCase
 
     public function testClean()
     {
-        $this->assertSame('<span xss=removed>X</span>', Facade::clean('<span/onmouseover=confirm(1)>X</span>'));
+        $this->assertSame('<span/>X</span>', Facade::clean('<span/onmouseover=confirm(1)>X</span>'));
     }
 }

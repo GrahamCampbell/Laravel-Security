@@ -2,6 +2,11 @@ CHANGE LOG
 ==========
 
 
+## V7.0 (xx/12/2019)
+
+* Switch to security core v2
+
+
 ## V6.2 (26/08/2019)
 
 * Added Laravel 6 support
