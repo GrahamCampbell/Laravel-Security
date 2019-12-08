@@ -2,7 +2,7 @@ CHANGE LOG
 ==========
 
 
-## V7.0 (xx/12/2019)
+## V7.0 (08/12/2019)
 
 * Switch to security core v2
 
