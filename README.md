@@ -3,7 +3,7 @@ Laravel Security
 
 Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a [voku/anti-xss](https://github.com/voku/anti-xss) wrapper for [Laravel 5](http://laravel.com), using [graham-campbell/security-core](https://github.com/GrahamCampbell/Security-Core). Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), [security policy](https://github.com/GrahamCampbell/Laravel-Security/security/policy), [license](LICENSE), [code of conduct](.github/CODE_OF_CONDUCT.md), and [contribution guidelines](.github/CONTRIBUTING.md).
 
-![Laravel Security](https://cloud.githubusercontent.com/assets/2829600/4432293/c1126c70-468c-11e4-8552-d0076442bd63.PNG)
+![Banner](https://user-images.githubusercontent.com/2829600/71477506-68a5a600-27e2-11ea-8c23-84dc5b8e3915.png)
 
 <p align="center">
 <a href="https://styleci.io/repos/12090755"><img src="https://styleci.io/repos/12090755/shield" alt="StyleCI Status"></img></a>
