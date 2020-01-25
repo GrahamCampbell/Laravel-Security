@@ -1,7 +1,7 @@
 Laravel Security
 ================
 
-Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a [voku/anti-xss](https://github.com/voku/anti-xss) wrapper for [Laravel 5](http://laravel.com), using [graham-campbell/security-core](https://github.com/GrahamCampbell/Security-Core). Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), [security policy](https://github.com/GrahamCampbell/Laravel-Security/security/policy), [license](LICENSE), [code of conduct](.github/CODE_OF_CONDUCT.md), and [contribution guidelines](.github/CONTRIBUTING.md).
+Laravel Security was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a [voku/anti-xss](https://github.com/voku/anti-xss) wrapper for [Laravel](http://laravel.com), using [graham-campbell/security-core](https://github.com/GrahamCampbell/Security-Core). Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Laravel-Security/releases), [security policy](https://github.com/GrahamCampbell/Laravel-Security/security/policy), [license](LICENSE), [code of conduct](.github/CODE_OF_CONDUCT.md), and [contribution guidelines](.github/CONTRIBUTING.md).
 
 ![Banner](https://user-images.githubusercontent.com/2829600/71477506-68a5a600-27e2-11ea-8c23-84dc5b8e3915.png)
 
@@ -17,7 +17,7 @@ Laravel Security was created by, and is maintained by [Graham Campbell](https://
 
 ## Installation
 
-Laravel Security requires [PHP](https://php.net) 7.1-7.4. This particular version supports Laravel 5.5-5.8 and 6 only.
+Laravel Security requires [PHP](https://php.net) 7.1-7.4. This particular version supports Laravel 5.5-7.
 
 To get the latest version, simply require the project using [Composer](https://getcomposer.org):
 
