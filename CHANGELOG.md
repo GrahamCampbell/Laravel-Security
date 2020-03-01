@@ -2,9 +2,10 @@ CHANGE LOG
 ==========
 
 
-## V8.0 (Upcoming)
+## V8.0 (01/03/2020)
 
 * Dropped Laravel 5
+* Switch to security core v3
 
 
 ## V7.1 (25/01/2020)
