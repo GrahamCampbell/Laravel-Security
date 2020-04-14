@@ -2,6 +2,11 @@ CHANGE LOG
 ==========
 
 
+## V7.1.1 (14/04/2020)
+
+* Updated funding information
+
+
 ## V7.1 (25/01/2020)
 
 * Added Laravel 7 support
