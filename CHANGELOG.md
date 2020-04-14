@@ -2,6 +2,11 @@ CHANGE LOG
 ==========
 
 
+## V8.0.2 (14/04/2020)
+
+* Removed extra file from dist
+
+
 ## V8.0.1 (14/04/2020)
 
 * Updated funding information
