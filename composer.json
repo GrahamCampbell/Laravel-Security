@@ -34,9 +34,6 @@
         "preferred-install": "dist"
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "7.1-dev"
-        },
         "laravel": {
             "providers": [
                 "GrahamCampbell\\Security\\SecurityServiceProvider"
