@@ -12,13 +12,13 @@
     "require": {
         "php": "^7.2.5",
         "graham-campbell/security-core": "^3.0",
-        "illuminate/contracts": "^6.0|^7.0",
-        "illuminate/support": "^6.0|^7.0"
+        "illuminate/contracts": "^6.0 || ^7.0",
+        "illuminate/support": "^6.0 || ^7.0"
     },
     "require-dev": {
         "graham-campbell/analyzer": "^3.0",
         "graham-campbell/testbench": "^5.4",
-        "phpunit/phpunit": "^8.5|^9.0"
+        "phpunit/phpunit": "^8.5 || ^9.0"
     },
     "autoload": {
         "psr-4": {
@@ -34,9 +34,6 @@
         "preferred-install": "dist"
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "8.0-dev"
-        },
         "laravel": {
             "providers": [
                 "GrahamCampbell\\Security\\SecurityServiceProvider"
