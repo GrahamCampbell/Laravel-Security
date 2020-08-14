@@ -60,9 +60,9 @@ This will create a `config/security.php` file in your app that you can modify to
 
 There are two config options:
 
-##### Evil attributes
+##### Evil configuration
 
-This option (`'evil'`) defines the evil attributes, which will always be stripped from the input.
+This option (`'evil'`) defines the evil attributes and tags, which will always be stripped from the input.
 
 ##### Replacement string
 
