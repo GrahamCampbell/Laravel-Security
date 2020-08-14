@@ -2,6 +2,12 @@ CHANGE LOG
 ==========
 
 
+## V8.1 (UPCOMING)
+
+* Added Laravel 8 support
+* Added provisional PHP 8.0 support
+
+
 ## V8.0.2 (14/04/2020)
 
 * Removed extra file from dist
