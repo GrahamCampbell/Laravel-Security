@@ -18,12 +18,15 @@ return [
     | Evil attributes
     |--------------------------------------------------------------------------
     |
-    | This defines the evil attributes, which will always be stripped from the
-    | input.
+    | This defines the evil attributes and tags, which will always be stripped
+    | from the input.
     |
     */
 
-    'evil' => null,
+    'evil' => [
+        'attributes' => null,
+        'tags' => null,
+    ],
 
     /*
     |--------------------------------------------------------------------------
