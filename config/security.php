@@ -15,7 +15,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Evil attributes
+    | Evil configuration
     |--------------------------------------------------------------------------
     |
     | This defines the evil attributes and tags, which will always be stripped
