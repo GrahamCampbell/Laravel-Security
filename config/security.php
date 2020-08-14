@@ -25,7 +25,7 @@ return [
 
     'evil' => [
         'attributes' => null,
-        'tags' => null,
+        'tags'       => null,
     ],
 
     /*
