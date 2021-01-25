@@ -35,7 +35,7 @@ Laravel Security requires [PHP](https://php.net) 7.2-8.0. This particular versio
 To get the latest version, simply require the project using [Composer](https://getcomposer.org):
 
 ```bash
-$ composer require graham-campbell/security:^9.0
+$ composer require "graham-campbell/security:^9.0"
 ```
 
 Once installed, if you are not using automatic package discovery, then you need to register the `GrahamCampbell\Security\SecurityServiceProvider` service provider in your `config/app.php`.
