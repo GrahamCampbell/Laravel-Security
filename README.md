@@ -6,10 +6,6 @@ Laravel Security was created by, and is maintained by [Graham Campbell](https://
 ![Banner](https://user-images.githubusercontent.com/2829600/71477506-68a5a600-27e2-11ea-8c23-84dc5b8e3915.png)
 
 <p align="center">
-<a href="https://xscode.com/grahamcampbell/Laravel-Security"><img src="https://xscode.com/assets/promo-banner.svg" alt="Promo Banner"></img></a>
-</p>
-
-<p align="center">
 <a href="https://github.com/GrahamCampbell/Laravel-Security/actions?query=workflow%3ATests"><img src="https://img.shields.io/github/workflow/status/GrahamCampbell/Laravel-Security/Tests?label=Tests&style=flat-square" alt="Build Status"></img></a>
 <a href="https://github.styleci.io/repos/12090755"><img src="https://github.styleci.io/repos/12090755/shield" alt="StyleCI Status"></img></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square" alt="Software License"></img></a>
@@ -20,7 +16,7 @@ Laravel Security was created by, and is maintained by [Graham Campbell](https://
 
 ## Installation
 
-Laravel Security requires [PHP](https://php.net) 7.2-8.0. This particular version supports Laravel 6-8.
+Laravel Security requires [PHP](https://php.net) 7.2-8.1. This particular version supports Laravel 6-8.
 
 | Security | L5.1               | L5.2               | L5.3               | L5.4               | L5.5               | L5.6               | L5.7               | L5.8               | L6                 | L7                 | L8                 |
 |----------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
@@ -93,7 +89,7 @@ You may see an example of implementation in [Laravel Binput](https://github.com/
 
 ## Security
 
-If you discover a security vulnerability within this package, please send an email to Graham Campbell at graham@alt-three.com. All security vulnerabilities will be promptly addressed. You may view our full security policy [here](https://github.com/GrahamCampbell/Laravel-Security/security/policy).
+If you discover a security vulnerability within this package, please send an email to security@tidelift.com. All security vulnerabilities will be promptly addressed. You may view our full security policy [here](https://github.com/GrahamCampbell/Laravel-Security/security/policy).
 
 
 ## License
