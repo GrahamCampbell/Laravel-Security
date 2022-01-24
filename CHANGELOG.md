@@ -2,6 +2,11 @@ CHANGE LOG
 ==========
 
 
+## V9.1 (UPCOMING)
+
+* Added Laravel 9 support
+
+
 ## V9.0.1 (21/11/2021)
 
 * Provisional PHP 8.1 support
