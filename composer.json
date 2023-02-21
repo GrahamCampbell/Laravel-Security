@@ -13,8 +13,8 @@
     "require": {
         "php": "^7.4.15 || ^8.0.2",
         "graham-campbell/security-core": "^3.2.5",
-        "illuminate/contracts": "^8.75 || ^9.0",
-        "illuminate/support": "^8.75 || ^9.0"
+        "illuminate/contracts": "^8.75 || ^9.0 || ^10.0",
+        "illuminate/support": "^8.75 || ^9.0 || ^10.0"
     },
     "require-dev": {
         "graham-campbell/analyzer": "^3.1",

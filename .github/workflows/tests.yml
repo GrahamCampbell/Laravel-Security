@@ -11,11 +11,15 @@ jobs:
 
     strategy:
       matrix:
-        php: ['7.4', '8.0', '8.1']
-        laravel: ['8', '9']
+        php: ['7.4', '8.0', '8.1', '8.2']
+        laravel: ['8', '9', '10']
         exclude:
           - php: '7.4'
             laravel: '9'
+          - php: '7.4'
+            laravel: '10'
+          - php: '8.0'
+            laravel: '10'
 
     steps:
       - name: Checkout Code
@@ -46,6 +50,14 @@ jobs:
           max_attempts: 5
           command: composer require "laravel/framework:^9.0" --no-update --no-interaction
         if: "matrix.laravel == '9'"
+
+      - name: Select Laravel 10
+        uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer require "laravel/framework:^10.0" --no-update --no-interaction
+        if: "matrix.laravel == '10'"
 
       - name: Install PHP Dependencies
         uses: nick-invision/retry@v2
