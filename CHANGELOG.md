@@ -2,6 +2,14 @@ CHANGE LOG
 ==========
 
 
+## V11.0 (26/02/2023)
+
+* Support Laravel 9-10 only
+* Support PHP 8.0-8.2 only
+* Added additional types
+* Switch to security core v4
+
+
 ## V10.0 (30/05/2022)
 
 * Dropped PHP < 7.4
