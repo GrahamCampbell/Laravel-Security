@@ -11,17 +11,11 @@ jobs:
 
     strategy:
       matrix:
-        php: ['7.4', '8.0', '8.1', '8.2']
-        laravel: ['8', '9', '10']
+        php: ['8.0', '8.1', '8.2']
+        laravel: ['9', '10']
         exclude:
-          - php: '7.4'
-            laravel: '9'
-          - php: '7.4'
-            laravel: '10'
           - php: '8.0'
             laravel: '10'
-          - php: '8.2'
-            laravel: '8'
 
     steps:
       - name: Checkout Code
@@ -38,14 +32,6 @@ jobs:
 
       - name: Setup Problem Matchers
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-
-      - name: Select Laravel 8
-        uses: nick-invision/retry@v2
-        with:
-          timeout_minutes: 5
-          max_attempts: 5
-          command: composer require "laravel/framework:^8.83.27" "phpunit/phpunit:^9.6.3" --no-update --no-interaction
-        if: "matrix.laravel == '8'"
 
       - name: Select Laravel 9
         uses: nick-invision/retry@v2

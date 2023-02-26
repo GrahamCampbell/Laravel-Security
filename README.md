@@ -16,7 +16,7 @@ Laravel Security was created by, and is maintained by [Graham Campbell](https://
 
 ## Installation
 
-This version requires [PHP](https://www.php.net/) 7.4-8.2 and supports [Laravel](https://laravel.com/) 8-10.
+This version requires [PHP](https://www.php.net/) 8.0-8.2 and supports [Laravel](https://laravel.com/) 9-10.
 
 | Security | L5.5               | L5.6               | L5.7               | L5.8               | L6                 | L7                 | L8                 | L9                 | L10                |
 |----------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
@@ -26,7 +26,7 @@ This version requires [PHP](https://www.php.net/) 7.4-8.2 and supports [Laravel]
 | 8.0      | :x:                | :x:                | :x:                | :x:                | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :x:                |
 | 9.1      | :x:                | :x:                | :x:                | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                |
 | 10.0     | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :white_check_mark: | :white_check_mark: | :x:                |
-| 11.0     | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| 11.0     | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :white_check_mark: | :white_check_mark: |
 
 To get the latest version, simply require the project using [Composer](https://getcomposer.org/):
 
