@@ -31,7 +31,7 @@ class SecurityServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->setupConfig();
     }
@@ -41,7 +41,7 @@ class SecurityServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function setupConfig()
+    protected function setupConfig(): void
     {
         $source = realpath($raw = __DIR__.'/../config/security.php') ?: $raw;
 
@@ -59,7 +59,7 @@ class SecurityServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->registerSecurity();
     }
@@ -69,9 +69,9 @@ class SecurityServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerSecurity()
+    protected function registerSecurity(): void
     {
-        $this->app->singleton('security', function (Container $app) {
+        $this->app->singleton('security', function (Container $app): Security {
             $evil = $app->config->get('security.evil');
             $replacement = $app->config->get('security.replacement');
 
@@ -86,7 +86,7 @@ class SecurityServiceProvider extends ServiceProvider
      *
      * @return string[]
      */
-    public function provides()
+    public function provides(): array
     {
         return [
             'security',

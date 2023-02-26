@@ -12,14 +12,14 @@
     ],
     "require": {
         "php": "^7.4.15 || ^8.0.2",
-        "graham-campbell/security-core": "^3.2.5",
-        "illuminate/contracts": "^8.75 || ^9.0",
-        "illuminate/support": "^8.75 || ^9.0"
+        "graham-campbell/security-core": "^4.0",
+        "illuminate/contracts": "^8.75 || ^9.0 || ^10.0",
+        "illuminate/support": "^8.75 || ^9.0 || ^10.0"
     },
     "require-dev": {
-        "graham-campbell/analyzer": "^3.1",
-        "graham-campbell/testbench": "^5.7",
-        "phpunit/phpunit": "^9.5"
+        "graham-campbell/analyzer": "^4.0",
+        "graham-campbell/testbench": "^6.0",
+        "phpunit/phpunit": "^9.6.3 || ^10.0.12"
     },
     "autoload": {
         "psr-4": {
@@ -40,7 +40,5 @@
                 "GrahamCampbell\\Security\\SecurityServiceProvider"
             ]
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }

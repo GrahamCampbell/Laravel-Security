@@ -32,7 +32,7 @@ class SecurityTest extends AbstractTestCase
      *
      * @return string
      */
-    protected function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return 'security';
     }
@@ -42,7 +42,7 @@ class SecurityTest extends AbstractTestCase
      *
      * @return string
      */
-    protected function getFacadeClass()
+    protected static function getFacadeClass(): string
     {
         return Facade::class;
     }
@@ -52,31 +52,31 @@ class SecurityTest extends AbstractTestCase
      *
      * @return string
      */
-    protected function getFacadeRoot()
+    protected static function getFacadeRoot(): string
     {
         return Security::class;
     }
 
-    public function testClean()
+    public function testClean(): void
     {
-        $this->assertSame('<span/>X</span>', Facade::clean('<span/onmouseover=confirm(1)>X</span>'));
-        $this->assertSame('<p>hi there</p>', Facade::clean('<p>hi there</p>'));
-        $this->assertSame('<a href="https://styleci.io/">hi there</a>', Facade::clean('<a href="https://styleci.io/">hi there</a>'));
+        self::assertSame('<span/>X</span>', Facade::clean('<span/onmouseover=confirm(1)>X</span>'));
+        self::assertSame('<p>hi there</p>', Facade::clean('<p>hi there</p>'));
+        self::assertSame('<a href="https://styleci.io/">hi there</a>', Facade::clean('<a href="https://styleci.io/">hi there</a>'));
     }
 
-    public function testCleanCustomAttributes()
+    public function testCleanCustomAttributes(): void
     {
         $this->app->config->set('security.evil.attributes', ['href']);
-        $this->assertSame('<span/>X</span>', Facade::clean('<span/onmouseover=confirm(1)>X</span>'));
-        $this->assertSame('<p>hi there</p>', Facade::clean('<p>hi there</p>'));
-        $this->assertSame('<a >hi there</a>', Facade::clean('<a href="https://styleci.io/">hi there</a>'));
+        self::assertSame('<span/>X</span>', Facade::clean('<span/onmouseover=confirm(1)>X</span>'));
+        self::assertSame('<p>hi there</p>', Facade::clean('<p>hi there</p>'));
+        self::assertSame('<a >hi there</a>', Facade::clean('<a href="https://styleci.io/">hi there</a>'));
     }
 
-    public function testCleanCustomTags()
+    public function testCleanCustomTags(): void
     {
         $this->app->config->set('security.evil.tags', ['p']);
-        $this->assertSame('<span/>X</span>', Facade::clean('<span/onmouseover=confirm(1)>X</span>'));
-        $this->assertSame('&lt;p&gt;hi there&lt;/p&gt;', Facade::clean('<p>hi there</p>'));
-        $this->assertSame('<a href="https://styleci.io/">hi there</a>', Facade::clean('<a href="https://styleci.io/">hi there</a>'));
+        self::assertSame('<span/>X</span>', Facade::clean('<span/onmouseover=confirm(1)>X</span>'));
+        self::assertSame('&lt;p&gt;hi there&lt;/p&gt;', Facade::clean('<p>hi there</p>'));
+        self::assertSame('<a href="https://styleci.io/">hi there</a>', Facade::clean('<a href="https://styleci.io/">hi there</a>'));
     }
 }

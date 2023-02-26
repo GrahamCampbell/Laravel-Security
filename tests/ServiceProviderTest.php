@@ -25,8 +25,8 @@ class ServiceProviderTest extends AbstractTestCase
 {
     use ServiceProviderTrait;
 
-    public function testSecurityIsInjectable()
+    public function testSecurityIsInjectable(): void
     {
-        $this->assertIsInjectable(Security::class);
+        self::assertIsInjectable(Security::class);
     }
 }
