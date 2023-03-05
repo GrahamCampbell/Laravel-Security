@@ -41,7 +41,7 @@ class SecurityServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function setupConfig(): void
+    private function setupConfig(): void
     {
         $source = realpath($raw = __DIR__.'/../config/security.php') ?: $raw;
 
@@ -69,7 +69,7 @@ class SecurityServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerSecurity(): void
+    private function registerSecurity(): void
     {
         $this->app->singleton('security', function (Container $app): Security {
             $evil = $app->config->get('security.evil');
