@@ -11,15 +11,17 @@ jobs:
 
     strategy:
       matrix:
-        php: ['8.0', '8.1', '8.2']
+        php: ['8.0', '8.1', '8.2', '8.3']
         laravel: ['9', '10']
         exclude:
           - php: '8.0'
             laravel: '10'
+          - php: '8.3'
+            laravel: '9'
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -38,7 +40,7 @@ jobs:
         with:
           timeout_minutes: 5
           max_attempts: 5
-          command: composer require "laravel/framework:^9.52.4" "phpunit/phpunit:^9.6.3" --no-update --no-interaction
+          command: composer require "laravel/framework:^9.52.16" "phpunit/phpunit:^9.6.15" --no-update --no-interaction
         if: "matrix.laravel == '9'"
 
       - name: Select Laravel 10
@@ -46,7 +48,7 @@ jobs:
         with:
           timeout_minutes: 5
           max_attempts: 5
-          command: composer require "laravel/framework:^10.1.5" "phpunit/phpunit:^10.0.12" --no-update --no-interaction
+          command: composer require "laravel/framework:^10.34.2" "phpunit/phpunit:^10.4.2" --no-update --no-interaction
         if: "matrix.laravel == '10'"
 
       - name: Install PHP Dependencies

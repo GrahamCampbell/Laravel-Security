@@ -12,14 +12,14 @@
     ],
     "require": {
         "php": "^8.0.2",
-        "graham-campbell/security-core": "^4.0",
+        "graham-campbell/security-core": "^4.0.1",
         "illuminate/contracts": "^9.0 || ^10.0",
         "illuminate/support": "^9.0 || ^10.0"
     },
     "require-dev": {
-        "graham-campbell/analyzer": "^4.0",
-        "graham-campbell/testbench": "^6.0",
-        "phpunit/phpunit": "^9.6.3 || ^10.0.12"
+        "graham-campbell/analyzer": "^4.1",
+        "graham-campbell/testbench": "^6.1",
+        "phpunit/phpunit": "^9.6.15 || ^10.5.1"
     },
     "autoload": {
         "psr-4": {
